@@ -194,7 +194,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item ">
-                <a href="{{ route('quan-ly-dia-diem') }}" class="nav-link @yield('location-active')">
+                <a href="{{ route('location.index') }}" class="nav-link @yield('location-active')">
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
                     Quản lý địa điểm

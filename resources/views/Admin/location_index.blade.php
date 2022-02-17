@@ -1,4 +1,4 @@
-@extends('admin.admin_layout')
+@extends('layouts.admin_layout')
 @section('location-active', 'active')
 @section('page-title','Quản lý địa điểm') 
 @section('main')
@@ -57,7 +57,7 @@
                                             <p>Tgian: <span class="data-span">{{$row->time}} </span> </p>
                                         </td>
                                         <td>
-                                            <textarea  class="mota" id="" readonly cols="30" rows="5">{{$row->mota}}</textarea>
+                                            <textarea  class="mota" id="" readonly cols="30" rows="4">{{$row->mota}}</textarea>
                                         </td>
                                         <td>
                                             <p>PT: <span class="data-span">{{$row->phuongtien}}</span></p>

@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//admin route
 
 Route::get('/', function () {
-    return view('Admin.admin_layout');
+    return view('layouts.admin_layout');
 });
 
-Route::get('/quantri/quan-ly-dia-diem',[LocationController::class,"index"])->name('quan-ly-dia-diem');
+// location route group
+Route::name('location.')->group(function () {
+    Route::get('/quantri/quan-ly-dia-diem',[LocationController::class,"index"])->name('index');
+    Route::get('/quantri/them-dia-diem',[LocationController::class,"create"])->name('create');
+    Route::get('/quantri/luu-dia-diem/{id}',[LocationController::class,"store"])->name('store');
+    Route::get('/quantri/sua-dia-diem',[LocationController::class,"edit"])->name('edit');
+    Route::get('/quantri/cap-nhat-dia-diem/{id}',[LocationController::class,"update"])->name('update');
+    Route::get('/quantri/xoa-dia-diem/{id}',[LocationController::class,"destroy"])->name('destroy');
+});
