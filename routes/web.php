@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Admin.home');
+    return view('Admin.admin_layout');
 });
+
+Route::get('/quantri/quan-ly-dia-diem',[LocationController::class,"index"])->name('quan-ly-dia-diem');
