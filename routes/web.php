@@ -1,18 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 //admin route
 
 Route::get('/', function () {
@@ -27,4 +19,22 @@ Route::name('location.')->group(function () {
     Route::get('/quantri/sua-dia-diem',[LocationController::class,"edit"])->name('edit');
     Route::get('/quantri/cap-nhat-dia-diem/{id}',[LocationController::class,"update"])->name('update');
     Route::get('/quantri/xoa-dia-diem/{id}',[LocationController::class,"destroy"])->name('destroy');
+});
+
+
+//admin
+Route::prefix('admin')->group(function (){
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('dashboard', [AdminController::class, 'index']);
+
+    #User
+    Route::prefix('user')->group(function (){
+        Route::get('add', [UserController::class, 'create']);
+        Route::post('add', [UserController::class, 'store']);
+        Route::get('list', [UserController::class, 'index']);
+        Route::get('edit/{user}', [UserController::class, 'show']);
+        Route::post('edit/{user}', [UserController::class, 'update']);
+        Route::delete('destroy', [UserController::class, 'destroy']);
+    });
+
 });
