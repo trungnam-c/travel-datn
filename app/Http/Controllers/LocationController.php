@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location_Model;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -13,11 +14,11 @@ class LocationController extends Controller
      */
     public function index()
     {
-         
-        return view('admin.location_index');
+        $data = Location_Model::paginate(15); 
+        return view('admin.location_index',['data'=>$data]);
     }
 
-    /**
+    /**v
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

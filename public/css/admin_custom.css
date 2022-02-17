@@ -1,0 +1,46 @@
+.stt {
+    width: 10px !important;
+}
+
+.mota {
+    border: none;
+    outline: none;
+    margin: -5px;
+    border-radius: 5px;
+}
+
+.location-tr td p {
+    margin: 2px 0px;
+}
+
+.data-span {
+    font-weight: bold;
+    color: black;
+}
+
+.edit-p {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-span {
+    font-weight: bold;
+    font-size: 14pt;
+    cursor: pointer;
+    color: blue;
+}
+
+.delete-span {
+    font-weight: bold;
+    cursor: pointer;
+    color: red;
+    font-size: 14pt;
+}
+
+.div-paginate {
+    width: 100%;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: end;
+}
