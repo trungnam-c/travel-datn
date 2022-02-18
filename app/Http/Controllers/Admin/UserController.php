@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Services\User\UserService;
 
@@ -28,8 +28,6 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'password' => 'required',
-            'gmail' => 'required',
-            'avatar' => 'required',
             'isAdmin'   => 'required'
         ]);
 
@@ -41,7 +39,7 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.user.list', [
-            'title' => 'Danh Sách user Mới Nhất',
+            'title' => 'Danh sách user mới nhất',
             'users' => $this->user->get()
         ]);
     }
@@ -49,7 +47,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('admin.user.edit', [
-            'title' => 'Chỉnh Sửa user',
+            'title' => 'Chỉnh sửa user',
             'user' => $user
         ]);
     }
@@ -59,8 +57,6 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'password' => 'required',
-            'gmail' => 'required',
-            'avatar' => 'required',
             'isAdmin'   => 'required'
         ]);
 

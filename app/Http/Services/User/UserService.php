@@ -4,7 +4,7 @@
 namespace App\Http\Services\User;
 
 
-use App\Models\UserModel;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
