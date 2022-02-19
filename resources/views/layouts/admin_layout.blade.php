@@ -8,13 +8,14 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{ asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css')}}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="{{ asset('css/admin_custom.css') }}">
 </head>
@@ -194,14 +195,23 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item ">
-                <a href="{{ route('location.index') }}" class="nav-link @yield('location-active')">
-                  <i class="nav-icon far fa-calendar-alt"></i>
-                  <p>
-                    Quản lý địa điểm
-                    <span class="badge badge-info right">2</span>
-                  </p>
+                <a href="{{ route('location.index') }}" class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
+                    <i class="nav-icon far fa-calendar-alt"></i>
+                    <p>
+                        Quản lý địa điểm
+                        <span class="badge badge-info right">2</span>
+                    </p>
                 </a>
-              </li>
+            </li>
+            <li class="nav-item ">
+                <a href="{{ route('detailLocation.index') }}" class="nav-link {{ request()->segment(2) == 'chi-tiet-dia-diem' ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-info-circle"></i>
+                    <p>
+                        Chi tiết địa điểm
+                        <span class="badge badge-info right"></span>
+                    </p>
+                </a>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
