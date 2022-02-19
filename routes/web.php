@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\detailLocationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +28,8 @@ Route::name('location.')->group(function () {
     Route::get('/quantri/sua-dia-diem',[LocationController::class,"edit"])->name('edit');
     Route::get('/quantri/cap-nhat-dia-diem/{id}',[LocationController::class,"update"])->name('update');
     Route::get('/quantri/xoa-dia-diem/{id}',[LocationController::class,"destroy"])->name('destroy');
+});
+
+Route::name('detailLocation.')->group(function(){
+    Route::get('/quantri/chi-tiet-dia-diem',[detailLocationController::class, 'index'])->name('index');
 });
