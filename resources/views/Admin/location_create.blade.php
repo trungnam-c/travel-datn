@@ -12,7 +12,9 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form action="{{ route('location.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method("post")
                         <div class="card-body">
                             <div class="row">
 
@@ -23,40 +25,84 @@
                                         <input type="text" class="form-control" id="diemdi" name="diemdi"
                                             placeholder="Nhập điểm đi">
                                     </div>
-                                    <!-- textarea -->
                                     <div class="form-group">
-                                        <label>Mô tả</label>
-                                        <textarea class="form-control" rows="3" placeholder="Nhập mô tả"
-                                            style="height: 40px;"></textarea>
+                                        <label for="phuongtien">Phương tiện</label>
+                                        <input type="text" class="form- " data-role="tagsinput" id="phuongtien"
+                                            name="phuongtien" placeholder="Nhập Phương tiện">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="diemdi">Giá</label>
-                                        <input type="number" class="form-control" id="gia" name="gia"
-                                            placeholder="Nhập giá">
-                                    </div>
+
+
 
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="Điểm đến">Điểm đến</label>
-                                        <input type="text" class="form-control" id="diemden" placeholder="Nhập điểm đến">
+                                        <input type="text" class="form-control" id="diemden" name="diemden" placeholder="Nhập điểm đến">
                                     </div>
                                     <div class="form-group">
                                         <label>Category</label>
                                         <select class="form-control select2bs4" style="width: 100%;">
                                             <option selected="selected">Bãi biển</option>
                                             <option>Núi non</option>
-                                            
+
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="phuongtien">Phương tiện</label>
-                                        <input type="text" class="form-control" data-role="tagsinput" id="phuongtien" name="phuongtien"
-                                            placeholder="Nhập Phương tiện">
-                                    </div>
+
                                 </div>
                                 {{-- col-6 --}}
                                 <div class="col-sm-2"></div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="giavetb">Giá</label>
+                                        <input type="number" class="form-control" id="giavetb" name="giavetb"
+                                            placeholder="Nhập giá">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="top">Vị trí xuất hiện</label>
+                                        <input type="number" class="form-control" id="top" name="top"
+                                            placeholder="Nhập vị trí xuất hiện">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+
+                                <div class="col-sm-6 mb-5">
+                                    <div class="form-group">
+                                        <label>Thời gian:</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="far fa-clock"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control float-right" id="reservationtime">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-5">
+                                    
+                                    <label for=""></label>
+                                    <div class="custom-control custom-switch  mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="anhien" name="anhien">
+                                        <label class="custom-control-label" for="anhien"> Chọn để ẩn </label>
+                                      </div>
+                                  
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Mô tả</label>
+                                        <textarea class="form-control" rows="3" name="mota" placeholder="Nhập mô tả"
+                                            style="height: 100px;"></textarea>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -142,8 +188,8 @@
                         </div>
                         <!-- /.card-body -->
 
-                        <div class="card-footer">asd
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Thêm mới</button>
                         </div>
 
                     </form>
@@ -155,5 +201,6 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+    
 
 @endsection

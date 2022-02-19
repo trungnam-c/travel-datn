@@ -36,7 +36,20 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $loca = new  Location_Model();
+        $loca->diemdi = $input['diemdi']  ;
+        $loca->diemden = $input['diemden']  ;
+        $loca->time = $input['time']  ;
+        $loca->mota = $input['mota']  ;
+        $loca->lichtrinh = $input['lichtrinh']  ;
+        $loca->giavetb = $input['giavetb']  ;
+        $loca->category = $input['category']  ;
+        $loca->images = $input['images']  ;
+        $loca->phuongtien = $input['phuongtien']  ;
+        $loca->top = $input['top']  ;
+        $loca->anhien = $input['anhien']  ; 
+        return "";
     }
 
     /**

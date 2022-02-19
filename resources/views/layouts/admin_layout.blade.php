@@ -6,20 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trang quản trị</title>
     <base href="{{ asset('/') }}">
+
+ 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('/')}}plugins/daterangepicker/daterangepicker.css">
+
+    <!-- DataTables --> 
     <link rel="stylesheet" href="{{ asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    
+    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
+  
+
+ 
     <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/admin_custom.css') }}">
@@ -36,7 +44,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="../../index3.html" class="nav-link">Trang chủ</a>
+                    <a href="{{asset('/')}}index3.html" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Liên hệ</a>
@@ -78,7 +86,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar"
+                                <img src="{{asset('/')}}dist/img/user1-128x128.jpg" alt="User Avatar"
                                     class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
@@ -96,7 +104,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar"
+                                <img src="{{asset('/')}}dist/img/user8-128x128.jpg" alt="User Avatar"
                                     class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
@@ -114,7 +122,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar"
+                                <img src="{{asset('/')}}dist/img/user3-128x128.jpg" alt="User Avatar"
                                     class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
@@ -176,8 +184,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+            <a href="{{asset('/')}}index3.html" class="brand-link">
+                <img src="{{asset('/')}}dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">VIETTRAVEL</span>
             </a>
@@ -187,7 +195,7 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{asset('/')}}dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Quang Đạt</a>
@@ -279,29 +287,44 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('/')}}plugins/jquery/jquery.min.js"></script>
+   
+ 
+   
     <!-- DataTables  & Plugins -->
-    <script src="../../plugins/select2/js/select2.full.min.js"></script>
-    <script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
-    <script src="../../plugins/datatables/jquery.dataTables.js"></script>
-    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="../../plugins/jszip/jszip.min.js"></script>
-    <script src="../../plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+    <script src="{{asset('/')}}plugins/moment/moment.min.js"></script>
+
+    <script src="{{asset('/')}}plugins/select2/js/select2.full.min.js"></script>
+    <script src="{{asset('/')}}plugins/daterangepicker/daterangepicker.js"></script>
+
+    <script src="{{asset('/')}}plugins/inputmask/jquery.inputmask.min.js"></script>
+    <script src="{{asset('/')}}plugins/datatables/jquery.dataTables.js"></script>
+    <script src="{{asset('/')}}plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{asset('/')}}plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{asset('/')}}plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{asset('/')}}plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{asset('/')}}plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{asset('/')}}plugins/jszip/jszip.min.js"></script>
+    <script src="{{asset('/')}}plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{asset('/')}}plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{asset('/')}}plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{asset('/')}}plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{asset('/')}}plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="{{asset('/')}}plugins/dropzone/min/dropzone.min.js"></script>  
+
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="https://unpkg.com/@yaireo/tagify@3.1.0/dist/tagify.polyfills.min.js"></script>
+    <script>
+      // The DOM element you wish to replace with Tagify
+  var input = document.querySelector('input[name=phuongtien]');
+  
+  // initialize Tagify on the above input node reference
+  new Tagify(input)
+    </script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="{{asset('/')}}dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
+    <script src="{{asset('/')}}dist/js/demo.js"></script>
     <!-- Page specific script -->
     <script>
         $(function() {
@@ -314,6 +337,35 @@
 
         });
     </script>
+    <script>
+        //Date range picker
+        $('#reservation').daterangepicker()
+                   //Date range picker with time picker
+               $('#reservationtime').daterangepicker({
+                       timePicker: true,
+                       timePickerIncrement: 30,
+                       locale: {
+                           format: 'MM/DD/YYYY hh:mm A'
+                       }
+                   })
+                   //Date range as a button
+               $('#daterange-btn').daterangepicker({
+                       ranges: {
+                           'Today': [moment(), moment()],
+                           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                           'This Month': [moment().startOf('month'), moment().endOf('month')],
+                           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                       },
+                       startDate: moment().subtract(29, 'days'),
+                       endDate: moment()
+                   },
+                   function(start, end) {
+                       $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                   }
+               )
+   </script>
 
     <!-- Page specific script -->
     <script>
