@@ -452,11 +452,7 @@
                 $(this).bootstrapSwitch('state', $(this).prop('checked'));
             })
 
-        })
-        // BS-Stepper Init
-        document.addEventListener('DOMContentLoaded', function() {
-            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-        })
+        }) 
 
         // DropzoneJS Demo Code Start
         Dropzone.autoDiscover = false
@@ -468,7 +464,10 @@
         previewNode.parentNode.removeChild(previewNode)
 
         var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-            url: "/target-url", // Set the url
+            url: "/quantri/luu-hinh-anh", // Set the url
+            headers: {
+                'x-csrf-token': document.querySelector('input[name="_token"]').value,
+            },
             thumbnailWidth: 80,
             thumbnailHeight: 80,
             parallelUploads: 20,
@@ -479,8 +478,14 @@
         })
 
         myDropzone.on("addedfile", function(file) {
+            var imagevalue = "";
+            var input = document.querySelector("input[name='images']");
+            imagevalue = input.value + ","+"upload/"+file.name;
+            input.value = imagevalue; 
+            console.log(input.value);
             // Hookup the start button
             file.previewElement.querySelector(".start").onclick = function() {
+                
                 myDropzone.enqueueFile(file)
             }
         })
@@ -506,6 +511,16 @@
         // The "add files" button doesn't need to be setup because the config
         // `clickable` has already been specified.
         document.querySelector("#actions .start").onclick = function() {
+            var input = document.querySelector("input[name='images']");
+
+            var tag = document.getElementsByClassName("lead");
+            var imageName = "";
+            tag.forEach(item => {
+                 imageName += "upload/"+item.innerText +",";
+            });
+            input.value = imageName;
+            console.log(input.value);
+            
             myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
         }
         document.querySelector("#actions .cancel").onclick = function() {

@@ -66,7 +66,7 @@
                                                 <p>Loại: <span class="data-span">Bãi biển</span></p>
                                             </td>
                                             <td>
-                                                <img src="{{ $image[0] }}" width="150px" alt="">
+                                                <img src="{{ asset('') }}{{$image[0]}}" width="150px" alt="">
                                             </td>
                                             <td>
                                                 @if ($anhien)

@@ -12,9 +12,10 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('location.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('location.store') }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
                         @csrf
                         @method("post")
+                        <input type="hidden" name="images" value="">
                         <div class="card-body">
                             <div class="row">
 
@@ -22,12 +23,12 @@
 
                                     <div class="form-group">
                                         <label for="diemdi">Điểm đi</label>
-                                        <input type="text" class="form-control" id="diemdi" name="diemdi"
+                                        <input type="text" class="form-control" value="{{old("diemdi")}}" id="diemdi" name="diemdi"
                                             placeholder="Nhập điểm đi">
                                     </div>
                                     <div class="form-group">
                                         <label for="phuongtien">Phương tiện</label>
-                                        <input type="text" class="form- " data-role="tagsinput" id="phuongtien"
+                                        <input type="text" class="form- " data-role="tagsinput" value="{{old("diemdi")}}" id="phuongtien"
                                             name="phuongtien" placeholder="Nhập Phương tiện">
                                     </div>
 
@@ -37,12 +38,12 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="Điểm đến">Điểm đến</label>
-                                        <input type="text" class="form-control" id="diemden" name="diemden" placeholder="Nhập điểm đến">
+                                        <input type="text" class="form-control" id="diemden" value="{{old("diemdi")}}" name="diemden" placeholder="Nhập điểm đến">
                                     </div>
                                     <div class="form-group">
                                         <label>Category</label>
-                                        <select class="form-control select2bs4" style="width: 100%;">
-                                            <option selected="selected">Bãi biển</option>
+                                        <select class="form-control select2bs4" name="category" style="width: 100%;">
+                                            <option selected="selected" value="1">Bãi biển</option>
                                             <option>Núi non</option>
 
                                         </select>
@@ -57,14 +58,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="giavetb">Giá</label>
-                                        <input type="number" class="form-control" id="giavetb" name="giavetb"
+                                        <input type="number" class="form-control" id="giavetb"  value="{{old("diemdi")}}" name="giavetb"
                                             placeholder="Nhập giá">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="top">Vị trí xuất hiện</label>
-                                        <input type="number" class="form-control" id="top" name="top"
+                                        <input type="number" class="form-control" id="top" value="{{old("diemdi")}}" name="top"
                                             placeholder="Nhập vị trí xuất hiện">
                                     </div>
                                 </div>
@@ -80,7 +81,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-clock"></i></span>
                                             </div>
-                                            <input type="text" class="form-control float-right" id="reservationtime">
+                                            <input type="text" class="form-control float-right" name="time" id="reservationtime">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -100,7 +101,7 @@
                                     <div class="form-group">
                                         <label>Mô tả</label>
                                         <textarea class="form-control" rows="3" name="mota" placeholder="Nhập mô tả"
-                                            style="height: 100px;"></textarea>
+                                            style="height: 100px;">{{old("diemdi")}}"</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -118,11 +119,11 @@
                                                             <i class="fas fa-plus"></i>
                                                             <span>Add files</span>
                                                         </span>
-                                                        <button type="submit" class="btn btn-primary col start">
+                                                        <button type="button" class="btn btn-primary col start">
                                                             <i class="fas fa-upload"></i>
                                                             <span>Start upload</span>
                                                         </button>
-                                                        <button type="reset" class="btn btn-warning col cancel">
+                                                        <button type="button" class="btn btn-warning col cancel">
                                                             <i class="fas fa-times-circle"></i>
                                                             <span>Cancel upload</span>
                                                         </button>
@@ -162,15 +163,15 @@
                                                     </div>
                                                     <div class="col-auto d-flex align-items-center">
                                                         <div class="btn-group">
-                                                            <button class="btn btn-primary start">
+                                                            <button type="button" class="btn btn-primary start">
                                                                 <i class="fas fa-upload"></i>
                                                                 <span>Start</span>
                                                             </button>
-                                                            <button data-dz-remove class="btn btn-warning cancel">
+                                                            <button data-dz-remove type="button" class="btn btn-warning cancel">
                                                                 <i class="fas fa-times-circle"></i>
                                                                 <span>Cancel</span>
                                                             </button>
-                                                            <button data-dz-remove class="btn btn-danger delete">
+                                                            <button data-dz-remove type="button" class="btn btn-danger delete">
                                                                 <i class="fas fa-trash"></i>
                                                                 <span>Delete</span>
                                                             </button>

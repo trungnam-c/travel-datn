@@ -25,6 +25,7 @@ Route::name('location.')->group(function () {
     Route::get('/quantri/quan-ly-dia-diem',[LocationController::class,"index"])->name('index');
     Route::get('/quantri/them-dia-diem',[LocationController::class,"create"])->name('create');
     Route::post('/quantri/luu-dia-diem',[LocationController::class,"store"])->name('store');
+    Route::post('/quantri/luu-hinh-anh',[LocationController::class,"saveImg"])->name('saveImg');
     Route::get('/quantri/sua-dia-diem',[LocationController::class,"edit"])->name('edit');
     Route::get('/quantri/cap-nhat-dia-diem/{id}',[LocationController::class,"update"])->name('update');
     Route::get('/quantri/xoa-dia-diem/{id}',[LocationController::class,"destroy"])->name('destroy');
