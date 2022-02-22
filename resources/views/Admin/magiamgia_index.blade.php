@@ -1,6 +1,6 @@
 @extends('layouts.admin_layout')
 @section('magiamgia-active', 'active')
-@section('page-title', 'Quản lý địa điểm')
+@section('page-title', 'Quản lý mã giảm giá')
 @section('main')
     <section class="content">
         <div class="container-fluid">
@@ -19,13 +19,13 @@
                                 <thead>
                                     <tr>
                                         <th class="stt">STT</th>
-                                        <th width="200px">Địa điểm</th>
-                                        <th width="200px">Giá vé</th>
-                                        <th width="150px">Mô tả</th>
-                                        <th width="200px">Phương tiện</th>
-                                        <th width="150px">Hình ảnh</th>
-                                        <th width="150px">Trạng thái</th>
-                                        <th width="150px ">Thay đổi</th>
+                                        <th width="200px">Mã giảm giá</th>
+                                        <th width="200px">Chi tiết</th>
+                                        <th width="150px">Ngày bắt đầu</th>
+                                        <th width="200px">Ngày kết thúc</th>
+                                        <th width="150px">Loại mã</th>
+                                        <th width="150px">Giá trị</th>
+                                        <th width="150px ">Ẩn hiện</th>
 
 
                                     </tr>
@@ -44,29 +44,20 @@
                                         <tr class="location-tr">
                                             <td>{{ $stt }}</td>
                                             <td>
-                                                <p>
-                                                    Đi: <span class="data-span">{{ $row->diemdi }}</span>
-                                                </p>
-                                                <p>
-                                                    Đến: <span class="data-span">{{ $row->diemden }} </span>
-                                                </p>
+                                                
+                                                    <span class="data-span">{{ $row->magiamgia }}</span>
                                             </td>
                                             <td>
-                                                <p>Giá: <span
-                                                        class="data-span text-danger">{{ number_format($row->giavetb) }}đ</span>
-                                                </p>
-                                                <p>Tgian: <span class="data-span">{{ $row->time }} </span> </p>
+                                                    <span class="data-span">{{ $row->chitiet }} </span>
+                                               
                                             </td>
                                             <td>
-                                                <textarea class="mota" id="" readonly cols="30"
-                                                    rows="4">{{ $row->mota }}</textarea>
+                                            <span class="data-span">{{ $row->ngaybatdau }} </span>
+
                                             </td>
                                             <td>
-                                                <p>PT: <span class="data-span">{{ $row->phuongtien }}</span></p>
-                                                <p>Loại: <span class="data-span">Bãi biển</span></p>
-                                            </td>
-                                            <td>
-                                                <img src="{{ $image[0] }}" width="150px" alt="">
+                                            <span class="data-span">{{ $row->ngayketthuc }} </span>
+
                                             </td>
                                             <td>
                                                 @if ($anhien)
@@ -74,7 +65,7 @@
                                                 @else
                                                     <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
                                                 @endif
-                                                <p>Thứ tự: <span class="font-weight-bold">{{ $row->top }}</span> </p>
+                                                <!-- <p>Thứ tự: <span class="font-weight-bold">{{ $row->top }}</span> </p> -->
                                             </td>
                                             <td>
                                                 <p class="edit-p">
