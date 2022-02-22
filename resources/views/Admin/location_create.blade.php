@@ -80,10 +80,8 @@
                                         <label>Thời gian:</label>
 
                                         <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="far fa-clock"></i></span>
-                                            </div>
-                                            <input type="text" class="form-control float-right" value="{{old("time")}}" name="time" id="reservationtime">
+                                            
+                                            <input type="text" class="form-control float-right" value="{{old("time")}}" name="time"  >
                                         </div>
                                         <!-- /.input group -->
                                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Location_Request;
 use App\Models\Location_Model;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -39,8 +40,9 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Location_Request $request)
     {
+    
         $input = $request->all();   
         $phuongtien = "";
         if($input['phuongtien'] != null) {
@@ -60,11 +62,10 @@ class LocationController extends Controller
         $loca->category = $input['category']  ;
         $loca->image = $input['images']  ;
         $loca->phuongtien = $phuongtien  ;
-        $loca->top = $input['top'] ;
+        $loca->top = trim($input['top'] );
         $loca->anhien = $anhien  ; 
         $loca->save();
-        
-        return "";
+        return back()->with("tb","thêm thành công!");
     }
 
     /**
@@ -100,7 +101,7 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Location_Request $request, $id)
     {
         $input = $request->all();   
         $phuongtien = "";
@@ -123,7 +124,7 @@ class LocationController extends Controller
         $loca->anhien = 1 ; 
         $loca->save();
         
-        return "";
+        return back()->with("tb","Sửa thành công!");
     }
 
     /**
@@ -141,7 +142,7 @@ class LocationController extends Controller
     public function saveImg(Request $request)
     {
         $image = $request->file('file');  
-        $file_name =  Carbon::now()->timestamp;
+        // $file_name =  Carbon::now()->timestamp;
         // $image->move(public_path('upload/'),$file_name);
         $result = $image->storeOnCloudinaryAs(); 
         return $result->getSecurePath();
