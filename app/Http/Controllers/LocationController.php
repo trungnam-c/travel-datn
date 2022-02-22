@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location_Model;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+ use Cloudinary;
+use Illuminate\Support\Facades\Date;
 
 class LocationController extends Controller
 {
@@ -25,7 +29,8 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('admin.location_create');
+        $data = DB ::table('categories')->get();
+        return view('admin.location_create',['data'=>$data]);
     }
 
     /**
@@ -36,13 +41,15 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();  
+        $input = $request->all();   
         $phuongtien = "";
         if($input['phuongtien'] != null) {
             foreach (json_decode($input['phuongtien'],true) as $item) {
                 $phuongtien .= $item['value'].",";
             } 
         }
+        $anhien =1;
+        if($input['anhien']) $anhien =0; 
         $loca = new  Location_Model();
         $loca->diemdi = $input['diemdi']  ;
         $loca->diemden = $input['diemden']  ;
@@ -53,8 +60,8 @@ class LocationController extends Controller
         $loca->category = $input['category']  ;
         $loca->image = $input['images']  ;
         $loca->phuongtien = $phuongtien  ;
-        $loca->top = 1 ;
-        $loca->anhien = 1 ; 
+        $loca->top = $input['top'] ;
+        $loca->anhien = $anhien  ; 
         $loca->save();
         
         return "";
@@ -79,7 +86,11 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Location_Model::find($id);
+        $cate = DB::table('categories')->get();
+
+        return view("Admin.location_edit",['data'=>$data,'cate'=>$cate]);
+    
     }
 
     /**
@@ -91,7 +102,28 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();   
+        $phuongtien = "";
+        if($input['phuongtien'] != null) {
+            foreach (json_decode($input['phuongtien'],true) as $item) {
+                $phuongtien .= $item['value'].",";
+            } 
+        }
+        $loca =  Location_Model::find($id);
+        $loca->diemdi = $input['diemdi']  ;
+        $loca->diemden = $input['diemden']  ;
+        $loca->time = $input['time']  ;
+        $loca->mota = $input['mota']  ;
+        $loca->lichtrinh = '$input[lichtrinh] ' ;
+        $loca->giavetb = $input['giavetb']  ;
+        $loca->category = $input['category']  ;
+        $loca->image = $input['images']  ;
+        $loca->phuongtien = $phuongtien  ;
+        $loca->top = 1 ;
+        $loca->anhien = 1 ; 
+        $loca->save();
+        
+        return "";
     }
 
     /**
@@ -102,16 +134,16 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Location_Model::destroy($id);
+        return back()->with("tb","xoá thành công!");
     }
 
     public function saveImg(Request $request)
     {
-        $image = $request->file('file');
-        $fileInfo = $image->getClientOriginalName();
-        $filename = pathinfo($fileInfo, PATHINFO_FILENAME);
-        $extension = pathinfo($fileInfo, PATHINFO_EXTENSION);
-        $file_name = $filename.'.'.$extension;
-        $image->move(public_path('upload/'),$file_name);
+        $image = $request->file('file');  
+        $file_name =  Carbon::now()->timestamp;
+        // $image->move(public_path('upload/'),$file_name);
+        $result = $image->storeOnCloudinaryAs(); 
+        return $result->getSecurePath();
     }
 }

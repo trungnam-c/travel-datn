@@ -1,6 +1,6 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
-@section('page-title', 'Thêm địa điểm')
+@section('page-title', 'Sửa địa điểm')
 @section('main')
     <section class="content">
         <div class="container-fluid">
@@ -8,14 +8,14 @@
 
                 <div class="card card-primary col-sm-12">
                     <div class="card-header">
-                        <h3 class="card-title">Thêm địa điểm mới</h3>
+                        <h3 class="card-title">Sửa địa điểm</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('location.store') }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
+                    <form action="{{ route('location.update',['id'=>$data->id]) }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
                         @csrf
                         @method("post")
-                        <input type="hidden" name="images" value="{{old('images')}}" id="images">
+                        <input type="hidden" name="images" value="{{$data->image}}" id="images">
                         <div class="card-body">
                             <div class="row">
 
@@ -23,12 +23,12 @@
 
                                     <div class="form-group">
                                         <label for="diemdi">Điểm đi</label>
-                                        <input type="text" class="form-control" value="{{old("diemdi")}}" id="diemdi" name="diemdi"
+                                        <input type="text" class="form-control" value="{{$data->diemdi}}" id="diemdi" name="diemdi"
                                             placeholder="Nhập điểm đi">
                                     </div>
                                     <div class="form-group">
                                         <label for="phuongtien">Phương tiện</label>
-                                        <input type="text" class="form- " data-role="tagsinput" value="{{old("diemdi")}}" id="phuongtien"
+                                        <input type="text" class="form- " data-role="tagsinput" value="{{$data->phuongtien}}" id="phuongtien"
                                             name="phuongtien" placeholder="Nhập Phương tiện">
                                     </div>
 
@@ -38,16 +38,17 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="Điểm đến">Điểm đến</label>
-                                        <input type="text" class="form-control" id="diemden" value="{{old("diemdi")}}" name="diemden" placeholder="Nhập điểm đến">
+                                        <input type="text" class="form-control" id="diemden" value="{{$data->diemden}}" name="diemden" placeholder="Nhập điểm đến">
                                     </div>
                                     <div class="form-group">
                                         <label>Category</label>
                                         <select class="form-control select2bs4" name="category" style="width: 100%;">
-                                           @foreach ($data as $item)
-                                           <option  value="{{$item->id}}">{{$item->name}}</option>
+                                            @foreach ($cate as $item)
+                                           <option  @if ($data->category == $item->name)
+                                               selected
+                                           @endif value="{{$item->id}}">{{$item->name}}</option>
                                            
                                            @endforeach
-
                                         </select>
                                     </div>
 
@@ -60,14 +61,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="giavetb">Giá</label>
-                                        <input type="number" class="form-control" id="giavetb"  value="{{old("diemdi")}}" name="giavetb"
+                                        <input type="number" class="form-control" id="giavetb"  value="{{$data->giavetb}}" name="giavetb"
                                             placeholder="Nhập giá">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="top">Vị trí xuất hiện</label>
-                                        <input type="number" class="form-control" id="top" value="{{old("top")}}" name="top"
+                                        <input type="number" class="form-control" id="top" value="{{$data->top}}" name="top"
                                             placeholder="Nhập vị trí xuất hiện">
                                     </div>
                                 </div>
@@ -83,7 +84,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-clock"></i></span>
                                             </div>
-                                            <input type="text" class="form-control float-right" value="{{old("time")}}" name="time" id="reservationtime">
+                                            <input type="text" value="{{$data->time}}" class="form-control float-right" name="time" id="reservationtime">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -92,7 +93,10 @@
                                     
                                     <label for=""></label>
                                     <div class="custom-control custom-switch  mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="anhien" name="anhien">
+                                        {{-- <input class="form-check-input" type="checkbox" role="switch" id="anhien" checked> --}}
+                                        <input type="checkbox" class="custom-control-input" @if ($data->anhien ==0)
+                                        checked
+                                    @endif  id="anhien" name="anhien">
                                         <label class="custom-control-label" for="anhien"> Chọn để ẩn </label>
                                       </div>
                                   
@@ -103,7 +107,7 @@
                                     <div class="form-group">
                                         <label>Mô tả</label>
                                         <textarea class="form-control" rows="3" name="mota" placeholder="Nhập mô tả"
-                                            style="height: 100px;">{{old("diemdi")}}</textarea>
+                                            style="height: 100px;">{{$data->mota}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +119,26 @@
                                         </div>
                                         <div class="card-body">
                                             <div   class="row image-preview" id="image-preview">
+                                                @php
+                                                $index=0;
+                                                    $images = explode(",",$data->image);
+                                                @endphp
+                                                @foreach ($images as $img)
                                                 
+                                                @if ($img!="")
+                                                <div class="col-md-2 mt-2" >
+                                                    <div class="img-div-pre">
+                                                        <div class="nano-div"></div>
+                                                        <div class="delete-js-btn" id-data="{{$index}}" id="delete-js-btn"><i class="bi bi-trash3"></i></div>
+                                                        <img src="{{$img}}" width="100%" height="100%" alt="">
+                                                    </div>
+                                                </div> 
+                                                @endif
+                                                @php
+                                                    $index++;
+                                                @endphp
+                                                @endforeach 
+                                                 
                                             </div>
                                                   
                                             
@@ -205,8 +228,7 @@
 
                         <div class="card-footer">
                             <p class="text-danger font-weight-bold" id="tb-btn"></p>
-
-                            <button type="submit" class="btn btn-primary" id="btn-submit-loca" >Thêm mới</button>
+                            <button type="submit" class="btn btn-primary" id="btn-submit-loca" >Cập nhật</button>
                         </div>
 
                     </form>

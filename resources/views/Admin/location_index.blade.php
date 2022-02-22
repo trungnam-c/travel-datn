@@ -1,7 +1,13 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
 @section('page-title', 'Quản lý địa điểm')
+
 @section('main')
+@php
+use Illuminate\Support\Facades\DB;
+
+   
+@endphp
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -63,10 +69,16 @@
                                             </td>
                                             <td>
                                                 <p>PT: <span class="data-span">{{ $row->phuongtien }}</span></p>
-                                                <p>Loại: <span class="data-span">Bãi biển</span></p>
+                                                <p>Loại: <span class="data-span">{{   DB::table("categories")->where("id",$row->category)->first()->name}}</span></p>
                                             </td>
                                             <td>
-                                                <img src="{{ asset('') }}{{$image[0]}}" width="150px" alt="">
+                                                @foreach ($image as $item)
+                                                    @if ($item != "")
+                                                        <img src="{{$item}}" width="150px" alt="">
+                                                        @break
+                                                    @endif
+                                                @endforeach
+                                               
                                             </td>
                                             <td>
                                                 @if ($anhien)
@@ -78,11 +90,11 @@
                                             </td>
                                             <td>
                                                 <p class="edit-p">
-                                                    <span class="edit-span" alt="Chỉnh sửa dòng này"><i
-                                                            class="bi bi-pencil-square"></i></span>
+                                                    <a href="{{ route('location.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
+                                                        class="bi bi-pencil-square"></i></span></a>
                                                     --
-                                                    <span class="delete-span" alt="Xoá dòng này"><i
-                                                            class="bi bi-x-square"></i></span>
+                                                    <a href="{{ route('location.destroy', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                        class="bi bi-x-square"></i></span></a>
                                                 </p>
 
                                             </td>
