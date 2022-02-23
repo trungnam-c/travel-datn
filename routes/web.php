@@ -1,20 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\detailLocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories;
 use App\Http\Controllers\tourGuideController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+
 //admin route
 
 Route::get('/', function () {
@@ -25,10 +19,39 @@ Route::get('/', function () {
 Route::name('location.')->group(function () {
     Route::get('/quantri/quan-ly-dia-diem',[LocationController::class,"index"])->name('index');
     Route::get('/quantri/them-dia-diem',[LocationController::class,"create"])->name('create');
-    Route::get('/quantri/luu-dia-diem/{id}',[LocationController::class,"store"])->name('store');
-    Route::get('/quantri/sua-dia-diem',[LocationController::class,"edit"])->name('edit');
-    Route::get('/quantri/cap-nhat-dia-diem/{id}',[LocationController::class,"update"])->name('update');
+    Route::post('/quantri/luu-dia-diem',[LocationController::class,"store"])->name('store');
+    Route::post('/quantri/luu-hinh-anh',[LocationController::class,"saveImg"])->name('saveImg');
+    Route::get('/quantri/sua-dia-diem/{id}',[LocationController::class,"edit"])->name('edit');
+    Route::post('/quantri/cap-nhat-dia-diem/{id}',[LocationController::class,"update"])->name('update');
     Route::get('/quantri/xoa-dia-diem/{id}',[LocationController::class,"destroy"])->name('destroy');
+});
+
+Route::name('detailLocation.')->group(function(){
+    Route::get('/quantri/chi-tiet-dia-diem',[detailLocationController::class, 'index'])->name('index');
+    Route::get('/quantri/them-chi-tiet-dia-diem',[detailLocationController::class, 'create'])->name('create');
+    Route::post('quantri/luu-chi-tiet-dia-diem',[detailLocationController::class, 'add'])->name('add');
+    Route::get('quantri/sua-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'edit'])->name('edit');
+    Route::post('/quantri/cap-nhat-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'update'])->name('update');
+    Route::get('/quantri/xoa-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'destroy'])->name('destroy');
+});
+
+
+// bao/admin-user
+//admin
+Route::prefix('admin')->group(function (){
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('dashboard', [AdminController::class, 'index']);
+
+    #User
+    Route::prefix('user')->group(function (){
+        Route::get('add', [UserController::class, 'create']);
+        Route::post('add', [UserController::class, 'store']);
+        Route::get('list', [UserController::class, 'index']);
+        Route::get('edit/{user}', [UserController::class, 'show']);
+        Route::post('edit/{user}', [UserController::class, 'update']);
+        Route::delete('destroy', [UserController::class, 'destroy']);
+    });
+
 });
 
 

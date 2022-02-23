@@ -9,5 +9,6 @@ class Location_Model extends Model
 {
     use HasFactory;
     protected $table = "location";
-	public $timestamps = true;
+	public $timestamps = false;
+     
 }
