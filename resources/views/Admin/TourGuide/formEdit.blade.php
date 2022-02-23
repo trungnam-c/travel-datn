@@ -1,5 +1,5 @@
 <?php
-$guiders = DB::table("travel_guider")->select("*")->where("id", "=",$idGuider)->get();
+$guiders = DB::table("huongdanvien")->select("*")->where("id", "=",$idGuider)->get();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,15 +21,15 @@ $guiders = DB::table("travel_guider")->select("*")->where("id", "=",$idGuider)->
 <body>
 <form action="/guider/edit/{{$idGuider}}" method="post">
     @csrf()
-        <input type="text" name="guiderName" placeholder="Tên hướng dẫn viên..." value="{{$guiders[0]->guider_name}}"/>
+        <input type="text" name="guiderName" placeholder="Tên hướng dẫn viên..." value="{{$guiders[0]->tenhdv}}"/>
         <div>
             <label for="men">Nam</label>
             <input type="radio" id="men" name="guiderGender" value="1">
             <label for="girl">Nữ</label>
             <input type="radio" id="girl" name="guiderGender" value="0">
         </div>
-        <input type="text" name="guiderAddress" placeholder="Địa chỉ thường trú/tạm trú..." value="{{$guiders[0]->guider_address}}"> <br/>
-        <input type="number" name="guiderPhone" placeholder="Số điện thoại hướng dẫn viên..." value="{{$guiders[0]->guider_phone}}">
+        <input type="text" name="guiderAddress" placeholder="Địa chỉ thường trú/tạm trú..." value="{{$guiders[0]->diachi}}"> <br/>
+        <input type="number" name="guiderPhone" placeholder="Số điện thoại hướng dẫn viên..." value="{{$guiders[0]->sdt}}">
         <div>
             <label for="hide">Ẩn</label>
             <input type="radio" id="hide" name="guiderStatus" value="0">

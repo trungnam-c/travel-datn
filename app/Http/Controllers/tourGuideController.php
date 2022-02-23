@@ -18,11 +18,11 @@ class tourGuideController extends Controller
 
     public function add(Request $request) {
         $guider = new tourGuideModel();
-        $guider->guider_name = $request->guiderName;
-        $guider->guider_gender = $request->guiderGender;
-        $guider->guider_address = $request->guiderAddress;
-        $guider->guider_phone = $request->guiderPhone;
-        $guider->guider_status = $request->guiderStatus;
+        $guider->tenhdv = $request->guiderName;
+        $guider->phai = $request->guiderGender;
+        $guider->diachi = $request->guiderAddress;
+        $guider->sdt = $request->guiderPhone;
+        $guider->anhien = $request->guiderStatus;
         $guider->save();
         return redirect('/guider');
     }
@@ -39,11 +39,11 @@ class tourGuideController extends Controller
 
     public function edit(Request $request, $id) {
         $guider = tourGuideModel::find($id);
-        $guider->guider_name = $request->guiderName;
-        $guider->guider_gender = $request->guiderGender;
-        $guider->guider_address = $request->guiderAddress;
-        $guider->guider_phone = $request->guiderPhone;
-        $guider->guider_status = $request->guiderStatus;
+        $guider->tenhdv = $request->guiderName;
+        $guider->phai = $request->guiderGender;
+        $guider->diachi = $request->guiderAddress;
+        $guider->sdt = $request->guiderPhone;
+        $guider->anhien = $request->guiderStatus;
         $guider->save();
         return redirect('/guider');
     }
