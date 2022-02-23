@@ -20,4 +20,6 @@ class detailLocationModel extends Model
         'idhdv',
         'anhien'
     ];
+    const CREATED_AT = null;
+    const UPDATED_AT = null;
 }

@@ -4,10 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trang quản trị</title>
+    <title>@yield('web-title')</title>
     <base href="{{ asset('/') }}">
 
- 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -15,9 +14,9 @@
     <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{asset('/')}}plugins/daterangepicker/daterangepicker.css">
 
-    <!-- DataTables --> 
+    <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    
+
     <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
     {{-- <link rel="stylesheet" href="{{ asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}"> --}}
@@ -25,13 +24,15 @@
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
-  
 
- 
+
+
     <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/admin_custom.css') }}">
-     
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -45,7 +46,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{asset('/')}}index3.html" class="nav-link">Trang chủ</a>
+                    <a href="{{asset('/quantri')}}" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Liên hệ</a>
@@ -185,7 +186,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{asset('/')}}index3.html" class="brand-link">
+            <a href="{{asset('/quantri')}}" class="brand-link">
                 <img src="{{asset('/')}}dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">VIETTRAVEL</span>
@@ -236,7 +237,7 @@
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     Chi tiết địa điểm
-                                    <span class="badge badge-info right"></span>
+                                    <span class="badge badge-info right">{{ DB::table("detail_location")->count(); }}</span>
                                 </p>
                             </a>
                         </li>
@@ -289,9 +290,9 @@
 
     <!-- jQuery -->
     <script src="{{asset('/')}}plugins/jquery/jquery.min.js"></script>
-   
-  
-   
+
+
+
     <!-- DataTables  & Plugins -->
     <script src="{{asset('/')}}plugins/moment/moment.min.js"></script>
 
@@ -311,14 +312,14 @@
     {{-- <script src="{{asset('/')}}plugins/datatables-buttons/js/buttons.html5.min.js"></script> --}}
     {{-- <script src="{{asset('/')}}plugins/datatables-buttons/js/buttons.print.min.js"></script> --}}
     {{-- <script src="{{asset('/')}}plugins/datatables-buttons/js/buttons.colVis.min.js"></script> --}}
-    <script src="{{asset('/')}}plugins/dropzone/min/dropzone.min.js"></script>  
+    <script src="{{asset('/')}}plugins/dropzone/min/dropzone.min.js"></script>
 
     <script src="https://unpkg.com/@yaireo/tagify"></script>
     <script src="https://unpkg.com/@yaireo/tagify@3.1.0/dist/tagify.polyfills.min.js"></script>
     <script>
       // The DOM element you wish to replace with Tagify
   var input = document.querySelector('input[name=phuongtien]');
-  
+
   // initialize Tagify on the above input node reference
   new Tagify(input)
     </script>
@@ -328,9 +329,9 @@
     <script src="{{asset('/')}}dist/js/demo.js"></script>
     <script src="{{asset('/')}}js/custom-js.js"></script>
     <!-- Page specific script -->
-    
+
     <script>
-         
+
         //Date range picker
         $('#reservation').daterangepicker()
                    //Date range picker with time picker
@@ -371,11 +372,11 @@
                 theme: 'bootstrap4'
             })
 
-           
+
             //Money Euro
             $('[data-mask]').inputmask()
 
-              
+
 
             //Date range picker
             $('#reservation').daterangepicker()
@@ -407,14 +408,14 @@
                 }
             )
 
-            
 
-            
-            
-            
-         
-        }) 
-        
+
+
+
+
+
+        })
+
         // DropzoneJS Demo Code Start
         Dropzone.autoDiscover = false
 
@@ -444,11 +445,11 @@
 
             // Hookup the start button
             file.previewElement.querySelector(".cancel").onclick = function() {
-                
+
                 myDropzone.enqueueFile(file)
             }
         })
-       
+
         // Update the total progress bar
         myDropzone.on("totaluploadprogress", function(progress) {
             document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
@@ -457,17 +458,17 @@
         myDropzone.on("sending", function(file) {
             // Show the total progress bar when upload starts
             document.querySelector("#total-progress").style.opacity = "1"
-            
+
             // And disable the start button
             // file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
         })
         myDropzone.on('success', function() {
             var args = Array.prototype.slice.call(arguments);
             // Look at the output in you browser console, if there is something interesting
-            
+
             var input = document.querySelector("input[name='images']");
              var id = input.value ;
-            
+
             input.value += args[1]+",";
             var node = document.createElement('div');
             var attr = document.createAttribute("class");
@@ -477,11 +478,11 @@
                             '<div class="delete-js-btn" id-data="'+id+'" id="delete-js-btn"><i class="bi bi-trash3"></i></div>'+
                             '<img src="'+args[1]+'" width="100%" height="100%" alt="">'+
                         '</div>';
-                     
+
             node.setAttributeNode(attr);
             node.innerHTML =e;
             document.getElementById("image-preview").appendChild(node);
-            
+
             });
         // Hide the total progress bar when nothing's uploading anymore
         myDropzone.on("queuecomplete", function(progress) {
@@ -493,14 +494,14 @@
 
 
         })
-       
+
         // Setup the buttons for all transfers
         // The "add files" button doesn't need to be setup because the config
         // `clickable` has already been specified.
         document.querySelector("#actions .start").onclick = function() {
-            
- 
-            
+
+
+
             myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
         }
         document.querySelector("#actions .cancel").onclick = function() {
@@ -508,10 +509,10 @@
             document.querySelector("input[name='images']").value = "";
         }
         // DropzoneJS Demo Code End
-        
-            
-           
-        
+
+
+
+
     </script>
 </body>
 
