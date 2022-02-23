@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\detailLocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories;
 use App\Http\Controllers\tourGuideController;
@@ -46,3 +47,9 @@ Route::post('/guider/add', [tourGuideController::class, 'add']);
 Route::get('/guider/delete/{id}',[tourGuideController::class, 'delete']);
 Route::get('/guider/edit/{id}',[tourGuideController::class, 'form_edit']);
 Route::post('/guider/edit/{id}',[tourGuideController::class, 'edit']);
+
+
+
+Route::name('detailLocation.')->group(function(){
+    Route::get('/quantri/chi-tiet-dia-diem',[detailLocationController::class, 'index'])->name('index');
+});
