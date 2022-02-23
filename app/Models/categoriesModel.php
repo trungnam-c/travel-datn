@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class categoriesModel extends Model
 {
-    protected $table = 'travel_categories';
+    protected $table = 'categories';
 }

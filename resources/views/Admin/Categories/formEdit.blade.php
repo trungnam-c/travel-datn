@@ -1,5 +1,5 @@
 <?php
-$itemEdit = DB::table('travel_categories')->select('*')->where("id",'=',$idEdit)->get();
+$itemEdit = DB::table('categories')->select('*')->where("id",'=',$idEdit)->get();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@ $itemEdit = DB::table('travel_categories')->select('*')->where("id",'=',$idEdit)
 <body>
     <form action="/categories/edit/{{$idEdit}}" method="post">
     @csrf()
-        <input type="text" name="cateName" placeholder="Nhập tên danh mục..." value="{{$itemEdit[0]->cate_name}}"/> <br/>
+        <input type="text" name="cateName" placeholder="Nhập tên danh mục..." value="{{$itemEdit[0]->name}}"/> <br/>
         <input type="file" name="cateImage">
         <div>
             <label for="hide">Hide</label>

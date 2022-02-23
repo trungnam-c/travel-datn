@@ -28,9 +28,9 @@ class Categories extends Controller
 
     public function add(Request $request) {
         $data = new categoriesModel();
-        $data->cate_name = $request->cateName;
-        $data->cate_image = $request->cateImage;
-        $data->cate_hideshow = $request->cateHideShow;
+        $data->name = $request->cateName;
+        $data->image = $request->cateImage;
+        $data->anhien = $request->cateHideShow;
         $data->save();
         return redirect('/categories');
     }
@@ -38,9 +38,9 @@ class Categories extends Controller
     public function edit(Request $request, $id) {
         $data = categoriesModel::find($id);
         $data->id = $id;
-        $data->cate_name = $request->cateName;
-        $data->cate_image = $request->cateImage;
-        $data->cate_hideshow = $request->cateHideShow;
+        $data->name = $request->cateName;
+        $data->image = $request->cateImage;
+        $data->anhien = $request->cateHideShow;
         $data->save();
         return redirect('/categories');
     }

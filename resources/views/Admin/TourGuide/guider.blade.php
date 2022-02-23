@@ -53,14 +53,14 @@
         @foreach($items as $r)
         <tr>
             <td>{{$r['id']}}</td>
-            <td>{{$r['guider_name']}}</td>
-            <td>{{$r['guider_gender'] == 1 ? "Nam" : "Nữ"}}</td>
-            <td>{{$r['guider_address']}}</td>
-            <td>{{$r['guider_phone']}}</td>
-            <td>{{$r['guider_status'] == 1 ? "Hiện" : "Ẩn"}}</td>
+            <td>{{$r['tenhdv']}}</td>
+            <td>{{$r['phai'] == 1 ? "Nam" : "Nữ"}}</td>
+            <td>{{$r['diachi']}}</td>
+            <td>{{$r['sdt']}}</td>
+            <td>{{$r['anhien'] == 1 ? "Hiện" : "Ẩn"}}</td>
             <td>
                 <a href="/guider/delete/{{$r['id']}}" onclick="return confirm('Xóa hả??')">Xóa</a>
-             / 
+             /
                 <a href="/guider/edit/{{$r['id']}}">Sửa</a>
             </td>
         </tr>

@@ -49,19 +49,19 @@
     </thead>
     <tbody>
         @foreach($items as $v)
-        <tr>    
+        <tr>
             <td>{{$v['id']}}</td>
-            <td>{{$v['cate_name']}}</td>
-            <td><img src="{{$v['cate_image']}}"/></td>
-            <td>{{$v['cate_hideshow'] === 1 ? "Hiện" : "Ẩn"}}</td>
+            <td>{{$v['name']}}</td>
+            <td><img src="{{$v['image']}}"/></td>
+            <td>{{$v['anhien'] === 1 ? "Hiện" : "Ẩn"}}</td>
             <td>
                 <a href="/categories/delete/{{$v['id']}}" onclick="return confirm('Xóa hả?')">Xóa</a>
-             / 
+             /
                 <a href="/categories/edit/{{$v['id']}}">Sửa</a>
             </td>
         </tr>
         @endforeach
-        
+
     </tbody>
     </table>
     <a href="/categories/add" class="btn">Add</a>
