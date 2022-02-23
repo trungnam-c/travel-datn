@@ -30,10 +30,15 @@ Route::name('location.')->group(function () {
     Route::get('/quantri/sua-dia-diem/{id}',[LocationController::class,"edit"])->name('edit');
     Route::post('/quantri/cap-nhat-dia-diem/{id}',[LocationController::class,"update"])->name('update');
     Route::get('/quantri/xoa-dia-diem/{id}',[LocationController::class,"destroy"])->name('destroy');
-}); 
+});
 
 Route::name('detailLocation.')->group(function(){
     Route::get('/quantri/chi-tiet-dia-diem',[detailLocationController::class, 'index'])->name('index');
+    Route::get('/quantri/them-chi-tiet-dia-diem',[detailLocationController::class, 'create'])->name('create');
+    Route::post('quantri/luu-chi-tiet-dia-diem',[detailLocationController::class, 'add'])->name('add');
+    Route::get('quantri/sua-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'edit'])->name('edit');
+    Route::post('/quantri/cap-nhat-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'update'])->name('update');
+    Route::get('/quantri/xoa-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'destroy'])->name('destroy');
 });
 
 
