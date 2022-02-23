@@ -1,20 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\detailLocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories;
 use App\Http\Controllers\tourGuideController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+
 //admin route
 
 Route::get('/', function () {
@@ -37,6 +31,25 @@ Route::name('detailLocation.')->group(function(){
 });
 
 
+// bao/admin-user
+//admin
+Route::prefix('admin')->group(function (){
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('dashboard', [AdminController::class, 'index']);
+
+    #User
+    Route::prefix('user')->group(function (){
+        Route::get('add', [UserController::class, 'create']);
+        Route::post('add', [UserController::class, 'store']);
+        Route::get('list', [UserController::class, 'index']);
+        Route::get('edit/{user}', [UserController::class, 'show']);
+        Route::post('edit/{user}', [UserController::class, 'update']);
+        Route::delete('destroy', [UserController::class, 'destroy']);
+    });
+
+});
+
+
 // route of categories
 Route::get('/categories',[Categories::class, 'list']);
 Route::get('/categories/delete/{id}',[Categories::class, 'delete']);
@@ -52,3 +65,4 @@ Route::post('/guider/add', [tourGuideController::class, 'add']);
 Route::get('/guider/delete/{id}',[tourGuideController::class, 'delete']);
 Route::get('/guider/edit/{id}',[tourGuideController::class, 'form_edit']);
 Route::post('/guider/edit/{id}',[tourGuideController::class, 'edit']);
+
