@@ -34,6 +34,15 @@ Route::name('detailLocation.')->group(function(){
     Route::post('/quantri/cap-nhat-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'update'])->name('update');
     Route::get('/quantri/xoa-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'destroy'])->name('destroy');
 });
+Route::name('location.')->group(function () {
+    Route::get('/quantri/them-ma-giam-gia',[magiamgiaController::class,"create"])->name('create');
+    Route::get('/quantri/sua-ma-giam-gia/{id}',[magiamgiaController::class,"update"])->name('update');
+    Route::get('/quantri/xoa-ma-giam-gia/{id}',[magiamgiaController::class,"delete"])->name('delete');
+});
+
+Route::name('magiamgia')->group(function(){
+    Route::get('/quantri/ma-giam-gia',[magiamgiaController::class, 'index'])->name('index');
+});
 
 
 // bao/admin-user
