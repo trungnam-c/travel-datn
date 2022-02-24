@@ -1,13 +1,7 @@
 @extends('layouts.admin_layout')
-@section('location-active', 'active')
-@section('page-title', 'Quản lý địa điểm')
-
+@section('magiamgia-active', 'active')
+@section('page-title', 'Quản lý mã giảm giá')
 @section('main')
-@php
-use Illuminate\Support\Facades\DB;
-
-   
-@endphp
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -17,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><a href="{{ route('location.create') }}" class="btn btn-block btn-primary">Thêm địa điểm mới</a></h3>
+                            <h3 class="card-title"><a href="{{ route('location.create') }}" class="btn btn-block btn-primary">Thêm mã giảm giá mới</a></h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -25,13 +19,13 @@ use Illuminate\Support\Facades\DB;
                                 <thead>
                                     <tr>
                                         <th class="stt">STT</th>
-                                        <th width="200px">Địa điểm</th>
-                                        <th width="200px">Giá vé</th>
-                                        <th width="150px">Mô tả</th>
-                                        <th width="200px">Phương tiện</th>
-                                        <th width="150px">Hình ảnh</th>
-                                        <th width="150px">Trạng thái</th>
-                                        <th width="150px ">Thay đổi</th>
+                                        <th width="200px">Mã giảm giá</th>
+                                        <th width="200px">Chi tiết</th>
+                                        <th width="150px">Ngày bắt đầu</th>
+                                        <th width="200px">Ngày kết thúc</th>
+                                        <th width="150px">Loại mã</th>
+                                        <th width="150px">Giá trị</th>
+                                        <th width="150px ">Ẩn hiện</th>
 
 
                                     </tr>
@@ -50,35 +44,20 @@ use Illuminate\Support\Facades\DB;
                                         <tr class="location-tr">
                                             <td>{{ $stt }}</td>
                                             <td>
-                                                <p>
-                                                    Đi: <span class="data-span">{{ $row->diemdi }}</span>
-                                                </p>
-                                                <p>
-                                                    Đến: <span class="data-span">{{ $row->diemden }} </span>
-                                                </p>
+                                                
+                                                    <span class="data-span">{{ $row->magiamgia }}</span>
                                             </td>
                                             <td>
-                                                <p>Giá: <span
-                                                        class="data-span text-danger">{{ number_format($row->giavetb) }}đ</span>
-                                                </p>
-                                                <p>Tgian: <span class="data-span">{{ $row->time }} </span> </p>
-                                            </td>
-                                            <td>
-                                                <textarea class="mota" id="" readonly cols="30"
-                                                    rows="4">{{ $row->mota }}</textarea>
-                                            </td>
-                                            <td>
-                                                <p>PT: <span class="data-span">{{ $row->phuongtien }}</span></p>
-                                                <p>Loại: <span class="data-span">{{   DB::table("categories")->where("id",$row->category)->first()->name}}</span></p>
-                                            </td>
-                                            <td>
-                                                @foreach ($image as $item)
-                                                    @if ($item != "")
-                                                        <img src="{{$item}}" width="150px" alt="">
-                                                        @break
-                                                    @endif
-                                                @endforeach
+                                                    <span class="data-span">{{ $row->chitiet }} </span>
                                                
+                                            </td>
+                                            <td>
+                                            <span class="data-span">{{ $row->ngaybatdau }} </span>
+
+                                            </td>
+                                            <td>
+                                            <span class="data-span">{{ $row->ngayketthuc }} </span>
+
                                             </td>
                                             <td>
                                                 @if ($anhien)
@@ -86,15 +65,15 @@ use Illuminate\Support\Facades\DB;
                                                 @else
                                                     <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
                                                 @endif
-                                                <p>Thứ tự: <span class="font-weight-bold">{{ $row->top }}</span> </p>
+                                                <!-- <p>Thứ tự: <span class="font-weight-bold">{{ $row->top }}</span> </p> -->
                                             </td>
                                             <td>
                                                 <p class="edit-p">
-                                                    <a href="{{ route('location.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
-                                                        class="bi bi-pencil-square"></i></span></a>
+                                                    <span class="edit-span" alt="Chỉnh sửa dòng này"><i
+                                                            class="bi bi-pencil-square"></i></span>
                                                     --
-                                                    <a href="{{ route('location.destroy', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
-                                                        class="bi bi-x-square"></i></span></a>
+                                                    <span class="delete-span" alt="Xoá dòng này"><i
+                                                            class="bi bi-x-square"></i></span>
                                                 </p>
 
                                             </td>
