@@ -18,6 +18,14 @@ Route::group([], function () {
     Route::POST('sendmailchangepass/', [userController::class, 'sendmailchangepass']);
     Route::POST('changepassquenmk/', [userController::class, 'changepassquenmk']);
     Route::get('savethanhtoan/', [thanhtoan::class, 'savethanhtoan']);
+    Route::get('getallcate', [category::class, 'getall']);
+    Route::get('gettoptrip', [location::class, 'gettoptrip']);
+    Route::get('getone/{id}', [location::class, 'getonetrip']);
+    Route::get('getcate/{id}', [category::class, 'getcateid']);
+    Route::get('chitietgia/{id}', [detail_location::class, 'chitietgia']);
+    Route::get('ngaycolich/{id}', [detail_location::class, 'ngaycolich']);
+    Route::get("timloca/{text}", [location::class, 'timloca']);
+    Route::get("locabycate/{idcate}", [location::class, 'locabycate']);
 
 
 
@@ -28,18 +36,10 @@ Route::group([], function () {
     ], function () {
         Route::delete('logout', [userController::class, 'logout']);
         Route::get('me', [userController::class, 'user']);
-        Route::get('getallcate', [category::class, 'getall']);
-        Route::get('gettoptrip', [location::class, 'gettoptrip']);
-        Route::get('getone/{id}', [location::class, 'getonetrip']);
-        Route::get('getcate/{id}', [category::class, 'getcateid']);
-        Route::get('chitietgia/{id}', [detail_location::class, 'chitietgia']);
-        Route::get('ngaycolich/{id}', [detail_location::class, 'ngaycolich']);
         Route::get('lsdv/{id}', [Chitietdatvecontroller::class, 'lsdv']);
         Route::get('chitietve/{id}', [Chitietdatvecontroller::class, 'chitietve']);
         Route::get('scanve/{id}', [Chitietdatvecontroller::class, 'scanve']);
         Route::get('thongkeve/{id}', [Datvecontroller::class, 'thongkeve']);
-        Route::get("timloca/{text}", [location::class, 'timloca']);
-        Route::get("locabycate/{idcate}", [location::class, 'locabycate']);
         Route::post('newdatve', [Datvecontroller::class, 'newdatve']);
         Route::post('newchitietdv', [Chitietdatvecontroller::class, 'newchitietdv']);
         Route::patch('settrangthai', [Datvecontroller::class, 'settrangthai']);
