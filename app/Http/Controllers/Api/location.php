@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Api\location as ModelsLocation;
-use App\Models\Api\User;
+use App\Models\Location_Model;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class location extends Controller
@@ -13,7 +13,7 @@ class location extends Controller
     public $md;
     function __construct()
     {
-        $this->md = new ModelsLocation();
+        $this->md = new Location_Model();
     }
     public function gettoptrip()
     {

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-
 use App\Models\detailLocationModel;
 use App\Models\loaivechitiet;
 use Illuminate\Http\Request;
