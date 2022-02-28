@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Api\detail_location as ModelsDetail_location;
-use App\Models\Api\loaivechitiet;
+use App\Models\detailLocationModel;
+use App\Models\loaivechitiet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +14,7 @@ class detail_location extends Controller
     public $lv;
     function __construct()
     {
-        $this->md = new ModelsDetail_location();
+        $this->md = new detailLocationModel();
         $this->vl = new loaivechitiet();
     }
     public function chitietgia($idlo)
