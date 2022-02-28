@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Api\category as ModelsCategory;
+use App\Models\categoriesModel;
 use Illuminate\Http\Request;
 
 class category extends Controller
@@ -12,7 +12,7 @@ class category extends Controller
     public $md;
     function __construct()
     {
-        $this->md = new ModelsCategory();
+        $this->md = new categoriesModel();
     }
     public function getall()
     {
