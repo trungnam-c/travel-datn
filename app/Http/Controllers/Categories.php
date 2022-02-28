@@ -8,8 +8,8 @@ use App\Models\categoriesModel;
 class Categories extends Controller
 {
     public function list() {
-        $items = categoriesModel::select('*')->get();
-        return view('Admin/Categories/categories',compact('items'));
+        $data = categoriesModel::paginate(10);
+        return view('Admin/Categories/categories',['data'=>$data]);
     }
 
     public function delete($id) {

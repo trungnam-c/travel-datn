@@ -1,69 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh mục</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        tr>td>img {
-            width: 300px;
-            height: 200px;
-            object-fit: auto;
-        }
+@extends('layouts.admin_layout')
+@section('location-active', 'active')
+@section('page-title', 'Quản lý danh mục')
 
-        tr>td,
-        tr>th {
-            padding: 10px 20px;
-            text-align: center;
-        }
+@section('main')
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
 
-        .btn {
-            display: block;
-            text-decoration: none;
-            padding: 8px 12px;
-            font-weight: bold;
-            background-color: grey;
-            color: #fff;
-            margin-top: 16px;
-            text-align: center;
-            border-radius: 15px;
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
-    <table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Images</th>
-            <th>Hide/Show</th>
-            <th>Custom</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($items as $v)
-        <tr>
-            <td>{{$v['id']}}</td>
-            <td>{{$v['name']}}</td>
-            <td><img src="{{$v['image']}}"/></td>
-            <td>{{$v['anhien'] === 1 ? "Hiện" : "Ẩn"}}</td>
-            <td>
-                <a href="/categories/delete/{{$v['id']}}" onclick="return confirm('Xóa hả?')">Xóa</a>
-             /
-                <a href="/categories/edit/{{$v['id']}}">Sửa</a>
-            </td>
-        </tr>
-        @endforeach
+                <div class="col-12">
 
-    </tbody>
-    </table>
-    <a href="/categories/add" class="btn">Add</a>
-</body>
-</html>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><a href="{{ route('categories.add_form') }}" class="btn btn-block btn-primary">Thêm địa điểm mới</a></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="stt">STT</th>
+                                        <th width="200px">Tên danh mục</th>
+                                        <th width="200px">Hình ảnh</th>
+                                        <th width="150px">Ẩn/Hiện</th>
+                                        <th width="200px">Tùy chỉnh</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $stt = 0;
+                                    @endphp
+                                    @foreach ($data as $row)
+                                        @php
+                                            $stt++;
+                                            $image = explode(',', $row->image);
+                                            $anhien = $row->anhien;
+                                        @endphp
+
+                                        <tr class="location-tr">
+                                            <td>{{ $stt }}</td>
+                                            <td>
+                                            <p>
+                                                    Đến: <span class="data-span">{{ $row->name }} </span>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                @foreach ($image as $item)
+                                                    @if ($item != "")
+                                                        <img src="{{$item}}" width="150px" alt="">
+                                                        @break
+                                                    @endif
+                                                @endforeach
+
+                                            </td>
+                                            <td>
+                                                @if ($anhien === 1)
+                                                    <p><span class="text-success font-weight-bold">Đang Hiện</span></p>
+                                                @else
+                                                    <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
+                                                @endif
+                                                <p>Thứ tự: <span class="font-weight-bold">{{ $row->anhien }}</span> </p>
+                                            </td>
+                                            <td>
+                                                <p class="edit-p">
+                                                    <a href="{{ route('categories.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
+                                                        class="bi bi-pencil-square"></i></span></a>
+                                                    --
+                                                    <a href="{{ route('categories.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                        class="bi bi-x-square"></i></span></a>
+                                                </p>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+
+                        </div>
+
+                        <div class="div-paginate">
+                        {{ $data->links('vendor.pagination.bootstrap-4') }}
+                        </div>
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+
+            </div>
+
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+@endsection
