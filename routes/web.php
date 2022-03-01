@@ -68,7 +68,7 @@ Route::name('categories.')->group(function (){
 
 //route of guider
 Route::name('guider.')->group(function (){
-    Route::get('/guider/list',[tourGuideController::class, 'index'])->name('index');
+    Route::get('/guider/list',[tourGuideController::class, 'index'])->name('huong-dan-vien');
     Route::get('/guider/add', [tourGuideController::class, 'form_add'])->name('form_add');
     Route::post('/guider/add', [tourGuideController::class, 'add'])->name('add');
     Route::get('/guider/delete/{id}',[tourGuideController::class, 'delete'])->name('delete');

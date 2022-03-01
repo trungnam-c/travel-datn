@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tourGuideModel;
+use Cloudinary;
 
 class tourGuideController extends Controller
 {
     public function index() {
-        $items = tourGuideModel::select("*")->get();
+        $items = tourGuideModel::select("*")->paginate(10);
         return view('Admin/TourGuide/guider', compact('items'));
     }
 
@@ -24,12 +25,12 @@ class tourGuideController extends Controller
         $guider->sdt = $request->guiderPhone;
         $guider->anhien = $request->guiderStatus;
         $guider->save();
-        return redirect('/guider');
+        return redirect('/guider/list');
     }
 
     public function delete($id) {
         $items = tourGuideModel::select('*')->where('id','=',$id)->delete();
-        return redirect('/guider');
+        return redirect('/guider/list');
     }
 
     public function form_edit($id) {
@@ -45,6 +46,6 @@ class tourGuideController extends Controller
         $guider->sdt = $request->guiderPhone;
         $guider->anhien = $request->guiderStatus;
         $guider->save();
-        return redirect('/guider');
+        return redirect('/guider/list');
     }
 }
