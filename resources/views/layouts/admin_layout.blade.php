@@ -243,8 +243,8 @@
                         </li>
                         <li class="nav-item ">
                             <a href="{{ route('categories.list') }}"
-                                class="nav-link {{ request()->segment(2) == 'chi-tiet-dia-diem' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-info-circle"></i>
+                                class="nav-link {{ request()->segment(2) == 'list' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-bars" aria-hidden="true"></i>
                                 <p>
                                     Quản lý danh mục
                                     <span class="badge badge-info right">{{ DB::table("categories")->count(); }}</span>
