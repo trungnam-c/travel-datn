@@ -1,5 +1,5 @@
 @extends('layouts.admin_layout')
-@section('location-active', 'active')
+@section('categories-active', 'active')
 @section('page-title', 'Quản lý danh mục')
 
 @section('main')
@@ -68,7 +68,7 @@
                                                     <a href="{{ route('categories.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
                                                         class="bi bi-pencil-square"></i></span></a>
                                                     --
-                                                    <a href="{{ route('categories.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                    <a href="/categories/delete/{{$row->id}}"><span class="delete-span" alt="Xoá dòng này"><i
                                                         class="bi bi-x-square"></i></span></a>
                                                 </p>
 
