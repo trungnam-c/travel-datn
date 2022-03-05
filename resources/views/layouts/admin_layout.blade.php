@@ -241,6 +241,16 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('orderticket.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'quan-ly-dat-ve' ? 'active' : '' }}">
+                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <p>
+                                    Quản lý đặt vé
+                                    <span class="badge badge-info right">2</span>
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

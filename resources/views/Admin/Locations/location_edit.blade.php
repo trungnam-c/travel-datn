@@ -31,9 +31,6 @@
                                         <input type="text" class="form- " data-role="tagsinput" value="{{$data->phuongtien}}" id="phuongtien"
                                             name="phuongtien" placeholder="Nhập Phương tiện">
                                     </div>
-
-
-
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -84,7 +81,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-clock"></i></span>
                                             </div>
-                                            <input type="text" value="{{$data->time}}" class="form-control float-right" name="time" id="reservationtime">
+                                            <input type="text" value="{{$data->time}}" class="form-control float-right" name="time" id="">
                                         </div>
                                         <!-- /.input group -->
                                     </div>

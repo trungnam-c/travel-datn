@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderTicketController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\detailLocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories;
+use App\Http\Controllers\MagiamgiaController;
 use App\Http\Controllers\tourGuideController;
 
 
@@ -14,6 +16,23 @@ use App\Http\Controllers\tourGuideController;
 Route::get('/', function () {
     return view('layouts.admin_layout');
 });
+
+// order ticket detail  
+
+Route::name('orderticketdetail.')->group(function () {
+    Route::get('/quantri/quan-ly-chi-tiet-dat-ve',[OrderTicketController::class,"index"])->name('index');
+    Route::get('/quantri/them-dia-diem',[OrderTicketController::class,"create"])->name('create');
+ 
+});
+
+// order tikets
+Route::name('orderticket.')->group(function () {
+    Route::get('/quantri/quan-ly-dat-ve',[OrderTicketController::class,"index"])->name('index');
+    Route::get('/quantri/cap-nhat-trang-thai-ve/{id}/{act}',[OrderTicketController::class,"updateticket"])->name('updateticket');
+    Route::get('/quantri/cap-nhat-trang-thai-thanh-toan/{id}/{act}',[OrderTicketController::class,"updatepayment"])->name('updatepayment');
+ 
+});
+
 
 // location route group
 Route::name('location.')->group(function () {
@@ -34,8 +53,8 @@ Route::name('detailLocation.')->group(function(){
     Route::post('/quantri/cap-nhat-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'update'])->name('update');
     Route::get('/quantri/xoa-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'destroy'])->name('destroy');
 });
-Route::name('location.')->group(function () {
-    Route::get('/quantri/them-ma-giam-gia',[magiamgiaController::class,"create"])->name('create');
+Route::name('magiamgia.')->group(function () {
+    Route::get('/quantri/them-ma-giam-gia',[MagiamgiaController::class,"create"])->name('create');
     Route::get('/quantri/sua-ma-giam-gia/{id}',[magiamgiaController::class,"update"])->name('update');
     Route::get('/quantri/xoa-ma-giam-gia/{id}',[magiamgiaController::class,"delete"])->name('delete');
 });

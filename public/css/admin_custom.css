@@ -2,6 +2,42 @@
     width: 10px !important;
 }
 
+.min-height-700{
+    min-height: 700px !important;
+}
+.order-ticket-detail h5{
+    margin-top: 15px;
+}
+.options-payment{
+    position: absolute;
+    top: 20px;
+    left:0px;
+    padding: 6px 8px;
+    background-color: #343a40;
+    border-radius: 8px;
+    display: none;
+    
+}
+.a-link{
+    text-decoration: underline;
+}
+.payment-status{
+    cursor: pointer;
+    position: relative;
+}
+.payment-status:hover .options-payment{
+    display: block;
+}
+.options-payment p{
+    
+    padding: 2px 4px;
+    border-radius: 4px;
+    
+
+}
+.options-payment p:hover{
+    background-color: rgb(255 255 255 / 10%);
+}
 .mota {
     border: none;
     outline: none;
@@ -84,4 +120,68 @@
     box-shadow: white 0px 0px 15px 6px;
     z-index: 15;
     transition: all .4s;
+}
+
+.location-row{
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.location-name{ 
+    padding: 10px 20px; 
+    background-color: #c85900;
+    color: white;
+    border-radius: 8px;
+
+}
+.location-name p{
+    font-size: 16pt;
+    font-weight: bold;
+}
+.div-dropdown-loca-detail{
+    padding: 10px 20px; 
+    display: none;
+    
+
+}
+.div-btn-detail{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.div-ticket-cols{
+    border-top: #c85900 2px solid;
+    padding: 15px 0px;
+    margin-top: 10px;
+}
+.div-ticket-cols:first-child{
+    border-top: none;
+}
+.div-dropdown-loca-detail span{
+    font-weight: bold; 
+}
+.div-dropdown-loca-detail p{
+    font-size: 14pt;
+    margin: 3px 0px;
+}
+.div-ticket-detail{
+    margin-bottom: 20px;
+    width: 100%; 
+    display: none;
+    background-color: #0e1f33;
+   color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+.div-ticket-detail tr span{
+    color: white;
+}
+.tr-bg-hv:hover{
+    background-color: #090e18 !important;
+}
+.table-round{
+    border-radius: 8px;
+    border-collapse: collapse;
+  border-spacing: 0;
 }
