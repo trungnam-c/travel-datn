@@ -7,7 +7,7 @@ use App\Http\Controllers\detailLocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories;
 use App\Http\Controllers\tourGuideController;
-
+use App\Http\Controllers\MagiamgiaController;
 
 //admin route
 
@@ -34,14 +34,13 @@ Route::name('detailLocation.')->group(function(){
     Route::post('/quantri/cap-nhat-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'update'])->name('update');
     Route::get('/quantri/xoa-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'destroy'])->name('destroy');
 });
-Route::name('location.')->group(function () {
-    Route::get('/quantri/them-ma-giam-gia',[magiamgiaController::class,"create"])->name('create');
-    Route::get('/quantri/sua-ma-giam-gia/{id}',[magiamgiaController::class,"update"])->name('update');
-    Route::get('/quantri/xoa-ma-giam-gia/{id}',[magiamgiaController::class,"delete"])->name('delete');
-});
-
-Route::name('magiamgia')->group(function(){
-    Route::get('/quantri/ma-giam-gia',[magiamgiaController::class, 'index'])->name('index');
+Route::name('magiamgia.')->group(function () {
+    Route::get('/quantri/ma-giam-gia',[MagiamgiaController::class,"index"])->name('index');
+    Route::get('/quantri/them-ma-giam-gia',[MagiamgiaController::class,"create"])->name('create');
+    Route::post('/quantri/luu-ma-giam-gia',[MagiamgiaController::class,"store"])->name('store');
+    Route::post('/quantri/cap-nhat-ma-giam-gia/{id}',[MagiamgiaController::class,"update"])->name('update');
+    Route::get('/quantri/sua-ma-giam-gia/{id}',[MagiamgiaController::class,"edit"])->name('edit');
+    Route::get('/quantri/xoa-ma-giam-gia/{id}',[MagiamgiaController::class,"delete"])->name('delete');
 });
 
 

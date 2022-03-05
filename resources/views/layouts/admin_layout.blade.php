@@ -241,6 +241,17 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('magiamgia.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'ma-giam-gia' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>
+                                    Quản lý mã giảm giá
+                                    <span class="badge badge-info right">{{ DB::table("magiamgia")->count(); }}</span>
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
