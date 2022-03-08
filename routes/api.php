@@ -5,8 +5,9 @@ use App\Http\Controllers\Api\Chitietdatvecontroller;
 use App\Http\Controllers\Api\Datvecontroller;
 use App\Http\Controllers\Api\detail_location;
 use App\Http\Controllers\Api\location;
+use App\Http\Controllers\Api\Magiamgia;
 use App\Http\Controllers\Api\userController;
-use App\Http\Controllers\thanhtoan; 
+use App\Http\Controllers\thanhtoan;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,6 +25,7 @@ Route::group([], function () {
     Route::get('ngaycolich/{id}', [detail_location::class, 'ngaycolich']);
     Route::get("timloca/{text}", [location::class, 'timloca']);
     Route::get("locabycate/{idcate}", [location::class, 'locabycate']);
+    Route::post("checkmagiamgia", [Magiamgia::class, 'checkmagiamgia']);
 
 
 
