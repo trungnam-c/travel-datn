@@ -137,7 +137,7 @@ class userController extends Controller
         $user = User::where("gmail", $request->gmail)->take(1)->get();
         if (User::where("gmail", $request->gmail)->exists()) {
             $passnew = rand(000000, 999999);
-            Mail::send('mailfb', ['newpass' => $passnew], function ($message)  use ($user) {
+            Mail::send('LayoutMail.mailfb', ['newpass' => $passnew], function ($message)  use ($user) {
                 $message->to($user[0]->gmail, $user[0]->name)->subject('ĐỔI MẬT KHẨU');
             });
             if (count(Mail::failures()) > 0) {

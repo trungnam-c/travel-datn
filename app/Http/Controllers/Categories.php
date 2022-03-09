@@ -8,13 +8,13 @@ use App\Models\categoriesModel;
 class Categories extends Controller
 {
     public function list() {
-        $items = categoriesModel::select('*')->get();
-        return view('Admin/Categories/categories',compact('items'));
+        $data = categoriesModel::paginate(10);
+        return view('Admin/Categories/categories',['data'=>$data]);
     }
 
     public function delete($id) {
         $items = categoriesModel::select('*')->where('id','=',$id)->delete();
-        return redirect('/categories');
+        return redirect('/categories/list');
     }
 
     public function form_edit($id) {
@@ -29,19 +29,19 @@ class Categories extends Controller
     public function add(Request $request) {
         $data = new categoriesModel();
         $data->name = $request->cateName;
-        $data->image = $request->cateImage;
+        $data->image = $request->images;
         $data->anhien = $request->cateHideShow;
         $data->save();
-        return redirect('/categories');
+        return redirect('/categories/list');
     }
 
     public function edit(Request $request, $id) {
         $data = categoriesModel::find($id);
         $data->id = $id;
         $data->name = $request->cateName;
-        $data->image = $request->cateImage;
+        $data->image = $request->images;
         $data->anhien = $request->cateHideShow;
         $data->save();
-        return redirect('/categories');
+        return redirect('/categories/list');
     }
 }

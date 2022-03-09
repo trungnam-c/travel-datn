@@ -19,9 +19,11 @@ class Chitietdatvecontroller extends Controller
 
     public function lsdv($id)
     {
-        $sql = "SELECT dv.idve,COUNT(ctdv.idve) as sove,ngaydatve,ngaykhoihanh,giokhoihanh,diemdi,diemden,phuongtien,time,image,trangthai,trangthai_thanhtoan FROM datve dv inner join detail_location lod on dv.idlocation_detail = lod.id inner join location lo on lod.idlocation = lo.id  
-        inner join chitietdatve ctdv on dv.idve = ctdv.idve
-        WHERE dv.iduser = $id GROUP by ctdv.idve,ngaydatve,ngaykhoihanh,giokhoihanh,diemdi,diemden,image,trangthai,dv.idve,trangthai_thanhtoan,phuongtien,time ORDER BY dv.idve DESC";
+        // $sql = "SELECT dv.idve,COUNT(ctdv.idve) as sove,ngaydatve,ngaykhoihanh,giokhoihanh,diemdi,diemden,phuongtien,time,image,trangthai,trangthai_thanhtoan FROM datve dv inner join detail_location lod on dv.idlocation_detail = lod.id inner join location lo on lod.idlocation = lo.id  
+        // inner join chitietdatve ctdv on dv.idve = ctdv.idve
+        // WHERE dv.iduser = $id GROUP by ctdv.idve,ngaydatve,ngaykhoihanh,giokhoihanh,diemdi,diemden,image,trangthai,dv.idve,trangthai_thanhtoan,phuongtien,time ORDER BY dv.idve DESC";
+        $sql = "SELECT dv.idve,COUNT(ctdv.idve) as sove,ngaydatve,ngaykhoihanh,giokhoihanh,diemdi,diemden,phuongtien,time,image,trangthai,trangthai_thanhtoan,dv.idmagiamgia,mgg.magiamgia,mgg.giatri,mgg.loaima,mgg.chitiet
+        FROM datve dv inner join detail_location lod on dv.idlocation_detail = lod.id inner join location lo on lod.idlocation = lo.id inner join chitietdatve ctdv on dv.idve = ctdv.idve left join magiamgia mgg on mgg.id = dv.idmagiamgia WHERE dv.iduser = $id GROUP by ctdv.idve,ngaydatve,ngaykhoihanh,giokhoihanh,diemdi,diemden,image,trangthai,dv.idve,trangthai_thanhtoan,phuongtien,time, dv.idmagiamgia,mgg.magiamgia,mgg.giatri,mgg.loaima,mgg.chitiet ORDER BY dv.idve DESC";
         return DB::select($sql);
     }
     public function chitietve($id)

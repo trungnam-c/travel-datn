@@ -9,13 +9,13 @@ class magiamgia extends Model
 {
     use HasFactory;
     protected $table = 'magiamgia';
-	public $timestamps = true;
+	public $timestamps = false;
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = [
-		'magiamgia', 'chitiet','ngaybatdau','ngayketthuc',
-	];
+	// protected $fillable = [
+	// 	'magiamgia', 'chitiet','ngaybatdau','ngayketthuc','loaima','anhien','giatri'
+	// ];
 }

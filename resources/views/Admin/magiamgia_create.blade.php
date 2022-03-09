@@ -12,7 +12,9 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form action="{{ route('magiamgia.store') }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
+                    @csrf
+                        @method("post")
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -24,21 +26,27 @@
                                     <!-- textarea -->
                                     <div class="form-group">
                                         <label>Chi tiết</label>
-                                        <textarea class="form-control" rows="3" placeholder="Nhập chi tiết"
+                                        <textarea class="form-control" rows="3" placeholder="Nhập chi tiết" id="chitiet" name="chitiet"
                                             style="height: 40px;"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="diemdi">Giá</label>
-                                        <input type="number" class="form-control" id="gia" name="gia"
+                                        <label for="diemdi">Loại mã</label>
+                                        <input type="number" class="form-control" id="loaima" name="loaima"
+                                            placeholder="Nhập giá">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="diemdi">Giá trị</label>
+                                        <input type="number" class="form-control" id="giatri" name="giatri"
                                             placeholder="Nhập giá">
                                     </div>
                                     <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                                    <input placeholder="Select date" type="text" id="example" class="form-control">
+                                    <input placeholder="Select date" type="text" id="ngaybatdau" name="ngaybatdau" class="form-control">
                                     <label for="example">Ngày bắt đầu</label>
                                     <i class="fas fa-calendar input-prefix"></i>
                                     </div>
                                     <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                                    <input placeholder="Select date" type="text" id="example" class="form-control">
+                                    <input placeholder="Select date" type="text" id="ngayketthuc" name="ngayketthuc" class="form-control">
                                     <label for="example">Ngày kết thúc</label>
                                     <i class="fas fa-calendar input-prefix"></i>
                                     </div>

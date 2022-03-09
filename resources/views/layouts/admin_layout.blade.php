@@ -242,6 +242,7 @@
                             </a>
                         </li>
 
+
                         <li class="nav-item ">
                             <a href="quantri/user/list"
                                 class="nav-link">
@@ -249,6 +250,38 @@
                                 <p>
                                     Khách hàng
                                     <span class="badge badge-info right">{{ DB::table("users")->count(); }}</span>
+                                    </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a href="{{ route('guider.huong-dan-vien') }}"
+                                class="nav-link {{ request()->segment(2) == 'huong-dan-vien' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-users" aria-hidden="true"></i>
+                                <p>
+                                    Hướng dẫn viên
+                                    <span class="badge badge-info right">{{ DB::table("huongdanvien")->count(); }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('categories.list') }}"
+                                class="nav-link {{ request()->segment(2) == 'list' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-bars" aria-hidden="true"></i>
+                                <p>
+                                    Danh mục
+                                    <span class="badge badge-info right">{{ DB::table("categories")->count(); }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('magiamgia.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'ma-giam-gia' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>
+                                    Quản lý mã giảm giá
+                                    <span class="badge badge-info right">{{ DB::table("magiamgia")->count(); }}</span>
+
                                 </p>
                             </a>
                         </li>

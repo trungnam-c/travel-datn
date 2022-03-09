@@ -11,7 +11,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><a href="{{ route('location.create') }}" class="btn btn-block btn-primary">Thêm mã giảm giá mới</a></h3>
+                            <h3 class="card-title"><a href="{{ route('magiamgia.create') }}" class="btn btn-block btn-primary">Thêm mã giảm giá mới</a></h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -26,6 +26,7 @@
                                         <th width="150px">Loại mã</th>
                                         <th width="150px">Giá trị</th>
                                         <th width="150px ">Ẩn hiện</th>
+                                        <th width="150px ">Thay đổi</th>
 
 
                                     </tr>
@@ -37,7 +38,6 @@
                                     @foreach ($data as $row)
                                         @php
                                             $stt++;
-                                            $image = explode(',', $row->image);
                                             $anhien = $row->anhien;
                                         @endphp
 
@@ -60,20 +60,29 @@
 
                                             </td>
                                             <td>
+                                            <span class="data-span">{{ $row->loaima }} </span>
+
+                                            </td>
+
+                                            <td>
+                                            <span class="data-span">{{ $row->giatri }} </span>
+
+                                            </td>
+                                            <td>
                                                 @if ($anhien)
                                                     <p><span class="text-success font-weight-bold">Đang Hiện</span></p>
                                                 @else
                                                     <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
                                                 @endif
                                                 <!-- <p>Thứ tự: <span class="font-weight-bold">{{ $row->top }}</span> </p> -->
-                                            </td>
+                                            </td>         
                                             <td>
-                                                <p class="edit-p">
-                                                    <span class="edit-span" alt="Chỉnh sửa dòng này"><i
-                                                            class="bi bi-pencil-square"></i></span>
+                                            <p class="edit-p">
+                                                    <a href="{{ route('magiamgia.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
+                                                        class="bi bi-pencil-square"></i></span></a>
                                                     --
-                                                    <span class="delete-span" alt="Xoá dòng này"><i
-                                                            class="bi bi-x-square"></i></span>
+                                                    <a href="{{ route('magiamgia.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                        class="bi bi-x-square"></i></span></a>
                                                 </p>
 
                                             </td>

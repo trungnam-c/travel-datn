@@ -7,7 +7,7 @@ use App\Http\Controllers\detailLocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Categories;
 use App\Http\Controllers\tourGuideController;
-
+use App\Http\Controllers\MagiamgiaController;
 
 //admin route
 
@@ -34,14 +34,13 @@ Route::name('detailLocation.')->group(function(){
     Route::post('/quantri/cap-nhat-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'update'])->name('update');
     Route::get('/quantri/xoa-chi-tiet-dia-diem/{id}',[detailLocationController::class, 'destroy'])->name('destroy');
 });
-Route::name('location.')->group(function () {
-    Route::get('/quantri/them-ma-giam-gia',[magiamgiaController::class,"create"])->name('create');
-    Route::get('/quantri/sua-ma-giam-gia/{id}',[magiamgiaController::class,"update"])->name('update');
-    Route::get('/quantri/xoa-ma-giam-gia/{id}',[magiamgiaController::class,"delete"])->name('delete');
-});
-
-Route::name('magiamgia')->group(function(){
-    Route::get('/quantri/ma-giam-gia',[magiamgiaController::class, 'index'])->name('index');
+Route::name('magiamgia.')->group(function () {
+    Route::get('/quantri/ma-giam-gia',[MagiamgiaController::class,"index"])->name('index');
+    Route::get('/quantri/them-ma-giam-gia',[MagiamgiaController::class,"create"])->name('create');
+    Route::post('/quantri/luu-ma-giam-gia',[MagiamgiaController::class,"store"])->name('store');
+    Route::post('/quantri/cap-nhat-ma-giam-gia/{id}',[MagiamgiaController::class,"update"])->name('update');
+    Route::get('/quantri/sua-ma-giam-gia/{id}',[MagiamgiaController::class,"edit"])->name('edit');
+    Route::get('/quantri/xoa-ma-giam-gia/{id}',[MagiamgiaController::class,"delete"])->name('delete');
 });
 
 
@@ -65,18 +64,28 @@ Route::prefix('admin')->group(function (){
 
 
 // route of categories
-Route::get('/categories',[Categories::class, 'list']);
-Route::get('/categories/delete/{id}',[Categories::class, 'delete']);
-Route::get('/categories/edit/{id}',[Categories::class, 'form_edit']);
-Route::post('/categories/edit/{id}',[Categories::class, 'edit']);
-Route::get('/categories/add',[Categories::class, 'add_form']);
-Route::post('/categories/add',[Categories::class, 'add']);
+Route::name('categories.')->group(function (){
+    Route::get('/categories/list',[Categories::class, 'list'])->name('list');
+    Route::get('/categories/delete/{id}',[Categories::class, 'delete'])->name('delete');
+    Route::get('/categories/edit/{id}',[Categories::class, 'form_edit'])->name('form_edit');
+    Route::post('/categories/edit/{id}',[Categories::class, 'edit'])->name('edit');
+    Route::get('/categories/add',[Categories::class, 'add_form'])->name('add_form');
+    Route::post('/categories/add',[Categories::class, 'add'])->name('add');
+});
+
 
 //route of guider
-Route::get('/guider',[tourGuideController::class, 'index']);
-Route::get('/guider/add', [tourGuideController::class, 'form_add']);
-Route::post('/guider/add', [tourGuideController::class, 'add']);
-Route::get('/guider/delete/{id}',[tourGuideController::class, 'delete']);
-Route::get('/guider/edit/{id}',[tourGuideController::class, 'form_edit']);
-Route::post('/guider/edit/{id}',[tourGuideController::class, 'edit']);
+Route::name('guider.')->group(function (){
+    Route::get('/guider/list',[tourGuideController::class, 'index'])->name('huong-dan-vien');
+    Route::get('/guider/add', [tourGuideController::class, 'form_add'])->name('form_add');
+    Route::post('/guider/add', [tourGuideController::class, 'add'])->name('add');
+    Route::get('/guider/delete/{id}',[tourGuideController::class, 'delete'])->name('delete');
+    Route::get('/guider/edit/{id}',[tourGuideController::class, 'form_edit'])->name('form_edit');
+    Route::post('/guider/edit/{id}',[tourGuideController::class, 'edit'])->name('edit');
+});
 
+
+
+Route::name('detailLocation.')->group(function(){
+    Route::get('/quantri/chi-tiet-dia-diem',[detailLocationController::class, 'index'])->name('index');
+});
