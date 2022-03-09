@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class detailLocationController extends Controller
 {
     public function index(){
-        $data = detailLocationModel::all();
+        $data = detailLocationModel::all(); 
         return view('Admin/detailLocation_index', compact('data'));
     }
 
