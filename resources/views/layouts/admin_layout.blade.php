@@ -12,7 +12,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('/plugins/fontawesome-free/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{asset('/')}}plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="{{ asset('/plugins/daterangepicker/daterangepicker.css')}}">
 
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -261,6 +261,17 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('magiamgia.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'ma-giam-gia' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>
+                                    Quản lý mã giảm giá
+                                    <span class="badge badge-info right">{{ DB::table("magiamgia")->count(); }}</span>
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
