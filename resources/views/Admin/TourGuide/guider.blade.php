@@ -1,72 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hướng dẫn viên</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        tr>td>img {
-            width: 300px;
-            height: 200px;
-            object-fit: auto;
-        }
+@extends('layouts.admin_layout')
+@section('guider-active', 'active')
+@section('page-title', 'Quản lý hướng dẫn viên')
 
-        tr>td,
-        tr>th {
-            padding: 10px 20px;
-            text-align: center;
-        }
+@section('main')
+@php
+use Illuminate\Support\Facades\DB;
 
-        .btn {
-            display: block;
-            text-decoration: none;
-            padding: 8px 12px;
-            font-weight: bold;
-            background-color: grey;
-            color: #fff;
-            margin-top: 16px;
-            text-align: center;
-            border-radius: 15px;
-            font-size: 18px;
-        }
-    </style>
-</head>
-<body>
-    <table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th>Custom</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($items as $r)
-        <tr>
-            <td>{{$r['id']}}</td>
-            <td>{{$r['tenhdv']}}</td>
-            <td>{{$r['phai'] == 1 ? "Nam" : "Nữ"}}</td>
-            <td>{{$r['diachi']}}</td>
-            <td>{{$r['sdt']}}</td>
-            <td>{{$r['anhien'] == 1 ? "Hiện" : "Ẩn"}}</td>
-            <td>
-                <a href="/guider/delete/{{$r['id']}}" onclick="return confirm('Xóa hả??')">Xóa</a>
-             /
-                <a href="/guider/edit/{{$r['id']}}">Sửa</a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-    </table>
-    <a href="/guider/add" class="btn">Add</a>
-</body>
-</html>
+
+@endphp
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-12">
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><a href="{{ route('guider.form_add') }}" class="btn btn-block btn-primary">Thêm địa điểm mới</a></h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="stt">STT</th>
+                                        <th width="200px">Hướng dẫn viên</th>
+                                        <th width="200px">Giới tính</th>
+                                        <th width="150px">Địa chỉ</th>
+                                        <th width="200px">SDT</th>
+                                        <th width="150px">Trạng thái</th>
+                                        <th width="150px ">Thay đổi</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $stt = 0;
+                                    @endphp
+                                    @foreach ($items as $row)
+                                        @php
+                                            $stt++;
+                                            $image = explode(',', $row->image);
+                                            $anhien = $row->anhien;
+                                        @endphp
+
+                                        <tr class="location-tr">
+                                            <td>{{ $stt }}</td>
+                                            <td>
+                                                <p>
+                                                    <span class="data-span">{{ $row->tenhdv }}</span>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p>
+                                                    <span class="data-span">{{ $row->phai === 1 ? 'Nam' : 'Nữ' }}</span>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p><span class="data-span">{{ $row->diachi }}</span></p>
+                                            </td>
+                                            <td>
+                                                <p><span class="data-span">{{ $row->sdt }}</span></p>
+                                            </td>
+                                            <td>
+                                                @if ($anhien === 1)
+                                                    <p><span class="text-success font-weight-bold">Đang Hiện</span></p>
+                                                @else
+                                                    <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
+                                                @endif
+                                                <p>Thứ tự: <span class="font-weight-bold">{{ $row->anhien }}</span> </p>
+                                            </td>
+                                            <td>
+                                                <p class="edit-p">
+                                                    <a href="{{ route('guider.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
+                                                        class="bi bi-pencil-square"></i></span></a>
+                                                    --
+                                                    <a onClick="return confirm('Bạn muốn sa thải hướng dẫn viên này???')" href="{{ route('guider.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                        class="bi bi-x-square"></i></span></a>
+                                                </p>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+
+                        </div>
+
+                        <div class="div-paginate">
+                            {{ $items->links('vendor.pagination.bootstrap-4') }}
+                        </div>
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+
+            </div>
+
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+@endsection
