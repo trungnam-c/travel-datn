@@ -241,6 +241,18 @@
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-item ">
+                            <a href="quantri/user/list"
+                                class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Khách hàng
+                                    <span class="badge badge-info right">{{ DB::table("users")->count(); }}</span>
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

@@ -9,8 +9,8 @@ class Helper
     public static function isAdmin($isAdmin = 0) : string
     {
         return $isAdmin == 0 ?
-            '<span class="btn btn-danger btn-xs">Khách hàng</span>' :
-            '<span class="btn btn-success btn-xs">Admin</span>';
+            '<span class="btn btn-success btn-xs">Khách</span>' :
+            '<span class="btn btn-danger btn-xs">Admin</span>';
     }
 
 }
