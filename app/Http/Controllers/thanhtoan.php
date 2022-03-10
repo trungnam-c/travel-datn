@@ -99,7 +99,7 @@ class thanhtoan extends Controller
                 Datve::where('idve', $rq->vnp_TxnRef)->update(['trangthai_thanhtoan' => 1]);
             }
         }
-        return view('thanhtoanthanhcong');
+        return view('LayoutMail.thanhtoanthanhcong');
     }
 }
 //  Ngân hàng	NCB

@@ -11,7 +11,7 @@ class Chitietdatvecontroller extends Controller
     public function newchitietdv(Request $rq)
     {
         $SQL = "
-        INSERT INTO `chitietdatve` (`idve`, `loaive`, `hotenkh`, `phai`, `ngaysinh`, `giaytotuythan`, `sdt`, `tienve`) VALUES ('$rq->id', b'$rq->loaive', '$rq->hoten', b'$rq->phai', '$rq->ngaysinh', '$rq->cmnd', '$rq->sdt', '$rq->tienve')";
+        INSERT INTO `chitietdatve` (`idve`, `loaive`, `hotenkh`, `phai`, `ngaysinh`, `giaytotuythan`, `sdt`, `tienve`) VALUES ('$rq->id', '$rq->loaive', '$rq->hoten', '$rq->phai', '$rq->ngaysinh', '$rq->cmnd', '$rq->sdt', '$rq->tienve')";
         // return $SQL;
         DB::select($SQL);
         return DB::getPdo()->lastInsertId();
