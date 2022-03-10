@@ -18,8 +18,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.user.add', [
-            'title' => 'Thêm user mới'
+        return view('admin.user.addUser', [
+            'title' => 'Thêm khách hàng mới'
         ]);
     }
 
@@ -28,6 +28,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'password' => 'required',
+            'gmail' => 'required',
             'isAdmin'   => 'required'
         ]);
 
@@ -38,16 +39,16 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('admin.user.list', [
-            'title' => 'Danh sách user mới nhất',
+        return view('admin.user.listUser', [
+            'title' => 'Danh sách khách hàng',
             'users' => $this->user->get()
         ]);
     }
 
     public function show(User $user)
     {
-        return view('admin.user.edit', [
-            'title' => 'Chỉnh sửa user',
+        return view('admin.user.editUser', [
+            'title' => 'Chỉnh sửa khách hàng',
             'user' => $user
         ]);
     }
@@ -57,12 +58,13 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'password' => 'required',
+            'gmail' => 'required',
             'isAdmin'   => 'required'
         ]);
 
         $result = $this->user->update($request, $user);
         if ($result) {
-            return redirect('/admin/user/list');
+            return redirect('/quantri/user/list');
         }
 
         return redirect()->back();
@@ -74,10 +76,12 @@ class UserController extends Controller
         if ($result) {
             return response()->json([
                 'error' => false,
-                'message' => 'Xóa thành công user'
+                'message' => 'Xóa thành công khách hàng'
             ]);
         }
 
         return response()->json([ 'error' => true ]);
     }
+
+
 }
