@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\detailLocationController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\detailLocationController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Categories;
-use App\Http\Controllers\tourGuideController;
+use App\Http\Controllers\Admin\Categories;
+use App\Http\Controllers\Admin\tourGuideController;
 use App\Http\Controllers\MagiamgiaController;
 
 //admin route
@@ -54,7 +54,7 @@ Route::prefix('admin')->group(function (){
     Route::prefix('user')->group(function (){
         Route::get('add', [UserController::class, 'create']);
         Route::post('add', [UserController::class, 'store']);
-        Route::get('list', [UserController::class, 'index']);
+        Route::get('list', [UserController::class, 'index'])->name('list');
         Route::get('edit/{user}', [UserController::class, 'show']);
         Route::post('edit/{user}', [UserController::class, 'update']);
         Route::delete('destroy', [UserController::class, 'destroy']);
@@ -76,7 +76,7 @@ Route::name('categories.')->group(function (){
 
 //route of guider
 Route::name('guider.')->group(function (){
-    Route::get('/guider/list',[tourGuideController::class, 'index'])->name('huong-dan-vien');
+    Route::get('/guider/huong-dan-vien',[tourGuideController::class, 'index'])->name('huong-dan-vien');
     Route::get('/guider/add', [tourGuideController::class, 'form_add'])->name('form_add');
     Route::post('/guider/add', [tourGuideController::class, 'add'])->name('add');
     Route::get('/guider/delete/{id}',[tourGuideController::class, 'delete'])->name('delete');
