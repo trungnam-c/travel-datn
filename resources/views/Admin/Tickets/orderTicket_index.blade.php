@@ -102,7 +102,12 @@
                                                                             
                                                                             $location = Location_Model::find($idlocation->idlocation);
                                                                             $user = User::find($row->iduser);
-                                                                            $coupou = magiamgia::find($row->idmagiamgia);
+                                                                            if($row->idmagiamgia != null)
+                                                                            {
+                                                                                $coupou = magiamgia::find($row->idmagiamgia);
+                                                                                $magiamgia = $coupou->magiamgia;
+                                                                            }else $magiamgia = "Không có";
+                                                                             
                                                                             
                                                                         @endphp
     
@@ -127,7 +132,7 @@
                                                                                         class="data-span">{{ $row->thanhtoan ? 'Tại quầy' : 'Trực tuyến' }}</span>
                                                                                 </p>
                                                                                 <p>Mã giảm giá: <span
-                                                                                        class="data-span">{{ $coupou->magiamgia }}</span>
+                                                                                        class="data-span">{{ $magiamgia }}</span>
                                                                                 </p>
     
     
@@ -156,7 +161,7 @@
                                                                                          Xác nhận vé 
                                                                                     </a>
                                                                                 </p>
-                                                                                @if ($row->trangthaive == 0 && $row->trangthai_thanhtoan == 1) 
+                                                                                @if ($row->trangthai == 0 && $row->trangthai_thanhtoan == 1) 
                                                                                     <p class="badge badge-primary a-link "  id="btn-ticket-confirm">
                                                                                         <a href="{{ route('orderticket.updateticket', ['id' => $row->idve, 'act' => 1]) }}" class="text-light font-weight-normal">
                                                                                              Xác nhận vé 
@@ -164,19 +169,19 @@
                                                                                     </p>
                                                                                     
                                                                                 @endif
-                                                                                @if($row->trangthaive == 2)
+                                                                                @if($row->trangthai == 2)
                                                                                     <p class="badge badge-primary" id="btn-ticket-confirm">
                                                                                         <a href="{{ route('orderticket.updateticket', ['id' => $row->idve, 'act' => 3]) }}">
                                                                                             <span class="a-link"> Xác nhận huỷ vé</span>
                                                                                         </a>
                                                                                     </p>
                                                                                 
-                                                                                @elseif($row->trangthaive == 3 && $row->trangthai_thanhtoan == 1)
+                                                                                @elseif($row->trangthai == 3 && $row->trangthai_thanhtoan == 1)
                                                                                     <p class=" text- "> <span
                                                                                             class="text-danger font-weight-bold">Đã
                                                                                             huỷ vé - hoàn tiền</span> </p>
                                                                                 @endif 
-                                                                                @if($row->trangthaive ==1)
+                                                                                @if($row->trangthai ==1)
                                                                                     <p class="text-success font-weight-bold"> Đã xác nhận vé </p>
                                                                                  
                                                                                 @endif

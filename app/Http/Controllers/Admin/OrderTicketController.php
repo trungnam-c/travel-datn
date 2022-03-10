@@ -77,21 +77,21 @@ class OrderTicketController extends Controller
         $status = "";
         $data = OrderTicketModel::find($id);
         if($act == 0){
-            $data ->trangthaive = 0; 
+            $data ->trangthai = 0; 
             $status = '<span class="text-light ">Chờ xác nhận</span>';
 
         }elseif ($act ==1 ) {
-            $data ->trangthaive = 1; 
+            $data ->trangthai = 1; 
             $status = '<span class="text-success ">Đã xác nhận Vé</span>';
 
         }
         elseif($act == 2) {
-            $data ->trangthaive = 2; 
+            $data ->trangthai = 2; 
             $status = '<span class="text-warning ">Khách yêu cầu huỷ</span>'; 
 
         }
         elseif($act == 3) { 
-            $data ->trangthaive = 3; 
+            $data ->trangthai = 3; 
 
             $status = '<span class="text-danger ">Đã xác nhận huỷ</span>'; 
 
