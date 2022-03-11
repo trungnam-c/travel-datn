@@ -17,7 +17,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="menu">Mật khẩu</label>
-                        <input type="text" name="password" value="{{ $user->password }}" class="form-control">
+                        <input type="text" name="password" value="{{ $user->password }}" class="form-control" disabled>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="menu">Gmail</label>
-                        <input type="text" name="gmail" value="{{ $user->gmail }}" class="form-control" >
+                        <input type="text" name="gmail" value="{{ $user->gmail }}" class="form-control" disabled>
                     </div>
                 </div>
                 
@@ -46,12 +46,14 @@
             <div class="form-group">
                 <label>Vai trò</label>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="1" type="radio" id="isAdmin" name="isAdmin"
+                    <input class="custom-control-input" value="1" type="radio" 
+                        id="isAdmin" name="isAdmin"
                         {{ $user->isAdmin == 1 ? 'checked' : '' }}>
                     <label for="isAdmin" class="custom-control-label">Admin</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="0" type="radio" id="no_admin" name="isAdmin"
+                    <input class="custom-control-input" value="0" type="radio" 
+                        id="no_admin" name="isAdmin"
                         {{ $user->isAdmin == 0 ? 'checked' : '' }}>
                     <label for="no_admin" class="custom-control-label">Khách hàng</label>
                 </div>

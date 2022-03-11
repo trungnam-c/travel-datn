@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Services\User\UserService;
 
@@ -57,8 +58,8 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'password' => 'required',
-            'gmail' => 'required',
+            // 'password' => 'required',
+            // 'gmail' => 'required',
             'isAdmin'   => 'required'
         ]);
 
@@ -70,7 +71,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): JsonResponse
     {
         $result = $this->user->destroy($request);
         if ($result) {
@@ -80,7 +81,9 @@ class UserController extends Controller
             ]);
         }
 
-        return response()->json([ 'error' => true ]);
+        return response()->json([ 
+            'error' => true 
+        ]);
     }
 
 

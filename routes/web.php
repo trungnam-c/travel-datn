@@ -44,11 +44,9 @@ Route::name('magiamgia.')->group(function () {
 });
 
 
-// bao/admin-user
 //admin
-Route::prefix('admin')->group(function (){
+Route::prefix('quantri')->group(function (){
     Route::get('/', [AdminController::class, 'index'])->name('admin');
-    Route::get('dashboard', [AdminController::class, 'index']);
 
     #User
     Route::prefix('user')->group(function (){
