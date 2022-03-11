@@ -26,6 +26,7 @@ Route::group([], function () {
     Route::get("timloca/{text}", [location::class, 'timloca']);
     Route::get("locabycate/{idcate}", [location::class, 'locabycate']);
     Route::post("checkmagiamgia", [Magiamgia::class, 'checkmagiamgia']);
+    Route::post("demsoluongkhach", [Chitietdatvecontroller::class, 'demsoluongkhach']);
     Route::post('timkiemtheongay', [detail_location::class, 'timkiemtheongay']);
 
 
