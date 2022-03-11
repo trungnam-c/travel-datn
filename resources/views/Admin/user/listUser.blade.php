@@ -18,7 +18,7 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><a href="/quantri/user/add" class="btn btn-block btn-primary">Thêm khách hàng mới</a></h3>
+                            <h3 class="card-title"><a href="/admin/user/add-form" class="btn btn-block btn-primary">Thêm khách hàng mới</a></h3>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -34,7 +34,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $key => $user)
+                                @foreach($data as $key => $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
@@ -46,11 +46,11 @@
                                         </td>
                                         <td>{!! \App\Helpers\Helper::isAdmin($user->isAdmin) !!}</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="/quantri/user/edit/{{ $user->id }}">
+                                            <a class="btn btn-primary btn-sm" href="/admin/user/edit/{{ $user->id }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="#" class="btn btn-danger btn-sm"
-                                               onclick="removeRow({{ $user->id }}, '/quantri/user/destroy')">
+                                               onclick="removeRow({{ $user->id }}, '/admin/user/destroy')">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
@@ -73,9 +73,9 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-    
 
-    {!! $users->links() !!}
+
+    {!! $data->links() !!}
 
     <script>
         $(document).ready(function(){

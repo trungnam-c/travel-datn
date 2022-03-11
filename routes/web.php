@@ -52,9 +52,9 @@ Route::prefix('admin')->group(function (){
 
     #User
     Route::prefix('user')->group(function (){
-        Route::get('add', [UserController::class, 'create']);
-        Route::post('add', [UserController::class, 'store']);
-        Route::get('list', [UserController::class, 'index'])->name('list');
+        Route::get('add-form', [UserController::class, 'create'])->name('add-form');
+        Route::post('add', [UserController::class, 'store'])->name('add');
+        Route::get('danh-sach-khach-hang', [UserController::class, 'index'])->name('danh-sach-khach-hang');
         Route::get('edit/{user}', [UserController::class, 'show']);
         Route::post('edit/{user}', [UserController::class, 'update']);
         Route::delete('destroy', [UserController::class, 'destroy']);

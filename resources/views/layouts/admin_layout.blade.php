@@ -244,8 +244,8 @@
 
 
                         <li class="nav-item ">
-                            <a href="quantri/user/list"
-                                class="nav-link">
+                            <a href="admin/user/danh-sach-khach-hang"
+                                class="nav-link {{ request()->segment(3) == 'danh-sach-khach-hang' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Khách hàng
