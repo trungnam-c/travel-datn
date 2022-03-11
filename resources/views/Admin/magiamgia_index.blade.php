@@ -60,8 +60,11 @@
 
                                             </td>
                                             <td>
-                                            <span class="data-span">{{ $row->loaima }} </span>
-
+                                                @if ($row->loaima == 1)
+                                            <span class="data-span"> Đang hiện</span>
+                                                @else
+                                                <span class="data-span"> Đang ẩn</span>
+                                            @endif
                                             </td>
 
                                             <td>
