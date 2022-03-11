@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Location_Request;
 use App\Models\Location_Model;
 use Carbon\Carbon;
@@ -19,7 +20,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $data = Location_Model::paginate(15); 
+        $data = Location_Model::paginate(15);
         return view('admin.location_index',['data'=>$data]);
     }
 
@@ -42,16 +43,28 @@ class LocationController extends Controller
      */
     public function store(Location_Request $request)
     {
-    
-        $input = $request->all();   
+
+        $request->validate([
+            'diemdi'=> 'require|min:5|max:50',
+            'diemden'=> ['require'],
+            'time'=> ['require'],
+            'mota'=> ['require'],
+            'giavetb'=> ['require'],
+            'category'=> ['require'],
+            'phuongtien'=> ['require'],
+            'top'=> ['require'],
+            'anhien'=> ['require'],
+        ]);
+
+        $input = $request->all();
         $phuongtien = "";
         if($input['phuongtien'] != null) {
             foreach (json_decode($input['phuongtien'],true) as $item) {
                 $phuongtien .= $item['value'].",";
-            } 
+            }
         }
         $anhien =1;
-        if($input['anhien']) $anhien =0; 
+        if($input['anhien']) $anhien =0;
         $loca = new  Location_Model();
         $loca->diemdi = $input['diemdi']  ;
         $loca->diemden = $input['diemden']  ;
@@ -63,7 +76,7 @@ class LocationController extends Controller
         $loca->image = $input['images']  ;
         $loca->phuongtien = $phuongtien  ;
         $loca->top = trim($input['top'] );
-        $loca->anhien = $anhien  ; 
+        $loca->anhien = $anhien  ;
         $loca->save();
         return back()->with("tb","thêm thành công!");
     }
@@ -91,7 +104,7 @@ class LocationController extends Controller
         $cate = DB::table('categories')->get();
 
         return view("Admin.location_edit",['data'=>$data,'cate'=>$cate]);
-    
+
     }
 
     /**
@@ -103,12 +116,25 @@ class LocationController extends Controller
      */
     public function update(Location_Request $request, $id)
     {
-        $input = $request->all();   
+
+        $request->validate([
+            'diemdi'=> 'require|min:5|max:50',
+            'diemden'=> ['require'],
+            'time'=> ['require'],
+            'mota'=> ['require'],
+            'giavetb'=> ['require'],
+            'category'=> ['require'],
+            'phuongtien'=> ['require'],
+            'top'=> ['require'],
+            'anhien'=> ['require'],
+        ]);
+
+        $input = $request->all();
         $phuongtien = "";
         if($input['phuongtien'] != null) {
             foreach (json_decode($input['phuongtien'],true) as $item) {
                 $phuongtien .= $item['value'].",";
-            } 
+            }
         }
         $loca =  Location_Model::find($id);
         $loca->diemdi = $input['diemdi']  ;
@@ -121,9 +147,9 @@ class LocationController extends Controller
         $loca->image = $input['images']  ;
         $loca->phuongtien = $phuongtien  ;
         $loca->top = 1 ;
-        $loca->anhien = 1 ; 
+        $loca->anhien = 1 ;
         $loca->save();
-        
+
         return back()->with("tb","Sửa thành công!");
     }
 
@@ -141,10 +167,10 @@ class LocationController extends Controller
 
     public function saveImg(Request $request)
     {
-        $image = $request->file('file');  
+        $image = $request->file('file');
         // $file_name =  Carbon::now()->timestamp;
         // $image->move(public_path('upload/'),$file_name);
-        $result = $image->storeOnCloudinaryAs(); 
+        $result = $image->storeOnCloudinaryAs();
         return $result->getSecurePath();
     }
 }

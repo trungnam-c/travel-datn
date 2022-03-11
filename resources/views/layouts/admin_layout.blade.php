@@ -241,6 +241,19 @@
                                 </p>
                             </a>
                         </li>
+
+
+                        <li class="nav-item ">
+                            <a href="quantri/user/list"
+                                class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Khách hàng
+                                    <span class="badge badge-info right">{{ DB::table("users")->count(); }}</span>
+                                    </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item ">
                             <a href="{{ route('guider.huong-dan-vien') }}"
                                 class="nav-link {{ request()->segment(2) == 'huong-dan-vien' ? 'active' : '' }}">
@@ -268,6 +281,7 @@
                                 <p>
                                     Quản lý mã giảm giá
                                     <span class="badge badge-info right">{{ DB::table("magiamgia")->count(); }}</span>
+
                                 </p>
                             </a>
                         </li>

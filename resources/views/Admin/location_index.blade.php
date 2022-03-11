@@ -6,7 +6,7 @@
 @php
 use Illuminate\Support\Facades\DB;
 
-   
+
 @endphp
     <section class="content">
         <div class="container-fluid">
@@ -70,6 +70,7 @@ use Illuminate\Support\Facades\DB;
                                             <td>
                                                 <p>PT: <span class="data-span">{{ $row->phuongtien }}</span></p>
                                                 <p>Loại: <span class="data-span">{{   DB::table("categories")->where("id",$row->category)->first()->name}}</span></p>
+                                                <p class="btn btn-secondary" ><i class="fa fa-car" aria-hidden="true"></i></p>
                                             </td>
                                             <td>
                                                 @foreach ($image as $item)
@@ -78,7 +79,7 @@ use Illuminate\Support\Facades\DB;
                                                         @break
                                                     @endif
                                                 @endforeach
-                                               
+
                                             </td>
                                             <td>
                                                 @if ($anhien)
@@ -93,7 +94,7 @@ use Illuminate\Support\Facades\DB;
                                                     <a href="{{ route('location.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
                                                         class="bi bi-pencil-square"></i></span></a>
                                                     --
-                                                    <a href="{{ route('location.destroy', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                    <a onClick="return confirm('Bạn chắc chắn muốn xóa địa điểm này?')" href="{{ route('location.destroy', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
                                                         class="bi bi-x-square"></i></span></a>
                                                 </p>
 

@@ -1,6 +1,10 @@
-@extends('admin.dashboard')
+@extends('layouts.admin_layout')
 
-@section('content')
+@section('web-title', 'Chỉnh sửa khách hàng')
+
+@section('page-title','Chỉnh sửa khách hàng')
+
+@section('main')
     <form action="" method="POST">
         <div class="card-body">
             <div class="row">
@@ -21,7 +25,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="menu">Gmail</label>
-                        <input type="text" name="gmail" value="{{ $user->gmail }}" class="form-control">
+                        <input type="text" name="gmail" value="{{ $user->gmail }}" class="form-control" >
                     </div>
                 </div>
                 
@@ -55,8 +59,10 @@
 
         </div>
 
+        @include('admin/user.alert')
+
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Cập Nhật User</button>
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
         </div>
         @csrf
     </form>

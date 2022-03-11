@@ -34,6 +34,6 @@ class detail_location extends Controller
     }
     public function ngaycolich($id)
     {
-        return ModelsDetail_location::where('idlocation', '=', $id)->get();
+        return detailLocationModel::where('idlocation', '=', $id)->get();
     }
 }

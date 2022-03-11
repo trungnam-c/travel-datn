@@ -25,11 +25,17 @@
                                         <label for="diemdi">Điểm đi</label>
                                         <input type="text" class="form-control" value="{{old("diemdi")}}" id="diemdi" name="diemdi"
                                             placeholder="Nhập điểm đi">
+                                            @error('diemdi')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="phuongtien">Phương tiện</label>
                                         <input type="text" class="form- " data-role="tagsinput" value="{{old("diemdi")}}" id="phuongtien"
                                             name="phuongtien" placeholder="Nhập Phương tiện">
+                                            @error('phuongtien')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
 
 
@@ -39,29 +45,38 @@
                                     <div class="form-group">
                                         <label for="Điểm đến">Điểm đến</label>
                                         <input type="text" class="form-control" id="diemden" value="{{old("diemdi")}}" name="diemden" placeholder="Nhập điểm đến">
+                                        @error('diemden')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                     <div class="form-group">
                                         <label>Category</label>
                                         <select class="form-control select2bs4" name="category" style="width: 100%;">
                                            @foreach ($data as $item)
                                            <option  value="{{$item->id}}">{{$item->name}}</option>
-                                           
+
                                            @endforeach
 
                                         </select>
+                                        @error('category')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
 
                                 </div>
                                 {{-- col-6 --}}
                                 <div class="col-sm-2"></div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="giavetb">Giá</label>
                                         <input type="number" class="form-control" id="giavetb"  value="{{old("diemdi")}}" name="giavetb"
                                             placeholder="Nhập giá">
+                                            @error('giavetb')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -69,9 +84,12 @@
                                         <label for="top">Vị trí xuất hiện</label>
                                         <input type="number" class="form-control" id="top" value="{{old("top")}}" name="top"
                                             placeholder="Nhập vị trí xuất hiện">
+                                            @error('top')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div class="row">
 
@@ -80,20 +98,27 @@
                                         <label>Thời gian:</label>
 
                                         <div class="input-group">
-                                            
+
                                             <input type="text" class="form-control float-right" value="{{old("time")}}" name="time"  >
                                         </div>
+                                        @error('time')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                         <!-- /.input group -->
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mb-5">
-                                    
+
                                     <label for=""></label>
                                     <div class="custom-control custom-switch  mt-3">
                                         <input type="checkbox" class="custom-control-input" id="anhien" name="anhien">
                                         <label class="custom-control-label" for="anhien"> Chọn để ẩn </label>
+
                                       </div>
-                                  
+                                      @error('anhien')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
+
                                 </div>
                             </div>
                             <div class="row">
@@ -102,6 +127,9 @@
                                         <label>Mô tả</label>
                                         <textarea class="form-control" rows="3" name="mota" placeholder="Nhập mô tả"
                                             style="height: 100px;">{{old("diemdi")}}</textarea>
+                                            @error('mota')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
                                 </div>
                             </div>
@@ -113,10 +141,10 @@
                                         </div>
                                         <div class="card-body">
                                             <div   class="row image-preview" id="image-preview">
-                                                
+
                                             </div>
-                                                  
-                                            
+
+
                                         </div>
                                         <!-- /.card-body -->
 
@@ -167,7 +195,7 @@
                                                     </div>
                                                     <div class="col d-flex align-items-center">
                                                         <p class="mb-0">
-                                                            <span class="lead" data-dz-name></span> 
+                                                            <span class="lead" data-dz-name></span>
                                                             <span data-dz-size></span>
                                                         </p>
                                                         <strong class="error text-danger" data-dz-errormessage></strong>
@@ -186,7 +214,7 @@
                                                                 <i class="fas fa-times-circle"></i>
                                                                 <span>Huỷ</span>
                                                             </button>
-                                                           
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,6 +225,9 @@
                                     </div>
                                     <!-- /.card -->
                                 </div>
+                                <!-- @error('images')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror -->
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -216,6 +247,6 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-    
+
 
 @endsection

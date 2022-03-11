@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\detailLocationModel;
 use Illuminate\Support\Facades\DB;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class detailLocationController extends Controller
 {
     public function index(){
-        $data = detailLocationModel::all(); 
+        $data = detailLocationModel::all();
         return view('Admin/detailLocation_index', compact('data'));
     }
 

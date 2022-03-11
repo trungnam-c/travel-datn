@@ -16,9 +16,9 @@ class UserService
         try {
             #$request->except('_token');
             User::create($request->input());
-            Session::flash('success', 'Thêm user mới thành công');
+            Session::flash('success', 'Thêm khách hàng mới thành công');
         } catch (\Exception $err) {
-            Session::flash('error', 'Thêm user bị lỗi. Vui lòng thử lại');
+            Session::flash('error', 'Thêm khách hàng bị lỗi. Vui lòng thử lại');
             Log::info($err->getMessage());
 
             return false;
@@ -37,9 +37,9 @@ class UserService
         try {
             $user->fill($request->input());
             $user->save();
-            Session::flash('success', 'Cập nhật user thành công');
+            Session::flash('success', 'Cập nhật khách hàng thành công');
         } catch (\Exception $err) {
-            Session::flash('error', 'Cập nhật user bị lỗi. Vui lòng thử lại');
+            Session::flash('error', 'Cập nhật khách hàng bị lỗi. Vui lòng thử lại');
             Log::info($err->getMessage());
 
             return false;
@@ -50,16 +50,15 @@ class UserService
 
     public function destroy($request)
     {
-        $user = User::where('id', $request->input('id'))->first();
+        $id = (int) $request->input('id');
+        $user = User::where('id', $id)->first();
         if ($user) {
-            $path = str_replace('storage', 'public', $user->avatar);
-            Storage::delete($path);
-            $user->delete();
-            return true;
+            return User::where('id', $id)->delete();
         }
-
         return false;
     }
+
+    
 
     
 }
