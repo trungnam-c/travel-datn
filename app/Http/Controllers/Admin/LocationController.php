@@ -116,6 +116,19 @@ class LocationController extends Controller
      */
     public function update(Location_Request $request, $id)
     {
+
+        $request->validate([
+            'diemdi'=> 'require|min:5|max:50',
+            'diemden'=> ['require'],
+            'time'=> ['require'],
+            'mota'=> ['require'],
+            'giavetb'=> ['require'],
+            'category'=> ['require'],
+            'phuongtien'=> ['require'],
+            'top'=> ['require'],
+            'anhien'=> ['require'],
+        ]);
+
         $input = $request->all();
         $phuongtien = "";
         if($input['phuongtien'] != null) {
