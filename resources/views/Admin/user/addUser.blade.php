@@ -36,7 +36,7 @@
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
                                             <input type="text" name="password" value="{{ old('password') }}" class="form-control">
-                                            @error('name')
+                                            @error('password')
                                             <p class="alert alert-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
@@ -45,7 +45,7 @@
                                         <div class="form-group">
                                             <label>Gmail</label>
                                             <input type="text" name="gmail" value="{{ old('gmail') }}" class="form-control">
-                                            @error('name')
+                                            @error('gmail')
                                             <p class="alert alert-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
