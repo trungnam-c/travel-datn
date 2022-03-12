@@ -58,7 +58,16 @@
                                         </td>
                                         <td>
                                             <p>
+                                                Loại vé: <span class="data-span">Người lớn</span>
+                                            </p>
+                                            <p>
                                                 Giá: <span class="data-span text-danger">{{number_format(DB::table("location")->where("id",$r->idlocation)->first()->giavetb) }}đ</span>
+                                            </p>
+                                            <p>
+                                                Loại vé: <span class="data-span">Trẻ em</span>
+                                            </p>
+                                            <p>
+                                                Giá: <span class="data-span text-danger">{{number_format(DB::table("location")->where("id",$r->idlocation)->first()->giavetb / 100 * 70) }}đ</span>
                                             </p>
                                             <p>
                                                 Tgian: <span class="data-span">{{ DB::table("location")->where("id",$r->idlocation)->first()->time }}</span>
