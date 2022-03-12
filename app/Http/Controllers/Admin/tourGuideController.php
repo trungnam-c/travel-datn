@@ -19,12 +19,32 @@ class tourGuideController extends Controller
     }
 
     public function add(Request $request) {
+        $request->validate(
+            [
+                'guiderName' => 'required|string',
+                'guiderGender' => 'required',
+                'guiderAddress' => 'required',
+                'guiderPhone' => 'required|numeric',
+                'guiderStatus' => 'required',
+
+            ], 
+            [
+                'guiderName.required' => 'Vui lòng điền họ tên',
+                'guiderName.required' => 'Không đúng định dạng',
+                'guiderGender.required' => 'Vui lòng chọn giới tính',
+                'guiderAddress.required' => 'Vui lòng điền địa chỉ',
+                'guiderPhone.required' => 'Vui lòng điền số điện thoại',
+                'guiderPhone.numeric' => 'Không đúng định dạng',
+                'guiderStatus.required' => 'Vui lòng chọn trạng thái',
+            ]
+            );
+        $input = $request->all();
         $guider = new tourGuideModel();
-        $guider->tenhdv = $request->guiderName;
-        $guider->phai = $request->guiderGender;
-        $guider->diachi = $request->guiderAddress;
-        $guider->sdt = $request->guiderPhone;
-        $guider->anhien = $request->guiderStatus;
+        $guider->tenhdv = $input->guiderName;
+        $guider->phai = $input->guiderGender;
+        $guider->diachi = $input->guiderAddress;
+        $guider->sdt = $input->guiderPhone;
+        $guider->anhien = $input->guiderStatus;
         $guider->save();
         return redirect('/guider/list');
     }
@@ -40,6 +60,26 @@ class tourGuideController extends Controller
     }
 
     public function edit(Request $request, $id) {
+        $request->validate(
+            [
+                'guiderName' => 'required|string',
+                'guiderGender' => 'required',
+                'guiderAddress' => 'required',
+                'guiderPhone' => 'required|numeric',
+                'guiderStatus' => 'required',
+
+            ], 
+            [
+                'guiderName.required' => 'Vui lòng điền họ tên',
+                'guiderName.required' => 'Không đúng định dạng',
+                'guiderGender.required' => 'Vui lòng chọn giới tính',
+                'guiderAddress.required' => 'Vui lòng điền địa chỉ',
+                'guiderPhone.required' => 'Vui lòng điền số điện thoại',
+                'guiderPhone.numeric' => 'Không đúng định dạng',
+                'guiderStatus.required' => 'Vui lòng chọn trạng thái',
+            ]
+            );
+        $input = $request->all();
         $guider = tourGuideModel::find($id);
         $guider->tenhdv = $request->guiderName;
         $guider->phai = $request->guiderGender;

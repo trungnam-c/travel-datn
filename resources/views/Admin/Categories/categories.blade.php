@@ -12,7 +12,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><a href="{{ route('categories.add_form') }}" class="btn btn-block btn-primary">Thêm địa điểm mới</a></h3>
+                            <h3 class="card-title"><a href="{{ route('categories.add_form') }}" class="btn btn-block btn-primary">Thêm danh mục mới</a></h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

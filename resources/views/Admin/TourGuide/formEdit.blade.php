@@ -24,6 +24,10 @@
                                         <label for="tenhdv">Tên hướng dẫn viên</label>
                                         <input type="text" class="form-control" value="" id="tenhdv" name="guiderName"
                                             placeholder="Nhập tên hướng dẫn viên">
+                                            @if ($errors->has('guiderName'))
+                                            <span class="text-danger">{{ $errors->first('guiderName') }}</span>
+                                            @endif
+
                                     </div>
                                     <div class="form-group">
                                         <label class="">Giới tính</label>
@@ -35,6 +39,10 @@
                                             <input type="radio" class="form-check" data-role="tagsinput" value="0" id="nu"
                                             name="guiderGender">
                                         </div>
+                                        @if ($errors->has('guiderGender'))
+                                            <span class="text-danger">{{ $errors->first('guiderGender') }}</span>
+                                            @endif
+
                                     </div>
                                 </div>
                                 {{-- col-6 --}}
@@ -47,6 +55,10 @@
                                         <label for="diachi">Địa chỉ</label>
                                         <input type="text" class="form-control" id="diachi"  value="" name="guiderAddress"
                                             placeholder="Nhập địa chỉ">
+                                            @if ($errors->has('guiderAddress'))
+                                            <span class="text-danger">{{ $errors->first('guiderAddress') }}</span>
+                                            @endif
+
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -54,6 +66,10 @@
                                         <label for="sdt">Số điện thoại</label>
                                         <input type="number" class="form-control" id="sdt" value="" name="guiderPhone"
                                             placeholder="Nhập số điện thoại">
+                                            @if ($errors->has('guiderPhone'))
+                                            <span class="text-danger">{{ $errors->first('guiderPhone') }}</span>
+                                            @endif
+
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -66,6 +82,10 @@
                                             <input type="radio" class="form-check" data-role="tagsinput" value="0" id="hide"
                                             name="guiderStatus">
                                         </div>
+                                        @if ($errors->has('guiderStatus'))
+                                            <span class="text-danger">{{ $errors->first('guiderStatus') }}</span>
+                                            @endif
+
                                     </div>
                             </div>
                         </div>
