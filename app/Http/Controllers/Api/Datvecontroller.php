@@ -14,7 +14,7 @@ class Datvecontroller extends Controller
         $SQL = "
         INSERT INTO `datve` (`idlocation_detail`, `iduser`, `ngaydatve`,
         `idmagiamgia`, `thanhtoan`, `trangthai_thanhtoan`, `idve`)
-        VALUES ('$rq->iddetail', '$rq->iduser', NOW(), $rq->magiamgia, b'$rq->thanhtoan', b'$rq->trangthai_thanhtoan', NULL);
+        VALUES ('$rq->iddetail', '$rq->iduser', NOW(), $rq->magiamgia, '$rq->thanhtoan', '$rq->trangthai_thanhtoan', NULL);
         ";
         // return $SQL;
         DB::select($SQL);

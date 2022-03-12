@@ -11,7 +11,7 @@ class Chitietdatvecontroller extends Controller
     public function newchitietdv(Request $rq)
     {
         $SQL = "
-        INSERT INTO `chitietdatve` (`idve`, `loaive`, `hotenkh`, `phai`, `ngaysinh`, `giaytotuythan`, `sdt`, `tienve`) VALUES ('$rq->id', b'$rq->loaive', '$rq->hoten', b'$rq->phai', '$rq->ngaysinh', '$rq->cmnd', '$rq->sdt', '$rq->tienve')";
+        INSERT INTO `chitietdatve` (`idve`, `loaive`, `hotenkh`, `phai`, `ngaysinh`, `giaytotuythan`, `sdt`, `tienve`) VALUES ('$rq->id', '$rq->loaive', '$rq->hoten', '$rq->phai', '$rq->ngaysinh', '$rq->cmnd', '$rq->sdt', '$rq->tienve')";
         // return $SQL;
         DB::select($SQL);
         return DB::getPdo()->lastInsertId();
@@ -34,6 +34,11 @@ class Chitietdatvecontroller extends Controller
     public function scanve($id)
     {
         $sql = "SELECT dv.idve,COUNT(ctdv.idve) as sove,ngaydatve,ngaykhoihanh,giokhoihanh,diemdi,diemden,image,trangthai,trangthai_thanhtoan FROM datve dv inner join detail_location lod on dv.idlocation_detail = lod.id inner join location lo on lod.idlocation = lo.id inner join chitietdatve ctdv on dv.idve = ctdv.idve WHERE dv.idve = $id GROUP by ctdv.idve,ngaydatve,ngaykhoihanh,giokhoihanh,diemdi,diemden,image,trangthai,dv.idve,trangthai_thanhtoan ORDER BY dv.idve DESC";
+        return DB::select($sql);
+    }
+    public function demsoluongkhach(Request $rq)
+    {
+        $sql = "SELECT COUNT(*) as tong FROM detail_location dtl inner join datve dv on dtl.id = dv.idlocation_detail inner join chitietdatve ctdv on dv.idve = ctdv.idve WHERE dtl.id = $rq->id";
         return DB::select($sql);
     }
 }

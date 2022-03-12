@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\detailLocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Categories;
 use App\Http\Controllers\Admin\tourGuideController;
+use App\Http\Controllers\Admin\OrderTicketController;
 use App\Http\Controllers\MagiamgiaController;
 
 //admin route
@@ -14,6 +15,23 @@ use App\Http\Controllers\MagiamgiaController;
 Route::get('/', function () {
     return view('layouts.admin_layout');
 });
+
+// order ticket detail
+
+Route::name('orderticketdetail.')->group(function () {
+    Route::get('/quantri/quan-ly-chi-tiet-dat-ve',[OrderTicketController::class,"index"])->name('index');
+    Route::get('/quantri/them-dia-diem',[OrderTicketController::class,"create"])->name('create');
+
+});
+
+// order tikets
+Route::name('orderticket.')->group(function () {
+    Route::get('/quantri/quan-ly-dat-ve',[OrderTicketController::class,"index"])->name('index');
+    Route::get('/quantri/cap-nhat-trang-thai-ve/{id}/{act}',[OrderTicketController::class,"updateticket"])->name('updateticket');
+    Route::get('/quantri/cap-nhat-trang-thai-thanh-toan/{id}/{act}',[OrderTicketController::class,"updatepayment"])->name('updatepayment');
+
+});
+
 
 // location route group
 Route::name('location.')->group(function () {

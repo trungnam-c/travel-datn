@@ -34,6 +34,14 @@ class detail_location extends Controller
     }
     public function ngaycolich($id)
     {
-        return detailLocationModel::where('idlocation', '=', $id)->get();
+        return detailLocationModel::where('idlocation', '=', $id)->where('ngaykhoihanh', '>=', NOW())->get();
     }
+    public function timkiemtheongay(Request $rq)
+    {
+        $rs =  DB::select("SELECT DISTINCT idlocation, lc.* FROM detail_location dl inner join location lc on dl.idlocation = lc.id WHERE ngaykhoihanh = '$rq->ngay'");
+        return $rs;
+    }
+    // ;
+
 }
+// ->distinct()

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\detailLocationModel;
 use Illuminate\Support\Facades\DB;
 
+
 class detailLocationController extends Controller
 {
     public function index(){
