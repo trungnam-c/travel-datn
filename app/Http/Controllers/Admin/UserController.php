@@ -29,6 +29,7 @@ class UserController extends Controller
             'name' => 'required',
             'password' => 'required',
             'gmail' => 'required',
+            'images' => 'required',
             'isAdmin'   => 'required'
         ]);
 
@@ -39,10 +40,8 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('admin.user.listUser', [
-            'title' => 'Danh sách khách hàng',
-            'users' => $this->user->get()
-        ]);
+        $data = User::paginate(10);
+        return view('Admin/user/listUser',['data'=>$data]);
     }
 
     public function show(User $user)
@@ -59,6 +58,7 @@ class UserController extends Controller
             'name' => 'required',
             'password' => 'required',
             'gmail' => 'required',
+            'images' => 'required',
             'isAdmin'   => 'required'
         ]);
 
