@@ -8,18 +8,21 @@ use Illuminate\Support\Facades\DB;
 
 class detailLocationController extends Controller
 {
-    public function index(){
-        $data = detailLocationModel::all(); 
+    public function index()
+    {
+        $data = detailLocationModel::all();
         return view('Admin/detailLocation_index', compact('data'));
     }
 
-    public function create(){
+    public function create()
+    {
         $hdv = DB::table("huongdanvien")->get();
         $location = DB::table("location")->get();
-        return view('Admin/detailLocation_create', compact("hdv","location"));
+        return view('Admin/detailLocation_create', compact("hdv", "location"));
     }
 
-    public function add(Request $request){
+    public function add(Request $request)
+    {
         $insert = $request->all();
         $detailLocation = new detailLocationModel();
         $detailLocation->idlocation = $insert['idlocation'];
@@ -32,14 +35,16 @@ class detailLocationController extends Controller
         return redirect()->back()->with('success', 'Thêm mới thành công!');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $data = detailLocationModel::find($id);
         $location = DB::table("location")->get();
         $hdv = DB::table("huongdanvien")->get();
         return view("Admin/detailLocation_edit", compact("data", "location", "hdv"));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $update = $request->all();
         $detailLocation = detailLocationModel::find($id);
         $detailLocation->idlocation = $update['idlocation'];
@@ -52,7 +57,8 @@ class detailLocationController extends Controller
         return redirect("/quantri/chi-tiet-dia-diem")->with('success', 'Sửa thành công!');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         detailLocationModel::destroy($id);
         return back()->with("success", "Xoá thành công!");
     }
