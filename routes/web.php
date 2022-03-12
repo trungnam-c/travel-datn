@@ -13,6 +13,7 @@ use App\Http\Controllers\MagiamgiaController;
 
 Route::get('/', function () {
     return view('layouts.admin_layout');
+    
 });
 
 // location route group
