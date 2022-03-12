@@ -24,8 +24,12 @@
                                         <h3 class="card-title">Tên danh mục</h3>
                                         </div>
                                         <div class="card-body">
-                                            <input class="form-control" type="text" value="" name="cateName" placeholder="..."/>
+                                            <input class="form-control" type="text" value="" name="cateName" placeholder="Điền tên danh mục"/>
                                         </div>
+                                        @if ($errors->has('cateName'))
+                                            <span class="text-danger">{{ $errors->first('cateName') }}</span>
+                                            @endif
+
                                         <!-- /.card-body -->
                                     </div>
                                     <!-- /.card -->
@@ -43,6 +47,10 @@
                                             <label for="hide" class=" mb-0 mr-3 ml-3">Ẩn :</label>
                                             <input class="form-check" type="radio" value="0" id="hide" name="cateHideShow" placeholder="..."/>
                                         </div>
+                                        @if ($errors->has('cateHideShow'))
+                                            <span class="text-danger">{{ $errors->first('cateHideShow') }}</span>
+                                            @endif
+
                                         <!-- /.card-body -->
                                     </div>
                                     <!-- /.card -->
@@ -56,11 +64,16 @@
                                         </div>
                                         <div class="card-body">
                                             <div   class="row image-preview" id="image-preview">
+                                            @if ($errors->has('images'))
+                                            <span class="text-danger">{{ $errors->first('images') }}</span>
+                                            @endif
+
 
                                             </div>
 
 
                                         </div>
+                                        
                                         <!-- /.card-body -->
 
                                     </div>
@@ -142,6 +155,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- /.card-body -->
 
                         <div class="card-footer">

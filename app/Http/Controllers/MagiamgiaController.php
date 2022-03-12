@@ -21,6 +21,25 @@ class MagiamgiaController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate(
+            [
+                'magiamgia' => 'required',
+                'chitiet' => 'required',
+                'ngaybatdau' => 'required',
+                'ngayketthuc' => 'required',
+                'loaima' => 'required',
+                'giatri' => 'required',
+            ], 
+            [
+                'magiamgia.required' => 'Thiếu mã giảm giá',
+                'chitiet.required' => 'Thiếu chi tiết',
+                'ngaybatdau.required' => 'Thiếu ngày bắt đầu',
+                'ngayketthuc.required' => 'Thiếu ngày kết thúc',
+                'loaima.required' => 'Thiếu loại mã',
+                'giatri.required' => 'Thiếu giá trị',
+
+            ]
+          );
                 $input = $request->all();   
                 $anhien =1;
 				$magiamgia = new magiamgia();
