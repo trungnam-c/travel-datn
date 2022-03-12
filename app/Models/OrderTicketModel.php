@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Location_Model extends Model
+class OrderTicketModel extends Model
 {
     use HasFactory;
-    protected $table = "location";
-    protected $primarykey = "id";
-	public $timestamps = false;
-     
+    protected $table = "datve";
+    protected $primaryKey = "idve";
+    public $timestamps = false;
 }

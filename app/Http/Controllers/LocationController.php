@@ -20,7 +20,7 @@ class LocationController extends Controller
     public function index()
     {
         $data = Location_Model::paginate(15); 
-        return view('admin.location_index',['data'=>$data]);
+        return view('admin.Locations.location_index',['data'=>$data]);
     }
 
     /**v
@@ -31,7 +31,7 @@ class LocationController extends Controller
     public function create()
     {
         $data = DB ::table('categories')->get();
-        return view('admin.location_create',['data'=>$data]);
+        return view('admin.Locations.location_create',['data'=>$data]);
     }
 
     /**
@@ -51,7 +51,10 @@ class LocationController extends Controller
             } 
         }
         $anhien =1;
-        if($input['anhien']) $anhien =0; 
+        $top = 0;
+        
+        if(isset($input['top'])) $top =1; 
+        if(isset($input['anhien'])) $anhien =0; 
         $loca = new  Location_Model();
         $loca->diemdi = $input['diemdi']  ;
         $loca->diemden = $input['diemden']  ;
@@ -60,12 +63,12 @@ class LocationController extends Controller
         $loca->lichtrinh = '$input[lichtrinh] ' ;
         $loca->giavetb = $input['giavetb']  ;
         $loca->category = $input['category']  ;
-        $loca->image = $input['images']  ;
+        $loca->image = $this->xoadauphay($input['images'] ) ;
         $loca->phuongtien = $phuongtien  ;
-        $loca->top = trim($input['top'] );
+        $loca->top = $top;
         $loca->anhien = $anhien  ; 
         $loca->save();
-        return back()->with("tb","thêm thành công!");
+        return redirect(route("location.index"))->with("tb","thêm thành công!");
     }
 
     /**
@@ -90,7 +93,7 @@ class LocationController extends Controller
         $data = Location_Model::find($id);
         $cate = DB::table('categories')->get();
 
-        return view("Admin.location_edit",['data'=>$data,'cate'=>$cate]);
+        return view("Admin.Locations.location_edit",['data'=>$data,'cate'=>$cate]);
     
     }
 
@@ -110,6 +113,10 @@ class LocationController extends Controller
                 $phuongtien .= $item['value'].",";
             } 
         }
+        $top = 0;
+        $anhien = 1;
+        if(isset($input['top'])) $top =1; 
+        if(isset($input['anhien'])) $anhien =0; 
         $loca =  Location_Model::find($id);
         $loca->diemdi = $input['diemdi']  ;
         $loca->diemden = $input['diemden']  ;
@@ -118,15 +125,28 @@ class LocationController extends Controller
         $loca->lichtrinh = '$input[lichtrinh] ' ;
         $loca->giavetb = $input['giavetb']  ;
         $loca->category = $input['category']  ;
-        $loca->image = $input['images']  ;
+        $loca->image = $this->xoadauphay($input['images'] ) ;
         $loca->phuongtien = $phuongtien  ;
-        $loca->top = 1 ;
-        $loca->anhien = 1 ; 
+        $loca->top = $top;
+        $loca->anhien = $anhien; 
         $loca->save();
         
         return back()->with("tb","Sửa thành công!");
     }
-
+    public function xoadauphay($text)
+    { 
+        $data  = "";
+        if($text != ""){
+            $arr1 = [];
+            $arr = explode(',',$text);
+            foreach ($arr as $a) {
+                if($a != null)   array_push($arr1, $a); 
+            }   
+            $data =  implode(",",$arr1);
+        }
+        
+        return $data;
+    }
     /**
      * Remove the specified resource from storage.
      *
