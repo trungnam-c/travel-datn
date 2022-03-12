@@ -1,6 +1,9 @@
 @extends('layouts.admin_layout')
 @section('guider-active', 'active')
 @section('page-title', 'Sửa hướng dẫn viên')
+@php
+ $user = DB::table("huongdanvien")->where("id","$idGuider")->get();
+@endphp
 @section('main')
     <section class="content">
         <div class="container-fluid">
@@ -12,20 +15,19 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="guider/edit/{{$idGuider}}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
+                    <form action="guider/edit/{{$idGuider}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("post")
                         <div class="card-body">
                             <div class="row">
-
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
                                         <label for="tenhdv">Tên hướng dẫn viên</label>
-                                        <input type="text" class="form-control" value="" id="tenhdv" name="guiderName"
+                                        <input type="text" class="form-control" value="{{$user[0]->tenhdv}}" id="tenhdv" name="guiderName"
                                             placeholder="Nhập tên hướng dẫn viên">
                                             @if ($errors->has('guiderName'))
-                                            <span class="text-danger">{{ $errors->first('guiderName') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderName') }}</span>
                                             @endif
 
                                     </div>
@@ -33,14 +35,14 @@
                                         <label class="">Giới tính</label>
                                         <div class="d-flex align-items-center">
                                             <label for="nam" class="pr-2 mb-0">Nam</label>
-                                            <input type="radio" class="form-check" data-role="tagsinput" value="1" id="nam"
+                                            <input type="radio" class="form-check"   data-role="tagsinput" value="1" id="nam"
                                             name="guiderGender">
                                             <label for="nu" class="px-2 mb-0">Nữ</label>
                                             <input type="radio" class="form-check" data-role="tagsinput" value="0" id="nu"
                                             name="guiderGender">
                                         </div>
                                         @if ($errors->has('guiderGender'))
-                                            <span class="text-danger">{{ $errors->first('guiderGender') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderGender') }}</span>
                                             @endif
 
                                     </div>
@@ -53,10 +55,10 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="diachi">Địa chỉ</label>
-                                        <input type="text" class="form-control" id="diachi"  value="" name="guiderAddress"
+                                        <input type="text" class="form-control" id="diachi"  value="{{$user[0]->diachi}}" name="guiderAddress"
                                             placeholder="Nhập địa chỉ">
                                             @if ($errors->has('guiderAddress'))
-                                            <span class="text-danger">{{ $errors->first('guiderAddress') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderAddress') }}</span>
                                             @endif
 
                                     </div>
@@ -64,10 +66,10 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="sdt">Số điện thoại</label>
-                                        <input type="number" class="form-control" id="sdt" value="" name="guiderPhone"
+                                        <input type="number" class="form-control" id="sdt" value="{{$user[0]->sdt}}" name="guiderPhone"
                                             placeholder="Nhập số điện thoại">
                                             @if ($errors->has('guiderPhone'))
-                                            <span class="text-danger">{{ $errors->first('guiderPhone') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderPhone') }}</span>
                                             @endif
 
                                     </div>
@@ -83,7 +85,7 @@
                                             name="guiderStatus">
                                         </div>
                                         @if ($errors->has('guiderStatus'))
-                                            <span class="text-danger">{{ $errors->first('guiderStatus') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderStatus') }}</span>
                                             @endif
 
                                     </div>
@@ -92,7 +94,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <p class="text-danger font-weight-bold" id="tb-btn"></p>
+                            <p class="badge badge-danger font-weight-bold" id="tb-btn"></p>
 
                             <button type="submit" class="btn btn-primary" id="btn-submit-loca" >Cập nhật</button>
                         </div>

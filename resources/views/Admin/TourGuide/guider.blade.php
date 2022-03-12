@@ -77,7 +77,7 @@ use Illuminate\Support\Facades\DB;
                                                     <a href="{{ route('guider.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
                                                         class="bi bi-pencil-square"></i></span></a>
                                                     --
-                                                    <a onClick="return confirm('Bạn muốn sa thải hướng dẫn viên này???')" href="{{ route('guider.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                    <a onClick="return alert()->info('InfoAlert','Lorem ipsum dolor sit amet.')" href="{{ route('guider.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
                                                         class="bi bi-x-square"></i></span></a>
                                                 </p>
 

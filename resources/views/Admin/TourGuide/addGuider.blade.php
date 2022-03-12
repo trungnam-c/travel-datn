@@ -12,7 +12,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('guider.add') }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
+                    <form action="{{ route('guider.add') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("post")
                         <div class="card-body">
@@ -25,7 +25,7 @@
                                         <input type="text" class="form-control" value="" id="tenhdv" name="guiderName"
                                             placeholder="Nhập tên hướng dẫn viên">
                                             @if ($errors->has('guiderName'))
-                                            <span class="text-danger">{{ $errors->first('guiderName') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderName') }}</span>
                                             @endif
                                     </div>
                                     <div class="form-group">
@@ -39,7 +39,7 @@
                                             name="guiderGender">
                                         </div>
                                         @if ($errors->has('guiderGender'))
-                                            <span class="text-danger">{{ $errors->first('guiderGender') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderGender') }}</span>
                                             @endif
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                                         <input type="text" class="form-control" id="diachi"  value="" name="guiderAddress"
                                             placeholder="Nhập địa chỉ">
                                             @if ($errors->has('guiderAddress'))
-                                            <span class="text-danger">{{ $errors->first('guiderAddress') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderAddress') }}</span>
                                             @endif
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                         <input type="number" class="form-control" id="sdt" value="" name="guiderPhone"
                                             placeholder="Nhập số điện thoại">
                                             @if ($errors->has('guiderPhone'))
-                                            <span class="text-danger">{{ $errors->first('guiderPhone') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderPhone') }}</span>
                                             @endif
 
                                     </div>
@@ -80,7 +80,7 @@
                                             name="guiderStatus">
                                         </div>
                                         @if ($errors->has('guiderStatus'))
-                                            <span class="text-danger">{{ $errors->first('guiderStatus') }}</span>
+                                            <span class="badge badge-danger">{{ $errors->first('guiderStatus') }}</span>
                                             @endif
                                     </div>
                             </div>
@@ -88,7 +88,6 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <p class="text-danger font-weight-bold" id="tb-btn"></p>
 
                             <button type="submit" class="btn btn-primary" id="btn-submit-loca" >Thêm mới</button>
                         </div>

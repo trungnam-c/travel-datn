@@ -27,7 +27,7 @@ class tourGuideController extends Controller
                 'guiderPhone' => 'required|numeric',
                 'guiderStatus' => 'required',
 
-            ], 
+            ],
             [
                 'guiderName.required' => 'Vui lòng điền họ tên',
                 'guiderName.required' => 'Không đúng định dạng',
@@ -68,7 +68,7 @@ class tourGuideController extends Controller
                 'guiderPhone' => 'required|numeric',
                 'guiderStatus' => 'required',
 
-            ], 
+            ],
             [
                 'guiderName.required' => 'Vui lòng điền họ tên',
                 'guiderName.required' => 'Không đúng định dạng',
@@ -87,6 +87,6 @@ class tourGuideController extends Controller
         $guider->sdt = $request->guiderPhone;
         $guider->anhien = $request->guiderStatus;
         $guider->save();
-        return redirect('/guider/list');
+        return redirect('/guider/huong-dan-vien');
     }
 }
