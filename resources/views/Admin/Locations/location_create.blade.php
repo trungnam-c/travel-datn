@@ -58,9 +58,6 @@
                                            @endforeach
 
                                         </select>
-                                        @error('category')
-                                                <p class="alert alert-danger">{{ $message }}</p>
-                                            @enderror
                                     </div>
 
                                 </div>
@@ -106,9 +103,6 @@
                                                 <span class="badge badge-danger ">{{$message}}</span>
                                             @enderror
                                         </div>
-                                        @error('time')
-                                                <p class="alert alert-danger">{{ $message }}</p>
-                                            @enderror
                                         <!-- /.input group -->
                                     </div>
                                 </div>
@@ -122,9 +116,6 @@
                                                 <span class="badge badge-danger ">{{$message}}</span>
                                             @enderror
                                       </div>
-                                      @error('anhien')
-                                                <p class="alert alert-danger">{{ $message }}</p>
-                                            @enderror
 
                                 </div>
                             </div>
