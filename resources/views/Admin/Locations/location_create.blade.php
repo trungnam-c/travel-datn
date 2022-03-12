@@ -363,8 +363,7 @@
             myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
         }
         document.querySelector("#actions .cancel").onclick = function() {
-            myDropzone.removeAllFiles(true)
-            document.querySelector("input[name='images']").value = "";
+            myDropzone.removeAllFiles(true) 
         }
         // DropzoneJS Demo Code End
     </script>
