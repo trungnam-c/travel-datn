@@ -27,7 +27,7 @@
                                 <tr>
                                     <th style="width: 50px">ID</th>
                                     <th>Tên khách hàng</th>
-                                    <th>Mật khẩu</th>
+                                    <th style='width: "150px"'>Mật khẩu</th>
                                     <th>Gmail</th>
                                     <th style=' width: "150px"'>Ảnh đại diện</th>
                                     <th>Vai trò</th>

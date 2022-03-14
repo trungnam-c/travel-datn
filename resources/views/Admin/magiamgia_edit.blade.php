@@ -12,7 +12,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('magiamgia.update',['id'=>$data->id]) }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
+                    <form action="{{ route('magiamgia.update',['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("post")
                         <!-- <input type="hidden" name="images" value="{{$data->image}}" id="images"> -->
@@ -49,7 +49,7 @@
                                 {{-- col-6 --}}
                                 <div class="col-sm-2"></div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -65,17 +65,19 @@
                                         <input type="text" class="form-control" id="loaima" value="{{$data->loaima}}" name="loaima" placeholder="">
                                         </div>
                                 </div>
-                                
+
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
 
                                     <label for=""></label>
                                     <div class="custom-control custom-switch  mt-3">
-                                        {{-- <input class="form-check-input" type="checkbox" role="switch" id="anhien" checked> --}}
-                                        <input type="checkbox" class="custom-control-input" @if ($data->anhien ==0)
-                                        checked
-                                    @endif  id="anhien" name="anhien">
+                                        <!-- {{-- <input class="form-check-input" type="checkbox" role="switch" id="anhien" checked> --}} -->
+                                        @if($data->anhien === 0)
+                                        <input type="checkbox" class="custom-control-input" checked value="0"  id="anhien" name="anhien">
+                                        @else
+                                        <input type="checkbox" class="custom-control-input"  value="0"  id="anhien" name="anhien">
+                                        @endif
                                         <label class="custom-control-label" for="anhien"> Chọn để ẩn </label>
                                     </div>
 
@@ -98,6 +100,6 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-    
+
 
 @endsection
