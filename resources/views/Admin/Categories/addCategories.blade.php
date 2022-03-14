@@ -24,8 +24,12 @@
                                         <h3 class="card-title">Tên danh mục</h3>
                                         </div>
                                         <div class="card-body">
-                                            <input class="form-control" type="text" value="" name="cateName" placeholder="..."/>
+                                            <input class="form-control" type="text" value="" name="cateName" placeholder="Điền tên danh mục"/>
                                         </div>
+                                        @if ($errors->has('cateName'))
+                                            <span class="alert alert-danger col-6">{{ $errors->first('cateName') }}</span>
+                                            @endif
+
                                         <!-- /.card-body -->
                                     </div>
                                     <!-- /.card -->
@@ -43,6 +47,10 @@
                                             <label for="hide" class=" mb-0 mr-3 ml-3">Ẩn :</label>
                                             <input class="form-check" type="radio" value="0" id="hide" name="cateHideShow" placeholder="..."/>
                                         </div>
+                                        @if ($errors->has('cateHideShow'))
+                                            <span class="alert alert-danger col-6">{{ $errors->first('cateHideShow') }}</span>
+                                            @endif
+
                                         <!-- /.card-body -->
                                     </div>
                                     <!-- /.card -->
@@ -57,10 +65,16 @@
                                         <div class="card-body">
                                             <div   class="row image-preview" id="image-preview">
 
+
+
                                             </div>
 
 
                                         </div>
+                                        @if ($errors->has('images'))
+                                            <span class="alert alert-danger col-6">{{ $errors->first('images') }}</span>
+                                            @endif
+
                                         <!-- /.card-body -->
 
                                     </div>
@@ -113,7 +127,7 @@
                                                             <span class="lead" data-dz-name></span>
                                                             <span data-dz-size></span>
                                                         </p>
-                                                        <strong class="error text-danger" data-dz-errormessage></strong>
+                                                        <strong class="error alert alert-danger col-6" data-dz-errormessage></strong>
                                                     </div>
                                                     <div class="col-4 d-flex align-items-center">
                                                         <div class="progress progress-striped active w-100"
@@ -142,6 +156,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- /.card-body -->
 
                         <div class="card-footer">
@@ -161,4 +176,101 @@
     </section>
 
 
+@endsection
+@section('location-js')
+    <script>
+        // DropzoneJS Demo Code Start
+        Dropzone.autoDiscover = false
+
+        // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+        var previewNode = document.querySelector("#template")
+        previewNode.id = ""
+        var previewTemplate = previewNode.parentNode.innerHTML
+        previewNode.parentNode.removeChild(previewNode)
+
+        var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+            url: "/quantri/luu-hinh-anh", // Set the url
+            headers: {
+                'x-csrf-token': document.querySelector('input[name="_token"]').value,
+            },
+            thumbnailWidth: 80,
+            thumbnailHeight: 80,
+            parallelUploads: 20,
+            previewTemplate: previewTemplate,
+            autoQueue: false, // Make sure the files aren't queued until manually added
+            previewsContainer: "#previews", // Define the container to display the previews
+            clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+        })
+
+        myDropzone.on("addedfile", function(file) {
+            document.getElementById("btn-submit-loca").disabled=true;
+            document.getElementById("tb-btn").innerText="Vui lòng bấm tải ảnh lên trước!";
+
+            // Hookup the start button
+            file.previewElement.querySelector(".cancel").onclick = function() {
+
+                myDropzone.enqueueFile(file)
+            }
+        })
+
+        // Update the total progress bar
+        myDropzone.on("totaluploadprogress", function(progress) {
+            document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+        })
+        let iddata = 0;
+        myDropzone.on("sending", function(file) {
+            // Show the total progress bar when upload starts
+            document.querySelector("#total-progress").style.opacity = "1"
+
+            // And disable the start button
+            // file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+        })
+        myDropzone.on('success', function() {
+            var args = Array.prototype.slice.call(arguments);
+            // Look at the output in you browser console, if there is something interesting
+
+            var input = document.querySelector("input[name='images']");
+             var id = iddata ;
+
+            input.value += args[1]+",";
+            var node = document.createElement('div');
+            var attr = document.createAttribute("class");
+            attr.value = "col-md-2 mt-2";
+            var e =     '<div class="img-div-pre">'+
+                            '<div class="nano-div"></div>'+
+                            '<div class="delete-js-btn" id-data="'+id+'" id="delete-js-btn"><i class="bi bi-trash3"></i></div>'+
+                            '<img src="'+args[1]+'" width="100%" height="100%" alt="">'+
+                        '</div>';
+
+            node.setAttributeNode(attr);
+            iddata++;
+            node.innerHTML =e;
+            document.getElementById("image-preview").appendChild(node);
+
+            });
+        // Hide the total progress bar when nothing's uploading anymore
+        myDropzone.on("queuecomplete", function(progress) {
+            document.querySelector("#total-progress").style.opacity = "0"
+            document.getElementById("btn-submit-loca").disabled=false;
+            document.getElementById("tb-btn").innerText="";
+            myDropzone.removeAllFiles(true);
+
+
+
+        })
+
+        // Setup the buttons for all transfers
+        // The "add files" button doesn't need to be setup because the config
+        // `clickable` has already been specified.
+        document.querySelector("#actions .start").onclick = function() {
+
+
+
+            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+        }
+        document.querySelector("#actions .cancel").onclick = function() {
+            myDropzone.removeAllFiles(true)
+        }
+        // DropzoneJS Demo Code End
+    </script>
 @endsection

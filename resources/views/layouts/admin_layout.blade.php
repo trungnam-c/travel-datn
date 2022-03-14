@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/admin_custom.css') }}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -222,6 +224,15 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item ">
+                            <a href=""
+                                class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-home" aria-hidden="true"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a href="{{ route('location.index') }}"
                                 class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-calendar-alt"></i>
@@ -244,8 +255,8 @@
 
 
                         <li class="nav-item ">
-                            <a href="quantri/user/list"
-                                class="nav-link">
+                            <a href="admin/user/danh-sach-khach-hang"
+                                class="nav-link {{ request()->segment(3) == 'danh-sach-khach-hang' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Khách hàng
@@ -471,7 +482,7 @@
 
         })
 
-        
+
 
 
 

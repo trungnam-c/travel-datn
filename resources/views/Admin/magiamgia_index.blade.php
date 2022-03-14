@@ -44,12 +44,12 @@
                                         <tr class="location-tr">
                                             <td>{{ $stt }}</td>
                                             <td>
-                                                
+
                                                     <span class="data-span">{{ $row->magiamgia }}</span>
                                             </td>
                                             <td>
                                                     <span class="data-span">{{ $row->chitiet }} </span>
-                                               
+
                                             </td>
                                             <td>
                                             <span class="data-span">{{ $row->ngaybatdau }} </span>
@@ -60,8 +60,11 @@
 
                                             </td>
                                             <td>
-                                            <span class="data-span">{{ $row->loaima }} </span>
-
+                                                @if ($row->loaima == 1)
+                                            <span class="data-span"> Đang hiện</span>
+                                                @else
+                                                <span class="data-span"> Đang ẩn</span>
+                                            @endif
                                             </td>
 
                                             <td>
@@ -69,19 +72,19 @@
 
                                             </td>
                                             <td>
-                                                @if ($anhien)
+                                                @if ($anhien === 0)
                                                     <p><span class="text-success font-weight-bold">Đang Hiện</span></p>
-                                                @else
+                                                @elseif($anhien === 1)
                                                     <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
                                                 @endif
                                                 <!-- <p>Thứ tự: <span class="font-weight-bold">{{ $row->top }}</span> </p> -->
-                                            </td>         
+                                            </td>
                                             <td>
                                             <p class="edit-p">
                                                     <a href="{{ route('magiamgia.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
                                                         class="bi bi-pencil-square"></i></span></a>
                                                     --
-                                                    <a href="{{ route('magiamgia.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                    <a class="delete" href="{{ route('magiamgia.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
                                                         class="bi bi-x-square"></i></span></a>
                                                 </p>
 
@@ -113,4 +116,25 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+@endsection
+@section('location-js')
+<script type="text/javascript">
+$('.delete').on('click', function(e) {
+    e.preventDefault();
+    var self = $(this);
+    Swal.fire({
+        title: 'Bạn chắc chắn?',
+        text: "Muốn xóa danh mục này!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed === true) {
+            location.href = self.attr('href');
+        }
+    })
+})
+</script>
 @endsection
