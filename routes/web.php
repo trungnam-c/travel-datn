@@ -74,7 +74,7 @@ Route::prefix('admin')->group(function (){
         Route::get('danh-sach-khach-hang', [UserController::class, 'index'])->name('danh-sach-khach-hang');
         Route::get('edit/{user}', [UserController::class, 'show']);
         Route::post('edit/{user}', [UserController::class, 'update']);
-        Route::delete('destroy', [UserController::class, 'destroy']);
+        Route::get('destroy/{id}', [UserController::class, 'destroy']);
     });
 
 });

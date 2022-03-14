@@ -121,12 +121,9 @@ $('.delete').on('click', function(e) {
     e.preventDefault();
     var self = $(this);
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Bạn chắc chắn?',
+        text: "Muốn xóa hướng dẫn viên này!",
         icon: 'warning',
-        html: 'You can use <b>bold text</b>, ' +
-            '<a href="/guider/delete/">links</a> ' +
-            'and other HTML tags',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',

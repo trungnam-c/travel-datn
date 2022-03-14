@@ -33,7 +33,14 @@ class UserController extends Controller
             'isAdmin'   => 'required'
         ]);
 
-        $this->user->insert($request);
+        $data = new User();
+        $data->name = $request->name;
+        $data->password = md5($request->password);
+        $data->gmail = $request->gmail;
+        $data->avatar = $request->images;
+        $data->isAdmin = $request->isAdmin;
+
+        $data->save();
 
         return redirect()->back();
     }
@@ -70,17 +77,11 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $result = $this->user->destroy($request);
-        if ($result) {
-            return response()->json([
-                'error' => false,
-                'message' => 'Xóa thành công khách hàng'
-            ]);
-        }
+        User::select('*')->where('id','=',$id)->delete();
 
-        return response()->json([ 'error' => true ]);
+        return back()->with("success", "Xoá thành công!");
     }
 
 
