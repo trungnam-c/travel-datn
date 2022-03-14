@@ -202,7 +202,9 @@
                         <img src="{{asset('/')}}dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Quang Đạt</a>
+                        <a href="/admin/login" class="d-inline-block">Đăng nhập </a>
+                        <a  class="d-inline-block">/ </a>
+                        <a href="#" class="d-inline-block">Đăng nhập </a>
                     </div>
                 </div>
 
@@ -224,7 +226,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item ">
-                            <a href=""
+                            <a href="/admin"
                                 class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-home" aria-hidden="true"></i>
                                 <p>
@@ -315,7 +317,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper ml-0">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">

@@ -67,6 +67,7 @@ Route::name('magiamgia.')->group(function () {
 Route::prefix('admin')->group(function (){
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('dashboard', [AdminController::class, 'index']);
+    Route::get('login', [AdminController::class, 'login'])->name('login');
     #User
     Route::prefix('user')->group(function (){
         Route::get('add-form', [UserController::class, 'create'])->name('add-form');
