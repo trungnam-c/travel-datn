@@ -38,20 +38,25 @@ class tourGuideController extends Controller
                 'guiderStatus.required' => 'Vui lòng chọn trạng thái',
             ]
             );
-        $input = $request->all();
+
         $guider = new tourGuideModel();
-        $guider->tenhdv = $input->guiderName;
-        $guider->phai = $input->guiderGender;
-        $guider->diachi = $input->guiderAddress;
-        $guider->sdt = $input->guiderPhone;
-        $guider->anhien = $input->guiderStatus;
+        $guider->tenhdv = $request->guiderName;
+        $guider->phai = $request->guiderGender;
+        $guider->diachi = $request->guiderAddress;
+        $guider->sdt = $request->guiderPhone;
+        $guider->anhien = $request->guiderStatus;
         $guider->save();
-        return redirect('/guider/list');
+        return redirect('/guider/huong-dan-vien');
     }
 
     public function delete($id) {
-        $items = tourGuideModel::select('*')->where('id','=',$id)->delete();
-        return redirect('/guider/list');
+        try {
+            $items = tourGuideModel::select('*')->where('id','=',$id)->delete();
+        } catch (\Throwable $th) {
+            $errorDelete =  'Không thể xóa hướng dẫn viên đang hoạt động';
+        }
+
+        return redirect('/guider/huong-dan-vien')->with('errorDelete','Không thể xóa hướng dẫn viên đang hoạt động');
     }
 
     public function form_edit($id) {

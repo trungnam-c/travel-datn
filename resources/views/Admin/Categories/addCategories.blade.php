@@ -27,7 +27,7 @@
                                             <input class="form-control" type="text" value="" name="cateName" placeholder="Điền tên danh mục"/>
                                         </div>
                                         @if ($errors->has('cateName'))
-                                            <span class="text-danger">{{ $errors->first('cateName') }}</span>
+                                            <span class="alert alert-danger col-6">{{ $errors->first('cateName') }}</span>
                                             @endif
 
                                         <!-- /.card-body -->
@@ -48,7 +48,7 @@
                                             <input class="form-check" type="radio" value="0" id="hide" name="cateHideShow" placeholder="..."/>
                                         </div>
                                         @if ($errors->has('cateHideShow'))
-                                            <span class="text-danger">{{ $errors->first('cateHideShow') }}</span>
+                                            <span class="alert alert-danger col-6">{{ $errors->first('cateHideShow') }}</span>
                                             @endif
 
                                         <!-- /.card-body -->
@@ -64,15 +64,16 @@
                                         </div>
                                         <div class="card-body">
                                             <div   class="row image-preview" id="image-preview">
-                                            @if ($errors->has('images'))
-                                            <span class="text-danger">{{ $errors->first('images') }}</span>
-                                            @endif
+
 
 
                                             </div>
 
 
                                         </div>
+                                        @if ($errors->has('images'))
+                                            <span class="alert alert-danger col-6">{{ $errors->first('images') }}</span>
+                                            @endif
 
                                         <!-- /.card-body -->
 
@@ -126,7 +127,7 @@
                                                             <span class="lead" data-dz-name></span>
                                                             <span data-dz-size></span>
                                                         </p>
-                                                        <strong class="error text-danger" data-dz-errormessage></strong>
+                                                        <strong class="error alert alert-danger col-6" data-dz-errormessage></strong>
                                                     </div>
                                                     <div class="col-4 d-flex align-items-center">
                                                         <div class="progress progress-striped active w-100"

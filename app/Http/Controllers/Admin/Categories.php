@@ -34,19 +34,19 @@ class Categories extends Controller
                 'images' => 'required',
                 'cateHideShow' => 'required',
 
-            ], 
+            ],
             [
                 'cateName.required' => 'Vui lòng điền tên danh mục',
-                'cateName.string' => 'Không đúng định dạng',       
+                'cateName.string' => 'Không đúng định dạng',
                 'images.required' => 'Vui lòng thêm hình',
                 'cateHideShow.required' => 'Vui lòng chọn ẩn hiện',
             ]
             );
-        $input = $request->all();
+
         $data = new categoriesModel();
-        $data->name = $input->cateName;
-        $data->image = $input->images;
-        $data->anhien = $input->cateHideShow;
+        $data->name = $request->cateName;
+        $data->image = $request->images;
+        $data->anhien = $request->cateHideShow;
         $data->save();
         return redirect('/categories/list');
     }
@@ -58,19 +58,19 @@ class Categories extends Controller
                 'images' => 'required',
                 'cateHideShow' => 'required',
 
-            ], 
+            ],
             [
                 'cateName.required' => 'Vui lòng điền tên danh mục',
                 'images.required' => 'Vui lòng thêm hình',
                 'cateHideShow.required' => 'Vui lòng chọn ẩn hiện',
             ]
             );
-        $input = $request->all();
+
         $data = categoriesModel::find($id);
         $data->id = $id;
-        $data->name = $input->cateName;
-        $data->image = $input->images;
-        $data->anhien = $input->cateHideShow;
+        $data->name = $request->cateName;
+        $data->image = $request->images;
+        $data->anhien = $request->cateHideShow;
         $data->save();
         return redirect('/categories/list');
     }
