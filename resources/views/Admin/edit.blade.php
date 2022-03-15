@@ -41,10 +41,10 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="menu">Email</label>
-                                    <input type="text" name="email" class="form-control @error('email') border border-danger @enderror"
-                                            value="@if($errors->any()){{old('email')}}@else{{Auth::user()->email}}@endif">
-                                    @error('email')
+                                    <label for="menu">Gmail</label>
+                                    <input type="text" name="gmail" class="form-control @error('gmail') border border-danger @enderror"
+                                            value="@if($errors->any()){{old('gmail')}}@else{{Auth::user()->gmail}}@endif">
+                                    @error('gmail')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>

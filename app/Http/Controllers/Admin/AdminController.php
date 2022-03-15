@@ -34,12 +34,12 @@ class AdminController extends Controller
             'name.min' => 'Tối thiểu 4 ký tự',
             'name.max' => 'Tối đa 30 ký tự',
             'name.regex' => 'Tên đăng nhập không được có khoảng trắng',
-            'email.required' => 'Email không được để trống',
+            'email.required' => 'Gmail không được để trống',
         ]);
 
         $user = Auth::user();
         $user->name = $request['name'];
-        $user->email = $request['email'];
+        $user->gmail = $request['gmail'];
         $user->password = Auth::user()->password;
         $user->isAdmin = 1;
 
