@@ -193,10 +193,10 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="" role="button">Đăng nhập</a>
+                        <a class="nav-link" href="/login" role="button">Đăng nhập</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="" role="button">Đăng ký</a>
+                        <a class="nav-link" href="/register" role="button">Đăng ký</a>
                     </li>
                 @endif
             </ul>

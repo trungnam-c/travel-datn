@@ -245,8 +245,8 @@
     }
 
     .file-upload-image {
-        max-height: 200px;
-        max-width: 200px;
+        max-height: 300px;
+        max-width: 300px;
         margin: auto;
         padding: 20px;
     }
@@ -258,7 +258,7 @@
     }
 
     .remove-image {
-        width: 200px;
+        width: auto;
         margin: 0;
         color: #fff;
         background: #cd4535;

@@ -19,10 +19,11 @@
                                 </div>
                             </div>
                             <div class="file-upload-content" @if (Auth::user()->avatar) style="display:block;" @endif>
-                                <img class="file-upload-image" src="@if (Auth::user()->avatar){{asset('dist/img/'. Auth::user()->avatar)}} @endif"/>
+                                <img class="file-upload-image" src="@if(Auth::user()->avatar){{asset('dist/img/'. Auth::user()->avatar)}} @endif"/>
                                 <div class="image-title-wrap">
-                                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
-                                            class="image-title">@if (Auth::user()->avatar) {{Auth::user()->avatar}} @endif</span></button>
+                                    <button type="button" onclick="removeUpload()" class="remove-image">Xoá
+                                        <span class="image-title">@if(Auth::user()->avatar){{Auth::user()->avatar}}@endif</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -41,13 +42,17 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="menu">Gmail</label>
-                                    <input type="text" name="gmail" class="form-control @error('gmail') border border-danger @enderror"
-                                            value="@if($errors->any()){{old('gmail')}}@else{{Auth::user()->gmail}}@endif">
-                                    @error('gmail')
+                                    <label for="menu">Email</label>
+                                    <input type="text" name="email" class="form-control @error('email') border border-danger @enderror"
+                                            value="@if($errors->any()){{old('email')}}@else{{Auth::user()->email}}@endif">
+                                    @error('email')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <button type="submit" class="btn btn-primary">Lưu thông tin</button>
                             </div>
                             @if (\Session::has('success'))
                                 <div class="col-md-12 text-success font-weight-bold">
@@ -59,10 +64,6 @@
                 </div>
             </div>
             <!-- /.card-body -->
-
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary" id="btn-submit-loca">Lưu</button>
-            </div>
 
         </form>
     </div>
