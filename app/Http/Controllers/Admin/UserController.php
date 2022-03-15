@@ -28,7 +28,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'password' => 'required',
-            'gmail' => 'required',
+            'email' => 'required',
             'images' => 'required',
             'isAdmin'   => 'required'
         ]);
@@ -64,7 +64,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'password' => 'required',
-            'gmail' => 'required',
+            'email' => 'required',
             'images' => 'required',
             'isAdmin'   => 'required'
         ]);

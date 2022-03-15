@@ -42,7 +42,6 @@ Route::name('location.')->group(function () {
     Route::post('/quantri/cap-nhat-dia-diem/{id}', [LocationController::class, "update"])->name('update')->middleware('auth');
     Route::get('/quantri/xoa-dia-diem/{id}', [LocationController::class, "destroy"])->name('destroy')->middleware('auth');
 });
-
 Route::name('detailLocation.')->group(function () {
     Route::get('/quantri/chi-tiet-dia-diem', [detailLocationController::class, 'index'])->name('index')->middleware('auth');
     Route::get('/quantri/them-chi-tiet-dia-diem', [detailLocationController::class, 'create'])->name('create')->middleware('auth');
@@ -72,6 +71,7 @@ Route::get('thoat', function () {
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware('auth');
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile')->middleware('auth');
+    Route::post('/cap-nhat-profile', [AdminController::class, 'update'])->name('update')->middleware('auth');
 
     #User
     Route::prefix('user')->group(function () {
@@ -103,10 +103,6 @@ Route::name('guider.')->group(function () {
     Route::get('/guider/delete/{id}', [tourGuideController::class, 'delete'])->name('delete')->middleware('auth');
     Route::get('/guider/edit/{id}', [tourGuideController::class, 'form_edit'])->name('form_edit')->middleware('auth');
     Route::post('/guider/edit/{id}', [tourGuideController::class, 'edit'])->name('edit')->middleware('auth');
-});
-
-Route::name('detailLocation.')->group(function () {
-    Route::get('/quantri/chi-tiet-dia-diem', [detailLocationController::class, 'index'])->name('index')->middleware('auth');
 });
 
 // Authentication router

@@ -35,7 +35,7 @@
     <script src="sweetalert2.all.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -179,6 +179,26 @@
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
+                @if(Auth::user()->name)
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="border-0 bg-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{asset('dist/img')}}/{{Auth::user()->avatar}}" class="img-circle elevation-2" width="40px" height="40px"> &nbsp; {{Auth::user()->name}}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="/admin/profile">Chỉnh sửa hồ sơ</a></li>
+                                <li><a class="dropdown-item text-danger font-weight-bold" href="/thoat">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="" role="button">Đăng nhập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" role="button">Đăng ký</a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -234,7 +254,7 @@
                         data-accordion="false">
                         <li class="nav-item ">
                             <a href="/admin"
-                                class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
+                                class="nav-link {{ request()->segment(2) == '' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-home" aria-hidden="true"></i>
                                 <p>
                                     Dashboard
@@ -494,6 +514,7 @@
     })
     </script>
     @yield('location-js')
+    @yield('custom-scripts')
 </body>
 
 </html>
