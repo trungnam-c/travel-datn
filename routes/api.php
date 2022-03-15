@@ -28,6 +28,10 @@ Route::group([], function () {
     Route::post("checkmagiamgia", [Magiamgia::class, 'checkmagiamgia']);
     Route::post("demsoluongkhach", [Chitietdatvecontroller::class, 'demsoluongkhach']);
     Route::post('timkiemtheongay', [detail_location::class, 'timkiemtheongay']);
+    Route::post('getlocain', [location::class, 'getlocain']);
+    Route::post('checkkhachcove', [Datvecontroller::class, 'checkkhachcove']);
+
+
 
 
 
