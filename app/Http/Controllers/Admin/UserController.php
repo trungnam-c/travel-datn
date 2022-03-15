@@ -35,11 +35,10 @@ class UserController extends Controller
 
         $data = new User();
         $data->name = $request->name;
-        $data->password = md5($request->password);
+        $data->password = bcrypt($request->password);
         $data->gmail = $request->gmail;
         $data->avatar = $request->images;
         $data->isAdmin = $request->isAdmin;
-
         $data->save();
 
         return redirect()->back();
@@ -48,7 +47,7 @@ class UserController extends Controller
     public function index()
     {
         $data = User::paginate(10);
-        return view('Admin/user/listUser',['data'=>$data]);
+        return view('Admin/user/listUser', ['data' => $data]);
     }
 
     public function show(User $user)
@@ -79,10 +78,8 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        User::select('*')->where('id','=',$id)->delete();
+        User::select('*')->where('id', '=', $id)->delete();
 
         return back()->with("success", "Xoá thành công!");
     }
-
-
 }

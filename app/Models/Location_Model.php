@@ -10,6 +10,5 @@ class Location_Model extends Model
     use HasFactory;
     protected $table = "location";
     protected $primarykey = "id";
-	public $timestamps = false;
-     
+    public $timestamps = false;
 }
