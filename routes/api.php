@@ -32,8 +32,7 @@ Route::group([], function () {
     Route::post('getlocain', [location::class, 'getlocain']);
     Route::post('checkkhachcove', [Datvecontroller::class, 'checkkhachcove']);
     Route::get('getrate/{id}', [rateController::class, 'getrate']);
-    Route::post('addrate', [rateController::class, 'addrate']);
-
+    Route::post('cochuyenditheongay', [detail_location::class, 'cochuyenditheongay']);
 
 
 
@@ -58,5 +57,6 @@ Route::group([], function () {
         Route::POST('getlocalike/', [location::class, 'getlocalike']);
         Route::POST('thanhtoan/', [thanhtoan::class, 'chuyentrang']);
         Route::get('lsdv/{id}', [Chitietdatvecontroller::class, 'lsdv']);
+        Route::post('addrate', [rateController::class, 'addrate']);
     });
 });
