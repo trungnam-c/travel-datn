@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Datvecontroller;
 use App\Http\Controllers\Api\detail_location;
 use App\Http\Controllers\Api\location;
 use App\Http\Controllers\Api\Magiamgia;
+use App\Http\Controllers\Api\rateController;
 use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\thanhtoan;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,8 @@ Route::group([], function () {
     Route::post('timkiemtheongay', [detail_location::class, 'timkiemtheongay']);
     Route::post('getlocain', [location::class, 'getlocain']);
     Route::post('checkkhachcove', [Datvecontroller::class, 'checkkhachcove']);
-
-
+    Route::get('getrate/{id}', [rateController::class, 'getrate']);
+    Route::post('addrate', [rateController::class, 'addrate']);
 
 
 
