@@ -53,12 +53,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Địa chỉ email') }}</label>
+                            <label for="gmail" class="col-md-4 col-form-label text-md-end">{{ __('Địa chỉ gmail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="gmail" type="email" class="form-control @error('gmail') is-invalid @enderror" name="gmail" value="{{ old('gmail') }}" required autocomplete="gmail">
 
-                                @error('email')
+                                @error('gmail')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

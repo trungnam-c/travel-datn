@@ -179,26 +179,6 @@
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
-                @if(Auth::user()->name)
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <button class="border-0 bg-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('dist/img')}}/{{Auth::user()->avatar}}" class="img-circle elevation-2" width="40px" height="40px"> &nbsp; {{Auth::user()->name}}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="/admin/profile">Chỉnh sửa hồ sơ</a></li>
-                                <li><a class="dropdown-item text-danger font-weight-bold" href="/thoat">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login" role="button">Đăng nhập</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register" role="button">Đăng ký</a>
-                    </li>
-                @endif
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -215,24 +195,23 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{asset('/')}}dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                            alt="User Image">
-                    </div>
-                    <div class="info">
-                        @if(Auth::user()->name)
-                        <a href="/profile" class="d-inline-block">{{Auth::user()->name}} </a>
-                        <a class="d-inline-block">/ </a>
-                        <a href="/thoat"
-                            class="d-inline-block">Đăng xuất </a>
-
-                        @else
-                        <a href="/login" class="d-inline-block">Đăng nhập </a>
-                        <a class="d-inline-block">/ </a>
-                        <a href="#" class="d-inline-block">Đăng nhập </a>
-                        @endif
-                    </div>
+                <div class="pt-3 pb-3">
+                    @if(Auth::user()->name)
+                        <div class="dropdown">
+                            <button class="border-0 bg-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{asset('dist/img')}}/{{Auth::user()->avatar}}" class="img-circle elevation-2" width="40px" height="40px">
+                                &nbsp;
+                                <span class="text-white">{{Auth::user()->name}}</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item text-dark" href="/admin/profile">Chỉnh sửa hồ sơ</a></li>
+                                <li><a class="dropdown-item text-danger font-weight-bold" href="/thoat">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    @else
+                        <a class="nav-link" href="/login" role="button">Đăng nhập</a>
+                        <a class="nav-link" href="/register" role="button">Đăng ký</a>
+                    @endif
                 </div>
 
                 <!-- SidebarSearch Form -->

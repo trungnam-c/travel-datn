@@ -36,7 +36,7 @@ class UserController extends Controller
         $data = new User();
         $data->name = $request->name;
         $data->password = md5($request->password);
-        $data->email = $request->email;
+        $data->gmail = $request->gmail;
         $data->avatar = $request->images;
         $data->isAdmin = $request->isAdmin;
 
