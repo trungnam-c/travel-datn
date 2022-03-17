@@ -134,6 +134,7 @@ class userController extends Controller
         if (getdate()[0] - $user[2] <= 1000) {
             if ($request->otp == $user[1]) {
                 User::where('id', $request->id)->update(['password' => bcrypt($request->pass)]);
+                User::where('id', $request->id)->update(['keyotp' => NULL]);
                 return response()->json([
                     'status' => 'success',
                     'mess' => 'Đổi mật khẩu thành công'
@@ -141,7 +142,7 @@ class userController extends Controller
             } else {
                 return response()->json([
                     'status' => 'fails',
-                    'mess' => 'Vui lòng thử lại'
+                    'mess' => 'Otp sai vui lòng thử lại'
                 ]);
             }
         } else {
