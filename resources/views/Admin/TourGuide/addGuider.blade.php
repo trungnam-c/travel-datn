@@ -12,7 +12,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('guider.add') }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
+                    <form action="{{ route('guider.add') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("post")
                         <div class="card-body">
@@ -24,6 +24,9 @@
                                         <label for="tenhdv">Tên hướng dẫn viên</label>
                                         <input type="text" class="form-control" value="" id="tenhdv" name="guiderName"
                                             placeholder="Nhập tên hướng dẫn viên">
+                                            @if ($errors->has('guiderName'))
+                                            <span class="badge badge-danger">{{ $errors->first('guiderName') }}</span>
+                                            @endif
                                     </div>
                                     <div class="form-group">
                                         <label class="">Giới tính</label>
@@ -35,6 +38,9 @@
                                             <input type="radio" class="form-check" data-role="tagsinput" value="0" id="nu"
                                             name="guiderGender">
                                         </div>
+                                        @if ($errors->has('guiderGender'))
+                                            <span class="badge badge-danger">{{ $errors->first('guiderGender') }}</span>
+                                            @endif
                                     </div>
                                 </div>
                                 {{-- col-6 --}}
@@ -47,6 +53,9 @@
                                         <label for="diachi">Địa chỉ</label>
                                         <input type="text" class="form-control" id="diachi"  value="" name="guiderAddress"
                                             placeholder="Nhập địa chỉ">
+                                            @if ($errors->has('guiderAddress'))
+                                            <span class="badge badge-danger">{{ $errors->first('guiderAddress') }}</span>
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -54,6 +63,10 @@
                                         <label for="sdt">Số điện thoại</label>
                                         <input type="number" class="form-control" id="sdt" value="" name="guiderPhone"
                                             placeholder="Nhập số điện thoại">
+                                            @if ($errors->has('guiderPhone'))
+                                            <span class="badge badge-danger">{{ $errors->first('guiderPhone') }}</span>
+                                            @endif
+
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -66,13 +79,15 @@
                                             <input type="radio" class="form-check" data-role="tagsinput" value="0" id="hide"
                                             name="guiderStatus">
                                         </div>
+                                        @if ($errors->has('guiderStatus'))
+                                            <span class="badge badge-danger">{{ $errors->first('guiderStatus') }}</span>
+                                            @endif
                                     </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <p class="text-danger font-weight-bold" id="tb-btn"></p>
 
                             <button type="submit" class="btn btn-primary" id="btn-submit-loca" >Thêm mới</button>
                         </div>

@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="{{ asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 
     <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-    {{-- <link rel="stylesheet" href="{{ asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    --}}
     {{-- <link rel="stylesheet" href="{{ asset('/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
@@ -30,6 +31,8 @@
     <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/admin_custom.css') }}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -42,8 +45,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{asset('/quantri')}}" class="nav-link">Trang chủ</a>
@@ -93,8 +95,7 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i
-                                                class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">Call me whenever you can...</p>
                                     <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -111,8 +112,7 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
-                                        <span class="float-right text-sm text-muted"><i
-                                                class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">I got your message bro</p>
                                     <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -197,10 +197,21 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{asset('/')}}dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="{{asset('/')}}dist/img/user2-160x160.jpg" class="img-circle elevation-2"
+                            alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Quang Đạt</a>
+                        @if(Auth::user()->name)
+                        <a href="/profile" class="d-inline-block">{{Auth::user()->name}} </a>
+                        <a class="d-inline-block">/ </a>
+                        <a href="/thoat"
+                            class="d-inline-block">Đăng xuất </a>
+
+                        @else
+                        <a href="/login" class="d-inline-block">Đăng nhập </a>
+                        <a class="d-inline-block">/ </a>
+                        <a href="#" class="d-inline-block">Đăng nhập </a>
+                        @endif
                     </div>
                 </div>
 
@@ -222,6 +233,15 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item ">
+                            <a href="/admin"
+                                class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
+                                <i class="nav-icon fa fa-home" aria-hidden="true"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a href="{{ route('location.index') }}"
                                 class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-calendar-alt"></i>
@@ -237,20 +257,21 @@
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     Chi tiết địa điểm
-                                    <span class="badge badge-info right">{{ DB::table("detail_location")->count(); }}</span>
+                                    <span
+                                        class="badge badge-info right">{{ DB::table("detail_location")->count(); }}</span>
                                 </p>
                             </a>
                         </li>
 
 
                         <li class="nav-item ">
-                            <a href="quantri/user/list"
-                                class="nav-link">
+                            <a href="admin/user/danh-sach-khach-hang"
+                                class="nav-link {{ request()->segment(3) == 'danh-sach-khach-hang' ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Khách hàng
                                     <span class="badge badge-info right">{{ DB::table("users")->count(); }}</span>
-                                    </p>
+                                </p>
                             </a>
                         </li>
 
@@ -260,7 +281,8 @@
                                 <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                                 <p>
                                     Hướng dẫn viên
-                                    <span class="badge badge-info right">{{ DB::table("huongdanvien")->count(); }}</span>
+                                    <span
+                                        class="badge badge-info right">{{ DB::table("huongdanvien")->count(); }}</span>
                                 </p>
                             </a>
                         </li>
@@ -286,6 +308,16 @@
                             </a>
                         </li>
 
+                        <li class="nav-item ">
+                            <a href="{{ route('orderticket.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'quan-ly-dat-ve' ? 'active' : '' }}">
+                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <p>
+                                    Quản lý đặt vé
+                                    <span class="badge badge-info right">2</span>
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -294,7 +326,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper ml-0">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
@@ -362,11 +394,11 @@
     <script src="https://unpkg.com/@yaireo/tagify"></script>
     <script src="https://unpkg.com/@yaireo/tagify@3.1.0/dist/tagify.polyfills.min.js"></script>
     <script>
-      // The DOM element you wish to replace with Tagify
-  var input = document.querySelector('input[name=phuongtien]');
+    // The DOM element you wish to replace with Tagify
+    var input = document.querySelector('input[name=phuongtien]');
 
-  // initialize Tagify on the above input node reference
-  new Tagify(input)
+    // initialize Tagify on the above input node reference
+    new Tagify(input)
     </script>
     <!-- AdminLTE App -->
     <script src="{{asset('/')}}dist/js/adminlte.min.js"></script>
@@ -376,189 +408,92 @@
     <!-- Page specific script -->
 
     <script>
-
-        //Date range picker
-        $('#reservation').daterangepicker()
-                   //Date range picker with time picker
-               $('#reservationtime').daterangepicker({
-                       timePicker: true,
-                       timePickerIncrement: 30,
-                       locale: {
-                           format: 'MM/DD/YYYY hh:mm A'
-                       }
-                   })
-                   //Date range as a button
-               $('#daterange-btn').daterangepicker({
-                       ranges: {
-                           'Today': [moment(), moment()],
-                           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                           'This Month': [moment().startOf('month'), moment().endOf('month')],
-                           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                       },
-                       startDate: moment().subtract(29, 'days'),
-                       endDate: moment()
-                   },
-                   function(start, end) {
-                       $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-                   }
-               )
-   </script>
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        locale: {
+            format: 'MM/DD/YYYY hh:mm A'
+        }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf(
+                    'month')]
+            },
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment()
+        },
+        function(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        }
+    )
+    </script>
 
     <!-- Page specific script -->
     <script>
-        $(function() {
-            //Initialize Select2 Elements
-            $('.select2').select2()
+    $(function() {
+        //Initialize Select2 Elements
+        $('.select2').select2()
 
-            //Initialize Select2 Elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
-
-
-            //Money Euro
-            $('[data-mask]').inputmask()
-
-
-
-            //Date range picker
-            $('#reservation').daterangepicker()
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 30,
-                locale: {
-                    format: 'MM/DD/YYYY hh:mm A'
-                }
-            })
-            //Date range as a button
-            $('#daterange-btn').daterangepicker({
-                    ranges: {
-                        'Today': [moment(), moment()],
-                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
-                            'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment()
-                },
-                function(start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
-                        'MMMM D, YYYY'))
-                }
-            )
-
-
-
-
-
-
-
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
         })
 
-        // DropzoneJS Demo Code Start
-        Dropzone.autoDiscover = false
 
-        // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-        var previewNode = document.querySelector("#template")
-        previewNode.id = ""
-        var previewTemplate = previewNode.parentNode.innerHTML
-        previewNode.parentNode.removeChild(previewNode)
+        //Money Euro
+        $('[data-mask]').inputmask()
 
-        var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-            url: "/quantri/luu-hinh-anh", // Set the url
-            headers: {
-                'x-csrf-token': document.querySelector('input[name="_token"]').value,
-            },
-            thumbnailWidth: 80,
-            thumbnailHeight: 80,
-            parallelUploads: 20,
-            previewTemplate: previewTemplate,
-            autoQueue: false, // Make sure the files aren't queued until manually added
-            previewsContainer: "#previews", // Define the container to display the previews
-            clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-        })
 
-        myDropzone.on("addedfile", function(file) {
-            document.getElementById("btn-submit-loca").disabled=true;
-            document.getElementById("tb-btn").innerText="Vui lòng bấm tải ảnh lên trước!";
 
-            // Hookup the start button
-            file.previewElement.querySelector(".cancel").onclick = function() {
-
-                myDropzone.enqueueFile(file)
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            locale: {
+                format: 'MM/DD/YYYY hh:mm A'
             }
         })
-
-        // Update the total progress bar
-        myDropzone.on("totaluploadprogress", function(progress) {
-            document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-        })
-
-        myDropzone.on("sending", function(file) {
-            // Show the total progress bar when upload starts
-            document.querySelector("#total-progress").style.opacity = "1"
-
-            // And disable the start button
-            // file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
-        })
-        myDropzone.on('success', function() {
-            var args = Array.prototype.slice.call(arguments);
-            // Look at the output in you browser console, if there is something interesting
-
-            var input = document.querySelector("input[name='images']");
-             var id = input.value ;
-
-            input.value += args[1]+",";
-            var node = document.createElement('div');
-            var attr = document.createAttribute("class");
-            attr.value = "col-md-2 mt-2";
-            var e =     '<div class="img-div-pre">'+
-                            '<div class="nano-div"></div>'+
-                            '<div class="delete-js-btn" id-data="'+id+'" id="delete-js-btn"><i class="bi bi-trash3"></i></div>'+
-                            '<img src="'+args[1]+'" width="100%" height="100%" alt="">'+
-                        '</div>';
-
-            node.setAttributeNode(attr);
-            node.innerHTML =e;
-            document.getElementById("image-preview").appendChild(node);
-
-            });
-        // Hide the total progress bar when nothing's uploading anymore
-        myDropzone.on("queuecomplete", function(progress) {
-            document.querySelector("#total-progress").style.opacity = "0"
-            document.getElementById("btn-submit-loca").disabled=false;
-            document.getElementById("tb-btn").innerText="";
-            myDropzone.removeAllFiles(true);
-
-
-
-        })
-
-        // Setup the buttons for all transfers
-        // The "add files" button doesn't need to be setup because the config
-        // `clickable` has already been specified.
-        document.querySelector("#actions .start").onclick = function() {
-
-
-
-            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-        }
-        document.querySelector("#actions .cancel").onclick = function() {
-            myDropzone.removeAllFiles(true)
-            document.querySelector("input[name='images']").value = "";
-        }
-        // DropzoneJS Demo Code End
+        //Date range as a button
+        $('#daterange-btn').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
+                        'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment()
+            },
+            function(start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
+                    'MMMM D, YYYY'))
+            }
+        )
 
 
 
 
+
+
+
+    })
     </script>
+    @yield('location-js')
 </body>
 
 </html>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Location_Model;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class location extends Controller
 {
@@ -27,7 +28,8 @@ class location extends Controller
     }
     public function timloca($text)
     {
-        return $this->md::where('diemden', 'LIKE', "%$text%")->get();
+        // return $this->md::where('diemden', 'LIKE', "%$text%")->get();
+        return  DB::select("SELECT l.* FROM location l inner join categories c on l.category = c.id WHERE diemden like '%$text%' or lichtrinh like '%$text%' or c.name like '%$text%'");
     }
     public function locabycate($idcate)
     {
@@ -42,5 +44,10 @@ class location extends Controller
         $user =  User::find($rq->iduser);
         $listlike = explode(",", $user->listlike);
         return $this->md::whereIn('id',  $listlike)->get();
+    }
+    public function getlocain(Request $rq)
+    {
+        $list = explode(",", $rq->list);
+        return $this->md::whereIn('id', $list)->get();
     }
 }

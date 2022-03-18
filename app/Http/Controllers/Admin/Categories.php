@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\categoriesModel;
 
@@ -27,6 +28,21 @@ class Categories extends Controller
     }
 
     public function add(Request $request) {
+        $request->validate(
+            [
+                'cateName' => 'required|string',
+                'images' => 'required',
+                'cateHideShow' => 'required',
+
+            ],
+            [
+                'cateName.required' => 'Vui lòng điền tên danh mục',
+                'cateName.string' => 'Không đúng định dạng',
+                'images.required' => 'Vui lòng thêm hình',
+                'cateHideShow.required' => 'Vui lòng chọn ẩn hiện',
+            ]
+            );
+
         $data = new categoriesModel();
         $data->name = $request->cateName;
         $data->image = $request->images;
@@ -36,6 +52,20 @@ class Categories extends Controller
     }
 
     public function edit(Request $request, $id) {
+        $request->validate(
+            [
+                'cateName' => 'required',
+                'images' => 'required',
+                'cateHideShow' => 'required',
+
+            ],
+            [
+                'cateName.required' => 'Vui lòng điền tên danh mục',
+                'images.required' => 'Vui lòng thêm hình',
+                'cateHideShow.required' => 'Vui lòng chọn ẩn hiện',
+            ]
+            );
+
         $data = categoriesModel::find($id);
         $data->id = $id;
         $data->name = $request->cateName;

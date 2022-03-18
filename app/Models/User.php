@@ -20,11 +20,13 @@ class User extends Authenticatable
      */
     public $timestamps = false;
 
+    protected $table = 'users';
+
 
     protected $fillable = [
         'name',
         'password',
-        'gmail',
+        'email',
         'avatar',
         'isAdmin'
     ];

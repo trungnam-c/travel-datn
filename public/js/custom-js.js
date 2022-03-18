@@ -10,6 +10,7 @@ $(document).ready(()=>{
         var imgs = images.join(",");
         $(node).remove();
         image.val(imgs);
+        console.log(id  + " | " + node);
     }));
 //   $(".start").click(()=>{
 //     var html =  '<div class="col-md-2 mt-2" >'+
