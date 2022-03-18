@@ -7,7 +7,7 @@
 @section('title','Home')
 
 @section('main')
-<div class="content-wrapper" style="min-height: 855px;">
+<div class="content-wrapper ml-0" style="min-height: 855px;">
     <!-- Content Header (Page header) -->
     <!-- /.content-header -->
 
