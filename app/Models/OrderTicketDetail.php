@@ -10,4 +10,5 @@ class OrderTicketDetail extends Model
     use HasFactory;
     protected $table = "chitietdatve";
     protected $primaryKey = "idve";
+    public $timestamps = false;
 }
