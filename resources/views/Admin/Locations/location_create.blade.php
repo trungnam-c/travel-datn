@@ -8,7 +8,7 @@
 
                 <div class="card card-primary col-sm-12">
                     <div class="card-header">
-                        <h3 class="card-title">Thêm địa điểm mới</h3> 
+                        <h3 class="card-title">Thêm địa điểm mới</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -18,7 +18,7 @@
                         <input type="hidden" name="images" value="{{old('images')}}" id="images">
                         <div class="card-body">
                             <div class="row">
-                                
+
                                 <div class="col-sm-6">
 
                                     <div class="form-group">
@@ -54,7 +54,7 @@
                                         <select class="form-control select2bs4" name="category" style="width: 100%;">
                                            @foreach ($data as $item)
                                            <option  value="{{$item->id}}">{{$item->name}}</option>
-                                           
+
                                            @endforeach
 
                                         </select>
@@ -64,7 +64,7 @@
                                 {{-- col-6 --}}
                                 <div class="col-sm-2"></div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mb-5">
-                                    
+
                                     <label for="">Vị trí xuất hiện</label>
                                     <div class="custom-control custom-switch  mt-0">
                                         <input type="checkbox" @if(old("top")) checked @endif class="custom-control-input" id="top" name="top">
@@ -86,9 +86,9 @@
                                                 <span class="badge badge-danger ">{{$message}}</span>
                                             @enderror
                                       </div>
-                                  
+
                                 </div>
-                                
+
                             </div>
                             <div class="row">
 
@@ -97,7 +97,7 @@
                                         <label>Thời gian:</label>
 
                                         <div class="form-group">
-                                            
+
                                             <input type="text" class="form-control float-right" value="{{old("time")}}" name="time"  >
                                             @error('time')
                                                 <span class="badge badge-danger ">{{$message}}</span>
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mb-5">
-                                    
+
                                     <label for=""></label>
                                     <div class="custom-control custom-switch  mt-3">
                                         <input type="checkbox" @if(old("anhien")) checked @endif class="custom-control-input" id="anhien" name="anhien">
@@ -116,7 +116,7 @@
                                                 <span class="badge badge-danger ">{{$message}}</span>
                                             @enderror
                                       </div>
-                                  
+
                                 </div>
                             </div>
                             <div class="row">
@@ -145,7 +145,7 @@
                                                     $images = explode(",",old('images'));
                                                 @endphp
                                                 @foreach ($images as $img)
-                                                
+
                                                 @if ($img!="")
                                                 <div class="col-md-2 mt-2" >
                                                     <div class="img-div-pre">
@@ -153,16 +153,16 @@
                                                         <div class="delete-js-btn" id-data="{{$index}}" id="delete-js-btn"><i class="bi bi-trash3"></i></div>
                                                         <img src="{{$img}}" width="100%" height="100%" alt="">
                                                     </div>
-                                                </div> 
+                                                </div>
                                                 @endif
                                                 @php
                                                     $index++;
                                                 @endphp
-                                                @endforeach 
+                                                @endforeach
                                                 @endif
                                             </div>
-                                                  
-                                            
+
+
                                         </div>
                                         <div class="card-footer">
                                             @error('images')
@@ -218,7 +218,7 @@
                                                     </div>
                                                     <div class="col d-flex align-items-center">
                                                         <p class="mb-0">
-                                                            <span class="lead" data-dz-name></span> 
+                                                            <span class="lead" data-dz-name></span>
                                                             <span data-dz-size></span>
                                                         </p>
                                                         <strong class="error text-danger" data-dz-errormessage></strong>
@@ -237,7 +237,7 @@
                                                                 <i class="fas fa-times-circle"></i>
                                                                 <span>Huỷ</span>
                                                             </button>
-                                                           
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -248,6 +248,9 @@
                                     </div>
                                     <!-- /.card -->
                                 </div>
+                                <!-- @error('images')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror -->
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -267,7 +270,7 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-    
+
 
 @endsection
 
@@ -363,7 +366,7 @@
             myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
         }
         document.querySelector("#actions .cancel").onclick = function() {
-            myDropzone.removeAllFiles(true) 
+            myDropzone.removeAllFiles(true)
         }
         // DropzoneJS Demo Code End
     </script>

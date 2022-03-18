@@ -53,16 +53,19 @@
                                            <option  @if ($data->category == $item->name)
                                                selected
                                            @endif value="{{$item->id}}">{{$item->name}}</option>
-                                           
+
                                            @endforeach
                                         </select>
+                                        @error('category')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                     </div>
 
                                 </div>
                                 {{-- col-6 --}}
                                 <div class="col-sm-2"></div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -75,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mb-5">
-                                    
+
                                     <label for="">Vị trí xuất hiện</label>
                                     <div class="custom-control custom-switch  mt-0">
                                         <input type="checkbox" @if($data->top) checked @endif class="custom-control-input" id="top" name="top">
@@ -84,10 +87,10 @@
                                                 <span class="badge badge-danger ">{{$message}}</span>
                                             @enderror
                                       </div>
-                                  
+
                                 </div>
-                                
-                                
+
+
                             </div>
                             <div class="row">
 
@@ -96,18 +99,21 @@
                                         <label>Thời gian:</label>
 
                                         <div class="form-group">
-                                            <div class="input-group-prepend"> 
+                                            <div class="input-group-prepend">
                                             </div>
                                             <input type="text" value="{{$data->time}}" class="form-control float-right" name="time" id="">
                                             @error('time')
                                                 <span class="badge badge-danger ">{{$message}}</span>
                                             @enderror
                                         </div>
+                                        @error('time')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                         <!-- /.input group -->
                                     </div>
                                 </div>
                                 <div class="col-sm-6 mb-5">
-                                    
+
                                     <label for=""></label>
                                     <div class="custom-control custom-switch  mt-3">
                                         {{-- <input class="form-check-input" type="checkbox" role="switch" id="anhien" checked> --}}
@@ -116,7 +122,9 @@
                                     @endif  id="anhien" name="anhien">
                                         <label class="custom-control-label" for="anhien"> Chọn để ẩn </label>
                                       </div>
-                                  
+                                      @error('anhien')
+                                                <p class="alert alert-danger">{{ $message }}</p>
+                                            @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -145,7 +153,7 @@
                                                     $images = explode(",",$data->image);
                                                 @endphp
                                                 @foreach ($images as $img)
-                                                
+
                                                 @if ($img!="")
                                                 <div class="col-md-2 mt-2" >
                                                     <div class="img-div-pre">
@@ -153,16 +161,16 @@
                                                         <div class="delete-js-btn" id-data="{{$index}}" id="delete-js-btn"><i class="bi bi-trash3"></i></div>
                                                         <img src="{{$img}}" width="100%" height="100%" alt="">
                                                     </div>
-                                                </div> 
+                                                </div>
                                                 @endif
                                                 @php
                                                     $index++;
                                                 @endphp
-                                                @endforeach 
-                                                 
+                                                @endforeach
+
                                             </div>
-                                                  
-                                            
+
+
                                         </div>
                                         <!-- /.card-body -->
 
@@ -213,7 +221,7 @@
                                                     </div>
                                                     <div class="col d-flex align-items-center">
                                                         <p class="mb-0">
-                                                            <span class="lead" data-dz-name></span> 
+                                                            <span class="lead" data-dz-name></span>
                                                             <span data-dz-size></span>
                                                         </p>
                                                         <strong class="error text-danger" data-dz-errormessage></strong>
@@ -232,7 +240,7 @@
                                                                 <i class="fas fa-times-circle"></i>
                                                                 <span>Huỷ</span>
                                                             </button>
-                                                           
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -261,7 +269,7 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-    
+
 
 @endsection
 
@@ -269,8 +277,8 @@
     <script>
         // DropzoneJS Demo Code Start
         Dropzone.autoDiscover = false
-        
-         
+
+
         // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
         var previewNode = document.querySelector("#template")
         previewNode.id = ""
@@ -306,8 +314,8 @@
         myDropzone.on("totaluploadprogress", function(progress) {
             document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
         })
-        var dataid = $("#image-preview").children().last().children().children()[1]  ; 
-        var id = $(dataid).attr("id-data")  ; 
+        var dataid = $("#image-preview").children().last().children().children()[1]  ;
+        var id = $(dataid).attr("id-data")  ;
         id ++;
         myDropzone.on("sending", function(file) {
             // Show the total progress bar when upload starts
@@ -321,7 +329,7 @@
             // Look at the output in you browser console, if there is something interesting
 
             var input = document.querySelector("input[name='images']");
-              
+
             input.value += args[1]+",";
             var node = document.createElement('div');
             var attr = document.createAttribute("class");
@@ -359,7 +367,7 @@
             myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
         }
         document.querySelector("#actions .cancel").onclick = function() {
-            myDropzone.removeAllFiles(true) 
+            myDropzone.removeAllFiles(true)
         }
         // DropzoneJS Demo Code End
     </script>

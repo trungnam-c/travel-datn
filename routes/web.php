@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\OrderTicketController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\detailLocationController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\detailLocationController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Categories;
+use App\Http\Controllers\Admin\Categories;
+use App\Http\Controllers\Admin\tourGuideController;
+use App\Http\Controllers\Admin\OrderTicketController;
 use App\Http\Controllers\MagiamgiaController;
-use App\Http\Controllers\tourGuideController; 
 
 //admin route
 
@@ -16,12 +16,12 @@ Route::get('/', function () {
     return view('layouts.admin_layout');
 });
 
-// order ticket detail  
+// order ticket detail
 
 Route::name('orderticketdetail.')->group(function () {
     Route::get('/quantri/quan-ly-chi-tiet-dat-ve',[OrderTicketController::class,"index"])->name('index');
     Route::get('/quantri/them-dia-diem',[OrderTicketController::class,"create"])->name('create');
- 
+
 });
 
 // order tikets
@@ -29,7 +29,7 @@ Route::name('orderticket.')->group(function () {
     Route::get('/quantri/quan-ly-dat-ve',[OrderTicketController::class,"index"])->name('index');
     Route::get('/quantri/cap-nhat-trang-thai-ve/{id}/{act}',[OrderTicketController::class,"updateticket"])->name('updateticket');
     Route::get('/quantri/cap-nhat-trang-thai-thanh-toan/{id}/{act}',[OrderTicketController::class,"updatepayment"])->name('updatepayment');
- 
+
 });
 
 
@@ -67,15 +67,14 @@ Route::name('magiamgia.')->group(function () {
 Route::prefix('admin')->group(function (){
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('dashboard', [AdminController::class, 'index']);
-
     #User
     Route::prefix('user')->group(function (){
-        Route::get('add', [UserController::class, 'create']);
-        Route::post('add', [UserController::class, 'store']);
-        Route::get('list', [UserController::class, 'index']);
+        Route::get('add-form', [UserController::class, 'create'])->name('add-form');
+        Route::post('add', [UserController::class, 'store'])->name('add');
+        Route::get('danh-sach-khach-hang', [UserController::class, 'index'])->name('danh-sach-khach-hang');
         Route::get('edit/{user}', [UserController::class, 'show']);
         Route::post('edit/{user}', [UserController::class, 'update']);
-        Route::delete('destroy', [UserController::class, 'destroy']);
+        Route::get('destroy/{id}', [UserController::class, 'destroy']);
     });
 
 });
@@ -94,7 +93,7 @@ Route::name('categories.')->group(function (){
 
 //route of guider
 Route::name('guider.')->group(function (){
-    Route::get('/guider/list',[tourGuideController::class, 'index'])->name('huong-dan-vien');
+    Route::get('/guider/huong-dan-vien',[tourGuideController::class, 'index'])->name('huong-dan-vien');
     Route::get('/guider/add', [tourGuideController::class, 'form_add'])->name('form_add');
     Route::post('/guider/add', [tourGuideController::class, 'add'])->name('add');
     Route::get('/guider/delete/{id}',[tourGuideController::class, 'delete'])->name('delete');

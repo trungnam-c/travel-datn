@@ -12,7 +12,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"><a href="{{ route('categories.add_form') }}" class="btn btn-block btn-primary">Thêm địa điểm mới</a></h3>
+                            <h3 class="card-title"><a href="{{ route('categories.add_form') }}" class="btn btn-block btn-primary">Thêm danh mục mới</a></h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -68,7 +68,7 @@
                                                     <a href="{{ route('categories.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
                                                         class="bi bi-pencil-square"></i></span></a>
                                                     --
-                                                    <a href="/categories/delete/{{$row->id}}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                    <a class="delete" href="/categories/delete/{{$row->id}}"><span class="delete-span" alt="Xoá dòng này"><i
                                                         class="bi bi-x-square"></i></span></a>
                                                 </p>
 
@@ -100,4 +100,25 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+@endsection
+@section('location-js')
+<script type="text/javascript">
+$('.delete').on('click', function(e) {
+    e.preventDefault();
+    var self = $(this);
+    Swal.fire({
+        title: 'Bạn chắc chắn?',
+        text: "Muốn xóa danh mục này!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed === true) {
+            location.href = self.attr('href');
+        }
+    })
+})
+</script>
 @endsection

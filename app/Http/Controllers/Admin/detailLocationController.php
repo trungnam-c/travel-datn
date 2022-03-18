@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\detailLocationModel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class detailLocationController extends Controller
@@ -23,6 +24,22 @@ class detailLocationController extends Controller
 
     public function add(Request $request)
     {
+        $request->validate(
+            [
+                'idlocation' => ['required'],
+                'ngaykhoihanh' => ['required'],
+                'giokhoihanh' => ['required'],
+                'socho' => ['required'],
+                'idhdv' => ['required'],
+            ],
+            [
+                'idlocation.required' => 'Vị trí ưu tiên không được để trống',
+                'ngaykhoihanh.required' => 'Ngày khởi hành không được để trống',
+                'giokhoihanh.required' => 'Ngày khởi hành không được để trống',
+                'socho.required' => 'Ngày khởi hành không được để trống', 'idhdv.required' => 'Ngày khởi hành không được để trống'
+            ],
+        );
+
         $insert = $request->all();
         $detailLocation = new detailLocationModel();
         $detailLocation->idlocation = $insert['idlocation'];
