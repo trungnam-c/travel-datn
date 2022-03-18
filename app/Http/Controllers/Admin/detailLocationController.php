@@ -24,17 +24,20 @@ class detailLocationController extends Controller
 
     public function add(Request $request)
     {
-
-        $request->validate([
-            'idlocation' => ['required'],
-            'ngaykhoihanh' => ['required'],
-            'giokhoihanh' => ['required'],
-            'socho' => ['required'],
-            'idhdv' => ['required'],
-        ], ['idlocation.required' => 'Vị trí ưu tiên không được để trống',
-            'ngaykhoihanh.required' => 'Ngày khởi hành không được để trống',
-            'giokhoihanh.required' => 'Ngày khởi hành không được để trống',
-            'socho.required' => 'Ngày khởi hành không được để trống', 'idhdv.required' => 'Ngày khởi hành không được để trống'],
+        $request->validate(
+            [
+                'idlocation' => ['required'],
+                'ngaykhoihanh' => ['required'],
+                'giokhoihanh' => ['required'],
+                'socho' => ['required'],
+                'idhdv' => ['required'],
+            ],
+            [
+                'idlocation.required' => 'Vị trí ưu tiên không được để trống',
+                'ngaykhoihanh.required' => 'Ngày khởi hành không được để trống',
+                'giokhoihanh.required' => 'Ngày khởi hành không được để trống',
+                'socho.required' => 'Ngày khởi hành không được để trống', 'idhdv.required' => 'Ngày khởi hành không được để trống'
+            ],
         );
 
         $insert = $request->all();
@@ -44,7 +47,7 @@ class detailLocationController extends Controller
         $detailLocation->giokhoihanh = $insert['giokhoihanh'];
         $detailLocation->socho = $insert['socho'];
         $detailLocation->idhdv = $insert['idhdv'];
-
+        $detailLocation->idhdv = $insert['anhien'];
         $detailLocation->save();
         return redirect()->back()->with('success', 'Thêm mới thành công!');
     }

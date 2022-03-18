@@ -90,6 +90,22 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="row">
+                                <div class="col-sm-6">
+
+                                    <label for=""></label>
+                                    <div class="custom-control custom-switch  mt-3">
+                                        <!-- {{-- <input class="form-check-input" type="checkbox" role="switch" id="anhien" checked> --}} -->
+                                        @if($data->anhien === 0)
+                                        <input type="checkbox" class="custom-control-input" checked value="0"  id="anhien" name="anhien">
+                                        @else
+                                        <input type="checkbox" class="custom-control-input"  value="0"  id="anhien" name="anhien">
+                                        @endif
+                                        <label class="custom-control-label" for="anhien"> Chọn để ẩn </label>
+                                    </div>
+
+                                </div>
+                            </div>
 
 
                                 @if (\Session::has('success'))

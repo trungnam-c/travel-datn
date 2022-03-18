@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Location_Model extends Model
+class rateModel extends Model
 {
     use HasFactory;
-    protected $table = "location";
-    protected $primarykey = "id";
+    protected $table = "rate";
+    protected $primaryKey = "idrate";
     public $timestamps = false;
 }

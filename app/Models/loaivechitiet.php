@@ -9,7 +9,7 @@ class loaivechitiet extends Model
 {
     use HasFactory;
     protected $table = 'chitietloaive';
-
+    public $timestamps = false;
     public function getloaivebyid($id)
     {
         return $this::where('idlocation_detail', '=', $id)->get()->toArray();

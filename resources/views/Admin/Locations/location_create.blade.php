@@ -133,6 +133,19 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Lịch trình</label>
+                                        <textarea class="form-control" rows="3" name="lichtrinh" placeholder="Nhập lịch trình"
+                                            style="height: 100px;">{{old("lichtrinh")}}</textarea>
+                                            @error('lichtrinh')
+                                                <span class="badge badge-danger ">{{$message}}</span>
+                                            @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="card card-default">
                                         <div class="card-header">
                                             <h3 class="card-title">Hình ảnh</h3>
