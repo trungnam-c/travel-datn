@@ -34,12 +34,21 @@
                                     <div class="form-group">
                                         <label class="">Giới tính</label>
                                         <div class="d-flex align-items-center">
+                                            @if ($user[0]->phai === 1)
                                             <label for="nam" class="pr-2 mb-0">Nam</label>
-                                            <input type="radio" class="form-check"   data-role="tagsinput" value="1" id="nam"
+                                            <input type="radio" class="form-check" checked  data-role="tagsinput" value="1" id="nam"
                                             name="guiderGender">
                                             <label for="nu" class="px-2 mb-0">Nữ</label>
                                             <input type="radio" class="form-check" data-role="tagsinput" value="0" id="nu"
                                             name="guiderGender">
+                                            @else
+                                            <label for="nam" class="pr-2 mb-0">Nam</label>
+                                            <input type="radio" class="form-check"   data-role="tagsinput" value="1" id="nam"
+                                            name="guiderGender">
+                                            <label for="nu" class="px-2 mb-0">Nữ</label>
+                                            <input type="radio" class="form-check" checked data-role="tagsinput" value="0" id="nu"
+                                            name="guiderGender">
+                                            @endif
                                         </div>
                                         @if ($errors->has('guiderGender'))
                                             <span class="badge badge-danger">{{ $errors->first('guiderGender') }}</span>
@@ -77,12 +86,21 @@
                                 <div class="col-sm-6">
                                         <label class="">Ẩn / Hiện</label>
                                         <div class="d-flex align-items-center">
+                                            @if ($user[0]->anhien === 1)
                                             <label for="show" class="pr-2 mb-0">Hiện</label>
-                                            <input type="radio" class="form-check" data-role="tagsinput" value="1" id="show"
+                                            <input type="radio" checked class="form-check" data-role="tagsinput" value="1" id="show"
                                             name="guiderStatus">
                                             <label for="hide" class="px-2 mb-0">Ẩn</label>
                                             <input type="radio" class="form-check" data-role="tagsinput" value="0" id="hide"
                                             name="guiderStatus">
+                                            @else
+                                            <label for="show" class="pr-2 mb-0">Hiện</label>
+                                            <input type="radio" class="form-check" data-role="tagsinput" value="1" id="show"
+                                            name="guiderStatus">
+                                            <label for="hide" class="px-2 mb-0">Ẩn</label>
+                                            <input type="radio" checked class="form-check" data-role="tagsinput" value="0" id="hide"
+                                            name="guiderStatus">
+                                            @endif
                                         </div>
                                         @if ($errors->has('guiderStatus'))
                                             <span class="badge badge-danger">{{ $errors->first('guiderStatus') }}</span>

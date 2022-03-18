@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class tourGuideModel extends Model
 {
     protected $table = 'huongdanvien';
+    public $timestamps = false;
 }

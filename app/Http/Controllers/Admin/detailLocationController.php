@@ -47,7 +47,7 @@ class detailLocationController extends Controller
         $detailLocation->giokhoihanh = $insert['giokhoihanh'];
         $detailLocation->socho = $insert['socho'];
         $detailLocation->idhdv = $insert['idhdv'];
-
+        $detailLocation->idhdv = $insert['anhien'];
         $detailLocation->save();
         return redirect()->back()->with('success', 'Thêm mới thành công!');
     }

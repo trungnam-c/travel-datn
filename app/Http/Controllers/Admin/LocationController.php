@@ -50,11 +50,12 @@ class LocationController extends Controller
             'diemden' => ['required'],
             'time' => ['required'],
             'mota' => ['required'],
+            'lichtrinh' => ['required'],
             'giavetb' => ['required'],
             'category' => ['required'],
             'phuongtien' => ['required'],
-            'top' => ['required'],
-            'anhien' => ['required'],
+            // 'top' => ['required'],
+            // 'anhien' => ['required'],
         ]);
 
         $input = $request->all();
@@ -72,7 +73,7 @@ class LocationController extends Controller
         $loca->diemden = $input['diemden'];
         $loca->time = $input['time'];
         $loca->mota = $input['mota'];
-        $loca->lichtrinh = '$input[lichtrinh] ';
+        $loca->lichtrinh = $input['lichtrinh'];
         $loca->giavetb = $input['giavetb'];
         $loca->category = $input['category'];
         $loca->image = $this->xoadauphay($input['images']);
@@ -123,11 +124,12 @@ class LocationController extends Controller
             'diemden' => ['required'],
             'time' => ['required'],
             'mota' => ['required'],
+            'lichtrinh' => ['required'],
             'giavetb' => ['required'],
             'category' => ['required'],
             'phuongtien' => ['required'],
-            'top' => ['required'],
-            'anhien' => ['required'],
+            // 'top' => ['required'],
+            // 'anhien' => ['required'],
         ]);
 
         $input = $request->all();

@@ -13,6 +13,7 @@
     <title>Đăng nhập</title>
     <style>
     body {
+        padding-top: 100px;
         background: #007bff;
         background-image: url('https://media.vov.vn/sites/default/files/styles/large/public/2020-09/99-thuyen_hoa.jpg');
         background-size: cover;
@@ -78,8 +79,6 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Đăng nhập') }}
                                     </button>
-
-                    
                                 </div>
                             </div>
                         </form>
