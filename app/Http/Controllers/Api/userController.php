@@ -18,15 +18,15 @@ class userController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
+            'gmail' => 'required|string|email|unique:users',
             'password' => 'required|string'
         ], [
             'name.required' => 'Vui lòng nhập tên của bạn!',
             'name.string' => 'Tên phải là chuổi ký tự!',
-            'email.required' => 'Vui lòng nhập email!',
-            'email.string' => 'Tên phải là chuổi ký tự!',
-            'email.email' => 'email không đúng định dạng!',
-            'email.unique' => 'email này đã được đăng ký!',
+            'gmail.required' => 'Vui lòng nhập gmail!',
+            'gmail.string' => 'Tên phải là chuổi ký tự!',
+            'gmail.email' => 'Gmail không đúng định dạng!',
+            'gmail.unique' => 'Gmail này đã được đăng ký!',
             'password.required' => 'Vui lòng nhập mật khẩu!',
             'password.string' => 'Mật khẩu phải là chuổi ký tự!',
 
@@ -41,7 +41,7 @@ class userController extends Controller
         }
         $user = new User([
             'name' => $request->name,
-            'email' => $request->email,
+            'gmail' => $request->gmail,
             'password' => bcrypt($request->password)
         ]);
 
@@ -52,49 +52,49 @@ class userController extends Controller
         ]);
     }
 
-    // public function login(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'email' => 'required|string|email',
-    //         'password' => 'required|string',
-    //         'remember_me' => 'boolean'
-    //     ]);
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'gmail' => 'required|string|email',
+            'password' => 'required|string',
+            'remember_me' => 'boolean'
+        ]);
 
-    //     if ($validator->fails()) {
-    //         return response()->json([
-    //             'status' => 'fails',
-    //             'message' => $validator->errors()->first(),
-    //             'errors' => $validator->errors()->toArray(),
-    //         ]);
-    //     }
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'fails',
+                'message' => $validator->errors()->first(),
+                'errors' => $validator->errors()->toArray(),
+            ]);
+        }
 
-    //     $credentials = request(['email', 'password']);
-    //     if (!Auth::attempt($credentials)) {
-    //         return response()->json([
-    //             'status' => 'fails',
-    //             'message' => 'Unauthorized'
-    //         ], 401);
-    //     }
+        $credentials = request(['gmail', 'password']);
+        if (!Auth::attempt($credentials)) {
+            return response()->json([
+                'status' => 'fails',
+                'message' => 'Unauthorized'
+            ], 401);
+        }
 
-    //     $user = $request->user();
-    //     $tokenResult = $user->createToken('travelapptrungnam');
-    //     $token = $tokenResult->token;
+        $user = $request->user();
+        $tokenResult = $user->createToken('travelapptrungnam');
+        $token = $tokenResult->token;
 
-    //     if ($request->remember_me) {
-    //         $token->expires_at = Carbon::now()->addWeeks(1);
-    //     }
+        if ($request->remember_me) {
+            $token->expires_at = Carbon::now()->addWeeks(1);
+        }
 
-    //     $token->save();
+        $token->save();
 
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'access_token' => $tokenResult->accessToken,
-    //         'token_type' => 'Bearer',
-    //         'expires_at' => Carbon::parse(
-    //             $tokenResult->token->expires_at
-    //         )->toDateTimeString()
-    //     ]);
-    // }
+        return response()->json([
+            'status' => 'success',
+            'access_token' => $tokenResult->accessToken,
+            'token_type' => 'Bearer',
+            'expires_at' => Carbon::parse(
+                $tokenResult->token->expires_at
+            )->toDateTimeString()
+        ]);
+    }
 
     public function logout(Request $request)
     {
@@ -111,7 +111,11 @@ class userController extends Controller
 
     public function uploadimage(Request $request)
     {
+        // $arr = [];
+        // text base64,base64,base64 => [base64,base64,base64]
         $rp = Cloudinary()->upload("data:image/jpg;base64,$request->img")->getSecurePath();
+        // push $rp vô
+        // chuyển về text
         return tap(User::where('id', $request->id))->update(['avatar' => $rp])->first();
     }
     public function updateuser(Request $request)
@@ -156,11 +160,11 @@ class userController extends Controller
     public function sendmailchangepass(Request $request)
     {
         // return "ok";
-        $user = User::where("email", $request->email)->take(1)->get();
-        if (User::where("email", $request->email)->exists()) {
+        $user = User::where("gmail", $request->gmail)->take(1)->get();
+        if (User::where("gmail", $request->gmail)->exists()) {
             $passnew = rand(000000, 999999);
             Mail::send('LayoutMail.mailfb', ['newpass' => $passnew], function ($message)  use ($user) {
-                $message->to($user[0]->email, $user[0]->name)->subject('ĐỔI MẬT KHẨU');
+                $message->to($user[0]->gmail, $user[0]->name)->subject('ĐỔI MẬT KHẨU');
             });
             if (count(Mail::failures()) > 0) {
                 return response()->json([
@@ -177,7 +181,7 @@ class userController extends Controller
         } else {
             return response()->json([
                 'status' => 'fails',
-                'mess' => 'Không tồn tại tài khoản email này!'
+                'mess' => 'Không tồn tại tài khoản gmail này!'
 
             ]);
         }
