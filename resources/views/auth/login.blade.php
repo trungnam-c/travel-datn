@@ -13,6 +13,7 @@
     <title>Đăng nhập</title>
     <style>
     body {
+        padding-top: 100px;
         background: #007bff;
         background-image: url('https://media.vov.vn/sites/default/files/styles/large/public/2020-09/99-thuyen_hoa.jpg');
         background-size: cover;
@@ -33,7 +34,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header">Đăng nhập</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
@@ -41,7 +42,7 @@
 
                             <div class="row mb-3">
                                 <label for="gmail"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">Địa chỉ email</label>
 
                                 <div class="col-md-6">
                                     <input id="gmail" type="email"
@@ -58,7 +59,7 @@
 
                             <div class="row mb-3">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">Mật khẩu</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -80,7 +81,7 @@
                                             {{ old('remember') ? 'checked' : '' }}>
 
                                         <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
+                                            Lưu mật khẩu
                                         </label>
                                     </div>
                                 </div>
@@ -94,7 +95,7 @@
 
                                     @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        Quên mật khẩu?
                                     </a>
                                     @endif
                                 </div>
