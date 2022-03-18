@@ -45,4 +45,9 @@ class location extends Controller
         $listlike = explode(",", $user->listlike);
         return $this->md::whereIn('id',  $listlike)->get();
     }
+    public function getlocain(Request $rq)
+    {
+        $list = explode(",", $rq->list);
+        return $this->md::whereIn('id', $list)->get();
+    }
 }

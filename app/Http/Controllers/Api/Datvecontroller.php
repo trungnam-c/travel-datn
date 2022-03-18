@@ -30,4 +30,9 @@ class Datvecontroller extends Controller
         $sql = "SELECT COUNT(*) as sove,trangthai FROM datve WHERE iduser = $id GROUP by trangthai";
         return DB::select($sql);
     }
+    public function checkkhachcove(Request $rq)
+    {
+        $sql = " SELECT count(*) as tong FROM datve dv inner JOIN detail_location dl on dv.idlocation_detail = dl.id WHERE iduser =$rq->idus and idlocation = $rq->idloca and trangthai = 1";
+        return DB::select($sql);
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Datvecontroller;
 use App\Http\Controllers\Api\detail_location;
 use App\Http\Controllers\Api\location;
 use App\Http\Controllers\Api\Magiamgia;
+use App\Http\Controllers\Api\rateController;
 use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\thanhtoan;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,10 @@ Route::group([], function () {
     Route::post("checkmagiamgia", [Magiamgia::class, 'checkmagiamgia']);
     Route::post("demsoluongkhach", [Chitietdatvecontroller::class, 'demsoluongkhach']);
     Route::post('timkiemtheongay', [detail_location::class, 'timkiemtheongay']);
-
+    Route::post('getlocain', [location::class, 'getlocain']);
+    Route::post('checkkhachcove', [Datvecontroller::class, 'checkkhachcove']);
+    Route::get('getrate/{id}', [rateController::class, 'getrate']);
+    Route::post('cochuyenditheongay', [detail_location::class, 'cochuyenditheongay']);
 
 
 
@@ -53,5 +57,6 @@ Route::group([], function () {
         Route::POST('getlocalike/', [location::class, 'getlocalike']);
         Route::POST('thanhtoan/', [thanhtoan::class, 'chuyentrang']);
         Route::get('lsdv/{id}', [Chitietdatvecontroller::class, 'lsdv']);
+        Route::post('addrate', [rateController::class, 'addrate']);
     });
 });
