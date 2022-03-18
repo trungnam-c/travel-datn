@@ -129,7 +129,29 @@ class userController extends Controller
     }
     public function changepassquenmk(Request $request)
     {
-        return User::where('id', $request->id)->update(['password' => bcrypt($request->pass)]);
+        $user =  User::where('id', $request->id)->get();
+        $user = explode('j', $user[0]->keyotp);
+        if (getdate()[0] - $user[2] <= 1000) {
+            if ($request->otp == $user[1]) {
+                User::where('id', $request->id)->update(['password' => bcrypt($request->pass)]);
+                User::where('id', $request->id)->update(['keyotp' => NULL]);
+                return response()->json([
+                    'status' => 'success',
+                    'mess' => 'Đổi mật khẩu thành công'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'fails',
+                    'mess' => 'Otp sai vui lòng thử lại'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status' => 'fails',
+                'mess' => 'Mã đã hết hạn'
+            ]);
+        }
+        // ->update(['password' => bcrypt($request->pass)]);
     }
     public function sendmailchangepass(Request $request)
     {
@@ -146,9 +168,9 @@ class userController extends Controller
                     'mess' => 'Có lỗi khi gửi OTP!'
                 ]);
             } else {
+                User::where('id', $user[0]->id)->update(['keyotp' => $this->randomotp(9) . 'j' . $passnew . 'j' . getdate()[0] . 'j' . $this->randomotp(9)]);
                 return response()->json([
                     'status' => 'success',
-                    'otp' => $passnew,
                     'id' => $user[0]->id
                 ]);
             }
@@ -176,5 +198,17 @@ class userController extends Controller
         }
         $listlike = implode($listlike, ",");
         return tap(User::where('id', $iduser))->update(['listlike' => trim($listlike, ",")])->first();
+    }
+    public function randomotp($n)
+    {
+        $characters = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+
+        for ($i = 0; $i < $n; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $randomString .= $characters[$index];
+        }
+
+        return $randomString;
     }
 }
