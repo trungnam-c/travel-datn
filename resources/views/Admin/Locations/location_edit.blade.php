@@ -12,7 +12,8 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('location.update',['id'=>$data->id]) }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
+
+                    <form action="{{ route('location.cap-nhat-dia-diem',['id'=>$data->id]) }}" method="post" class="dropzone" id="dropzone" enctype="multipart/form-data">
                         @csrf
                         @method("post")
                         <input type="hidden" name="images" value="{{$data->image}}" id="images">

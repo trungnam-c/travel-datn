@@ -121,7 +121,7 @@
                                         <p>{{ DB::table("huongdanvien")->where("id",$r->idhdv)->first()->tenhdv }}</p>
                                     </td>
                                     <td>
-                                        @if ($anhien)
+                                        @if ($anhien !== 0)
                                         <p><span class="text-success font-weight-bold">Hiện</span></p>
                                         @else
                                         <p><span class="text-danger font-weight-bold">Ẩn</span></p>

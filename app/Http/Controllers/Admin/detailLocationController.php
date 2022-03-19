@@ -39,6 +39,11 @@ class detailLocationController extends Controller
                 'socho.required' => 'Ngày khởi hành không được để trống', 'idhdv.required' => 'Ngày khởi hành không được để trống'
             ],
         );
+        $anhien = 1;
+        if(isset($request->anhien))
+        {
+            $anhien = 0;
+        }
 
         $insert = $request->all();
         $detailLocation = new detailLocationModel();
@@ -47,7 +52,7 @@ class detailLocationController extends Controller
         $detailLocation->giokhoihanh = $insert['giokhoihanh'];
         $detailLocation->socho = $insert['socho'];
         $detailLocation->idhdv = $insert['idhdv'];
-        $detailLocation->idhdv = $insert['anhien'];
+        $detailLocation->anhien = $anhien;
         $detailLocation->save();
         return redirect()->back()->with('success', 'Thêm mới thành công!');
     }
@@ -63,12 +68,18 @@ class detailLocationController extends Controller
     public function update(Request $request, $id)
     {
         $update = $request->all();
+        $anhien =1;
+        if(isset($request->anhien)) {
+            $anhien =0;
+        }
         $detailLocation = detailLocationModel::find($id);
         $detailLocation->idlocation = $update['idlocation'];
         $detailLocation->ngaykhoihanh = $update['ngaykhoihanh'];
         $detailLocation->giokhoihanh = $update['giokhoihanh'];
         $detailLocation->socho = $update['socho'];
         $detailLocation->idhdv = $update['idhdv'];
+        $detailLocation->anhien = $anhien;
+
 
         $detailLocation->save();
         return redirect("/quantri/chi-tiet-dia-diem")->with('success', 'Sửa thành công!');

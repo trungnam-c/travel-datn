@@ -39,7 +39,7 @@ Route::name('location.')->group(function () {
     Route::post('/quantri/luu-dia-diem', [LocationController::class, "store"])->name('store')->middleware('auth');
     Route::post('/quantri/luu-hinh-anh', [LocationController::class, "saveImg"])->name('saveImg')->middleware('auth');
     Route::get('/quantri/sua-dia-diem/{id}', [LocationController::class, "edit"])->name('edit')->middleware('auth');
-    Route::post('/quantri/cap-nhat-dia-diem/{id}', [LocationController::class, "update"])->name('update')->middleware('auth');
+    Route::post('/quantri/cap-nhat-dia-diem/{id}', [LocationController::class, "update"])->name('cap-nhat-dia-diem')->middleware('auth');
     Route::get('/quantri/xoa-dia-diem/{id}', [LocationController::class, "destroy"])->name('destroy')->middleware('auth');
 });
 Route::name('detailLocation.')->group(function () {
@@ -69,7 +69,7 @@ Route::get('thoat', function () {
 })->middleware('auth');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware('auth');
+    Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware('checklogin');
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile')->middleware('auth');
     Route::post('/cap-nhat-profile', [AdminController::class, 'update'])->name('update')->middleware('auth');
 

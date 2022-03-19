@@ -24,7 +24,6 @@
         letter-spacing: 0.05rem;
         padding: 0.75rem 1rem;
     }
-
     </style>
 </head>
 
@@ -33,6 +32,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if (\Session::has('thongbao'))
+                <div class="col-sm-12 alert alert-danger" id="success">
+                    {!! \Session::get('thongbao') !!}
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header">{{ __('Đăng nhập trang quản trị Viettravel') }}</div>
 
