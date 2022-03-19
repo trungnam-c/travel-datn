@@ -29,7 +29,7 @@
                                     <div class="form-group">
                                     <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker"
                                     inline="true">
-                                    <input placeholder="Select date" type="date" value="{{$data->ngaybatdau}}" id="ngaybatdau" name="ngaybatdau"
+                                    <input placeholder="Select date" type="date" value="{{date('yy-m-d',strtotime($data->ngaybatdau))}}" id="ngaybatdau" name="ngaybatdau"
                                         class="form-control">
                                     <label for="example">Ngày bắt đầu</label>
                                     <i class="fas fa-calendar input-prefix"></i>
@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                     <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker"
                                     inline="true">
-                                    <input placeholder="Select date" type="date" value="{{$data->ngayketthuc}}" id="ngayketthuc" name="ngayketthuc"
+                                    <input placeholder="Select date" type="date" value="{{date('yy-m-d',strtotime($data->ngayketthuc))}}" id="ngayketthuc" name="ngayketthuc"
                                         class="form-control">
                                     <label for="example">Ngày kết thúc</label>
                                     <i class="fas fa-calendar input-prefix"></i>
