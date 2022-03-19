@@ -1,6 +1,6 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
-@section('page-title', 'Sửa địa điểm')
+@section('page-title', 'Sửa mã giảm giá')
 @section('main')
     <section class="content">
         <div class="container-fluid">
@@ -27,9 +27,16 @@
                                             placeholder="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="phuongtien">Ngày bắt đầu</label>
-                                        <input type="text" class="form- " data-role="tagsinput" value="{{$data->ngaybatdau}}" id="ngaybatdau"
-                                            name="ngaybatdau" placeholder="">
+                                    <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker"
+                                    inline="true">
+                                    <input placeholder="Select date" type="date" value="{{$data->ngaybatdau}}" id="ngaybatdau" name="ngaybatdau"
+                                        class="form-control">
+                                    <label for="example">Ngày bắt đầu</label>
+                                    <i class="fas fa-calendar input-prefix"></i>
+                                    @if ($errors->has('ngaybatdau'))
+                                    <span class="badge badge-danger">{{ $errors->first('ngaybatdau') }}</span>
+                                    @endif
+                                </div>
                                     </div>
 
 
@@ -41,9 +48,17 @@
                                         <input type="text" class="form-control" id="chitiet" value="{{$data->chitiet}}" name="chitiet" placeholder="">
                                     </div>
                                     <div class="form-group">
-                                        <label for="phuongtien">Ngày kết thúc</label>
-                                        <input type="text" class="form- " data-role="tagsinput" value="{{$data->ngayketthuc}}" id="ngayketthuc"
-                                            name="ngayketthuc" placeholder="">
+                                    <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker"
+                                    inline="true">
+                                    <input placeholder="Select date" type="date" value="{{$data->ngayketthuc}}" id="ngayketthuc" name="ngayketthuc"
+                                        class="form-control">
+                                    <label for="example">Ngày kết thúc</label>
+                                    <i class="fas fa-calendar input-prefix"></i>
+                                    @if ($errors->has('ngayketthuc'))
+                                    <span class="badge badge-danger">{{ $errors->first('ngayketthuc') }}</span>
+                                    @endif
+
+                                </div>
                                     </div>
                                 </div>
                                 {{-- col-6 --}}
@@ -74,9 +89,9 @@
                                     <div class="custom-control custom-switch  mt-3">
                                         <!-- {{-- <input class="form-check-input" type="checkbox" role="switch" id="anhien" checked> --}} -->
                                         @if($data->anhien === 0)
-                                        <input type="checkbox" class="custom-control-input" checked value="0"  id="anhien" name="anhien">
-                                        @else
                                         <input type="checkbox" class="custom-control-input"  value="0"  id="anhien" name="anhien">
+                                        @else
+                                        <input type="checkbox" class="custom-control-input" checked value="0"  id="anhien" name="anhien">
                                         @endif
                                         <label class="custom-control-label" for="anhien"> Chọn để ẩn </label>
                                     </div>

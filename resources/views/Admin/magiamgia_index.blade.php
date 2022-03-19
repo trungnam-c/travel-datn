@@ -116,6 +116,13 @@
         </div>
         <!-- /.container-fluid -->
     </section>
+    <script>
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    if(exist){
+      alert(msg);
+    }
+  </script>
 @endsection
 @section('location-js')
 <script type="text/javascript">

@@ -56,6 +56,11 @@ class MagiamgiaController extends Controller
     }
     public function edit($id)
     {
+        $query = "SELECT idmagiamgia FROM datve WHERE idmagiamgia = ?";
+        $result = DB::select($query, [$id]);
+        if ($result){
+            return redirect()->back() ->with('alert', 'Không thể sửa mã giảm giá đang, đã được sử dụng');
+        }
         $data = magiamgia::find($id);
         $cate = DB::table('magiamgia')->get();
 
@@ -88,9 +93,9 @@ class MagiamgiaController extends Controller
         $data = magiamgia::find($id);
         // Getting values from the blade template form
         if($request->anhien == '') {
-            $status = $request->anhien = 1;
+            $status = $request->anhien = 0;
         }else {
-            $status = 0;
+            $status = 1;
         }
         $data->magiamgia = $request->magiamgia;
         $data->chitiet = $request->chitiet;
@@ -105,6 +110,11 @@ class MagiamgiaController extends Controller
 
     public function delete($id)
     {
+        $query = "SELECT idmagiamgia FROM datve WHERE idmagiamgia = ?";
+        $result = DB::select($query, [$id]);
+        if ($result){
+            return redirect()->back() ->with('alert', 'Không thể xoá mã giảm giá đang, đã được sử dụng');
+        }
         $magiamgia = magiamgia::find($id);
         $magiamgia->delete();
         return back()->with("tb", "Xóa thành công!");
