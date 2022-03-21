@@ -33,6 +33,7 @@ Route::group([], function () {
     Route::post('checkkhachcove', [Datvecontroller::class, 'checkkhachcove']);
     Route::get('getrate/{id}', [rateController::class, 'getrate']);
     Route::post('cochuyenditheongay', [detail_location::class, 'cochuyenditheongay']);
+    Route::post('sendemailve', [userController::class, 'sendemailve']);
 
 
 

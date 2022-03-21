@@ -46,7 +46,9 @@ class userController extends Controller
         ]);
 
         $user->save();
-
+        Mail::send('LayoutMail.newacc', ['name' => $request->name], function ($message)  use ($request) {
+            $message->to($request->gmail, $request->name)->subject('Tạo tài khoản thành công Viettravel');
+        });
         return response()->json([
             'status' => 'success',
         ]);
@@ -210,5 +212,12 @@ class userController extends Controller
         }
 
         return $randomString;
+    }
+    public function sendemailve(Request $rq)
+    {
+        // return $rq->locad['image'];
+        Mail::send('LayoutMail.ve', ['rq' => $rq], function ($message)  use ($rq) {
+            $message->to($rq->gmail, $rq->name)->subject('Viettravel - Thông tin vé #' . $rq->idve);
+        });
     }
 }

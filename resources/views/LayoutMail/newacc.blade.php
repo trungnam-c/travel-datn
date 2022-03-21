@@ -238,7 +238,7 @@
                     <td bgcolor="#ffffff">
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"> <br>
                             <tr>
-                                <td align="center"> <img src="LOGO" width="37" height="37" style="display: block; border: 0px;" /> </td>
+                                <td align="center"> <img src="{{$message->embed('images/icon.png')}}" width="37" height="37" style="display: block; border: 0px;" /> </td>
                             </tr>
                             <tr>
                                 <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0;">
