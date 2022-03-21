@@ -62,11 +62,11 @@ class LocationController extends Controller
                 $phuongtien .= $item['value'] . ",";
             }
         }
-
+        $top = 0;
         if (isset($input['top'])) {
             $top = 1;
         }
-
+        $anhien = 1;
         if (isset($input['anhien'])) {
             $anhien = 0;
         }
