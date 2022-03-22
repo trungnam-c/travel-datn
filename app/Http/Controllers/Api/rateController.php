@@ -12,7 +12,7 @@ class rateController extends Controller
 {
     public function getrate($id)
     {
-        return rateModel::where('idlocation', $id)->get();
+        return rateModel::where('idlocation', $id)->where('anhien', '=', 1)->get();
     }
     public function addrate(Request $rq)
     {

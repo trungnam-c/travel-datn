@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\BaivietController;
 use App\Http\Controllers\Api\category;
 use App\Http\Controllers\Api\Chitietdatvecontroller;
 use App\Http\Controllers\Api\Datvecontroller;
 use App\Http\Controllers\Api\detail_location;
+use App\Http\Controllers\Api\DMBaivietController;
 use App\Http\Controllers\Api\location;
 use App\Http\Controllers\Api\Magiamgia;
 use App\Http\Controllers\Api\rateController;
@@ -33,6 +35,12 @@ Route::group([], function () {
     Route::post('checkkhachcove', [Datvecontroller::class, 'checkkhachcove']);
     Route::get('getrate/{id}', [rateController::class, 'getrate']);
     Route::post('cochuyenditheongay', [detail_location::class, 'cochuyenditheongay']);
+    Route::post('sendemailve', [userController::class, 'sendemailve']);
+    Route::get('getalldmbv', [DMBaivietController::class, 'getall']);
+    Route::get('getallbv', [BaivietController::class, 'getallbv']);
+    Route::get('getbvbyid/{id}', [BaivietController::class, 'getbvbyid']);
+
+
 
 
 
