@@ -18,8 +18,8 @@ class location extends Controller
     }
     public function gettoptrip()
     {
-        // return $this->md::where('top', '=', '1')->get();
-        return $this->md::all();
+        return $this->md::where('top', '=', '1')->where('anhien', '=', 1)->get();
+        // return $this->md::all();
     }
     public function getonetrip($id)
     {
@@ -29,11 +29,11 @@ class location extends Controller
     public function timloca($text)
     {
         // return $this->md::where('diemden', 'LIKE', "%$text%")->get();
-        return  DB::select("SELECT l.* FROM location l inner join categories c on l.category = c.id WHERE diemden like '%$text%' or lichtrinh like '%$text%' or c.name like '%$text%'");
+        return  DB::select("SELECT l.* FROM location l inner join categories c on l.category = c.id WHERE diemden like '%$text%' or c.name like '%$text%' AND l.anhien = 1");
     }
     public function locabycate($idcate)
     {
-        return $this->md::where('category', '=', $idcate)->get();
+        return $this->md::where('category', '=', $idcate)->where('anhien', '=', 1)->get();
     }
     // SELECT * from location WHERE id IN (1,2,6);
     // DB::table('users')
@@ -43,11 +43,11 @@ class location extends Controller
     {
         $user =  User::find($rq->iduser);
         $listlike = explode(",", $user->listlike);
-        return $this->md::whereIn('id',  $listlike)->get();
+        return $this->md::whereIn('id',  $listlike)->where('anhien', '=', 1)->get();
     }
     public function getlocain(Request $rq)
     {
         $list = explode(",", $rq->list);
-        return $this->md::whereIn('id', $list)->get();
+        return $this->md::whereIn('id', $list)->where('anhien', '=', 1)->get();
     }
 }
