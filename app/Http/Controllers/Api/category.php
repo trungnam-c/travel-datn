@@ -16,7 +16,7 @@ class category extends Controller
     }
     public function getall()
     {
-        return $this->md::all();
+        return $this->md::where('anhien', '=', '1')->get();
     }
     public function getcateid($id)
     {

@@ -46,7 +46,9 @@ class userController extends Controller
         ]);
 
         $user->save();
-
+        Mail::send('LayoutMail.newacc', ['name' => $request->name], function ($message)  use ($request) {
+            $message->to($request->gmail, $request->name)->subject('Tạo tài khoản thành công Viettravel');
+        });
         return response()->json([
             'status' => 'success',
         ]);
@@ -162,7 +164,7 @@ class userController extends Controller
         // return "ok";
         $user = User::where("gmail", $request->gmail)->take(1)->get();
         if (User::where("gmail", $request->gmail)->exists()) {
-            $passnew = rand(000000, 999999);
+            $passnew = rand(100000, 999999);
             Mail::send('LayoutMail.mailfb', ['newpass' => $passnew], function ($message)  use ($user) {
                 $message->to($user[0]->gmail, $user[0]->name)->subject('ĐỔI MẬT KHẨU');
             });
@@ -200,7 +202,7 @@ class userController extends Controller
                 unset($listlike[$idx]);
             }
         }
-        $listlike = implode($listlike, ",");
+        $listlike = implode(",", $listlike);
         return tap(User::where('id', $iduser))->update(['listlike' => trim($listlike, ",")])->first();
     }
     public function randomotp($n)
@@ -214,5 +216,12 @@ class userController extends Controller
         }
 
         return $randomString;
+    }
+    public function sendemailve(Request $rq)
+    {
+        // return $rq->locad['image'];
+        Mail::send('LayoutMail.ve', ['rq' => $rq], function ($message)  use ($rq) {
+            $message->to($rq->gmail, $rq->name)->subject('Viettravel - Thông tin vé #' . $rq->idve);
+        });
     }
 }
