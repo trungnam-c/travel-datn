@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\detailLocationModel;
+use App\Models\loaivechitiet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,17 +32,18 @@ class detailLocationController extends Controller
                 'giokhoihanh' => ['required'],
                 'socho' => ['required'],
                 'idhdv' => ['required'],
+                'venguoilon' => ['required'],
+                'vetreem' => ['required'],
             ],
             [
                 'idlocation.required' => 'Vị trí ưu tiên không được để trống',
                 'ngaykhoihanh.required' => 'Ngày khởi hành không được để trống',
                 'giokhoihanh.required' => 'Ngày khởi hành không được để trống',
-                'socho.required' => 'Ngày khởi hành không được để trống', 'idhdv.required' => 'Ngày khởi hành không được để trống'
+                'socho.required' => 'Ngày khởi hành không được để trống', 'idhdv.required' => 'Ngày khởi hành không được để trống',
             ],
         );
         $anhien = 1;
-        if(isset($request->anhien))
-        {
+        if (isset($request->anhien)) {
             $anhien = 0;
         }
 
@@ -54,7 +56,20 @@ class detailLocationController extends Controller
         $detailLocation->idhdv = $insert['idhdv'];
         $detailLocation->anhien = $anhien;
         $detailLocation->save();
-        return redirect()->back()->with('success', 'Thêm mới thành công!');
+
+        for ($i = 0; $i < 2; $i++) {
+            $loaivechitiet = new loaivechitiet();
+            $loaivechitiet->idlocation_detail = $detailLocation->id;
+            $loaivechitiet->loaive = $i;
+            if($i === 0){
+                $loaivechitiet->giave = (DB::table('location')->select('giavetb')->where('id', $request->idlocation)->get()[0]->giavetb*$request['venguoilon'])/100;
+            }else {
+                $loaivechitiet->giave = (DB::table('location')->select('giavetb')->where('id', $request->idlocation)->get()[0]->giavetb*$request['vetreem'])/100;
+            }
+            $loaivechitiet->save();
+        }
+
+        return redirect()->back()->with('success', 'Thêm chi tiết địa điểm thành công!');
     }
 
     public function edit($id)
@@ -62,15 +77,17 @@ class detailLocationController extends Controller
         $data = detailLocationModel::find($id);
         $location = DB::table("location")->get();
         $hdv = DB::table("huongdanvien")->get();
-        return view("Admin/detailLocation_edit", compact("data", "location", "hdv"));
+        $venguoilon =  number_format( 100 / DB::table("location")->where('id',$data->idlocation)->first()->giavetb * DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',0)->first()->giave);
+        $vetreem = number_format( 100 / DB::table("location")->where('id',$data->idlocation)->first()->giavetb * DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',1)->first()->giave);
+        return view("Admin/detailLocation_edit", compact("data", "location", "hdv","venguoilon","vetreem"));
     }
 
     public function update(Request $request, $id)
     {
         $update = $request->all();
-        $anhien =1;
-        if(isset($request->anhien)) {
-            $anhien =0;
+        $anhien = 1;
+        if (isset($request->anhien)) {
+            $anhien = 0;
         }
         $detailLocation = detailLocationModel::find($id);
         $detailLocation->idlocation = $update['idlocation'];
@@ -79,9 +96,20 @@ class detailLocationController extends Controller
         $detailLocation->socho = $update['socho'];
         $detailLocation->idhdv = $update['idhdv'];
         $detailLocation->anhien = $anhien;
-
-
         $detailLocation->save();
+        for ($i = 0; $i < 2; $i++) {
+            $loaivechitiet = loaivechitiet::where('idlocation_detail',$id)->where('loaive',$i)->first();
+            $loaivechitiet->idlocation_detail = $detailLocation->id;
+            $loaivechitiet->loaive = $i;
+            if($i === 0){
+                $loaivechitiet->giave = (DB::table('location')->select('giavetb')->where('id', $request->idlocation)->get()[0]->giavetb*$request['venguoilon'])/100;
+            }else {
+                $loaivechitiet->giave = (DB::table('location')->select('giavetb')->where('id', $request->idlocation)->get()[0]->giavetb*$request['vetreem'])/100;
+            }
+            $loaivechitiet->save();
+        }
+
+
         return redirect("/quantri/chi-tiet-dia-diem")->with('success', 'Sửa thành công!');
     }
 
