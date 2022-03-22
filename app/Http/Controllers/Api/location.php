@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 
 use App\Models\Location_Model;
+use App\Models\rateModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -49,5 +50,19 @@ class location extends Controller
     {
         $list = explode(",", $rq->list);
         return $this->md::whereIn('id', $list)->where('anhien', '=', 1)->get();
+    }
+    public function locationstar($star)
+    {
+        $arridlo = array();
+        $sao =  DB::table('rate')
+            ->select(DB::raw('AVG(star) as sao , idlocation'))
+            ->where('anhien', '<>', 0)
+            ->groupBy('star')->groupBy('idlocation')
+            ->get();
+
+        foreach ($sao as $value) {
+            array_push($arridlo, $value->idlocation);
+        }
+        return $this->md::whereIn('id', $arridlo)->where('anhien', '=', 1)->get();
     }
 }
