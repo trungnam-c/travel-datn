@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
 
                                     <label for=""></label>
                                     <div class="custom-control custom-switch  mt-3">
@@ -77,6 +77,27 @@
 
                                 </div>
                             </div>
+                            <div class="col-sm-6">
+                                    <label for="giokhoihanh">Vé người lớn (%)</label>
+                                    <input type="text" class="form-control" id="venguoilon" name="venguoilon"
+                                        placeholder="100" value="{{$venguoilon}}">
+                                    @error('venguoilon')
+                                    <span class="badge badge-danger">
+                                        {{$message}}
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="giokhoihanh">Vé trẻ em (%)</label>
+                                    <input type="text" class="form-control" id="vetreem" name="vetreem"
+                                        placeholder="70" value="{{$vetreem}}">
+                                    @error('vetreem')
+                                    <span class="badge badge-danger">
+                                        {{$message}}
+                                    </span>
+                                    @enderror
+                                </div>
 
                                     @if (\Session::has('success'))
                                         <div class="col-sm-12 alert alert-success" id="success">
