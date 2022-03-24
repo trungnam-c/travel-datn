@@ -21,7 +21,7 @@ class CheckLogin
             return $next($request);
         } else {
             Auth::logout();
-            return back()->with('thongbao','Bạn không phải quản trị viên!!!'); // redirect ra trang chủ
+            return redirect("login")->with('thongbao','Bạn không phải quản trị viên!!!'); // redirect ra trang chủ
         }
     }
 }

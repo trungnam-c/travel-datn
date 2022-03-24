@@ -141,6 +141,9 @@
     font-size: 16pt;
     font-weight: bold;
 }
+.location-name:hover{
+    background-color: #a95410;
+}
 .div-dropdown-loca-detail{
     padding: 10px 20px;
     display: none;
@@ -176,6 +179,8 @@
    color: white;
     border-radius: 10px;
     padding: 20px;
+    overflow-y: scroll;
+    max-height: 1000px;
 }
 .div-ticket-detail tr span{
     color: white;
@@ -283,4 +288,44 @@
         border: 0;
         transition: all .2s ease;
     }
+
+
+
 /* End Drag & drop image profile*/
+
+
+
+
+
+.show-detail-user,.show-detail-user span{
+    width: 100%;
+    margin: 0px !important;
+    text-align: right;
+    font-size: 17px !important;
+    color: #2299ff;
+}
+.show-detail-user:hover{
+    text-decoration: underline;
+}
+
+.div-user-detail-ticket{
+    width: 100%; 
+    background-color: #fffcfb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.customer-info-h3{
+    font-weight: bolder;
+    padding: 10px 0px;
+    text-align: center;
+    color: black;
+    
+}
+.tr-user-detail{
+    background-color: #c95b00;
+    color: white;
+    text-align: center;
+}
+.tr-user-detail-ticket{
+    display: none;
+}

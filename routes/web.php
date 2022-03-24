@@ -10,7 +10,13 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MagiamgiaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportCustomer;
 
+// Route::get('/tet1',function(){
+//     return DB::select("SELECT ctdv.* from chitietdatve ctdv inner join datve dv on dv.idve = ctdv.idve WHERE dv.idlocation_detail = 2 and dv.trangthai = 1;");
+// });
 //admin route
 
 // Route::get('/', function () {
@@ -26,11 +32,13 @@ Route::name('orderticketdetail.')->group(function () {
 });
 
 // order tikets
-Route::name('orderticket.')->group(function () {
-    Route::get('/quantri/quan-ly-dat-ve', [OrderTicketController::class, "index"])->name('index')->middleware('auth');
-    Route::get('/quantri/cap-nhat-trang-thai-ve/{id}/{act}', [OrderTicketController::class, "updateticket"])->name('updateticket')->middleware('auth');
-    Route::get('/quantri/cap-nhat-trang-thai-thanh-toan/{id}/{act}', [OrderTicketController::class, "updatepayment"])->name('updatepayment')->middleware('auth');
-
+Route::name('orderticket.')->middleware("auth")->group(function () {
+    Route::get('/quantri/quan-ly-dat-ve', [OrderTicketController::class, "index"])->name('index');
+    Route::get('/quantri/cap-nhat-trang-thai-ve/{id}/{act}', [OrderTicketController::class, "updateticket"])->name('updateticket');
+    Route::get('/quantri/cap-nhat-trang-thai-thanh-toan/{id}/{act}', [OrderTicketController::class, "updatepayment"])->name('updatepayment');
+    Route::get('/quantri/xuat-file/{id}',function($id){
+        return Excel::download(new ExportCustomer($id), 'users.xlsx');
+    })->name("export");
 });
 
 // location route group
@@ -108,3 +116,5 @@ Route::name('guider.')->group(function () {
 
 // Authentication router
 Auth::routes();
+
+

@@ -50,43 +50,46 @@
                                             </div>
                                         </div>
                                         <div class="div-dropdown-loca-detail">
-                                            @php
-                                                $location_detail = detailLocationModel::where('idlocation', $rowlc->id)->get();
-                                            @endphp
-                                            @foreach ($location_detail as $rowlcd)
+                                            @if (count($sochuyen) > 0)
                                                 @php
-                                                    $hdv = tourGuideModel::where('id', $rowlcd->idhdv)->first('tenhdv');
+                                                    $location_detail = detailLocationModel::where('idlocation', $rowlc->id)->get();
                                                 @endphp
-                                                <div class="w-100 div-ticket-cols">
-                                                    <div class="row location-detail-row">
-                                                        <div class="col-sm-4">
-                                                            <p>Ngày đi: <span>{{ $rowlcd->ngaykhoihanh }} -
-                                                                    {{ $rowlcd->giokhoihanh }}</span></p>
+                                                @foreach ($location_detail as $rowlcd)
+                                                    @php
+                                                        $hdv = tourGuideModel::where('id', $rowlcd->idhdv)->first('tenhdv');
+                                                    @endphp
+                                                    <div class="w-100 div-ticket-cols">
+                                                        <div class="row location-detail-row">
+                                                            <div class="col-sm-3">
+                                                                <p>Ngày đi: <span>{{ $rowlcd->ngaykhoihanh }} -
+                                                                        {{ $rowlcd->giokhoihanh }}</span></p>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <p>Hướng dẫn viên: <span>{{ $hdv->tenhdv }}</span></p>
+                                                            </div>
+                                                            {{-- <div class="col-sm-4">
+                                                                <p>Số khách lớn: <span>33</span></p>
+                                                                <p>Số khách trẻ em: <span>22</span></p>
+                                                            </div> --}}
+                                                            <div class="col-sm-3 div-btn-detail">
+                                                                <button class="btn btn-dark btn-view-ticket">Chi tiết đặt
+                                                                    vé</button>
+                                                            </div>
+                                                            <div class="col-sm-2 div-btn-detail">
+                                                                <a href="{{ route('orderticket.export', ['id'=>$rowlcd->id]) }}" class="btn btn-primary">Xuất file</a>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <p>Hướng dẫn viên: <span>{{ $hdv->tenhdv }}</span></p>
-                                                        </div>
-                                                        {{-- <div class="col-sm-4">
-                                                            <p>Số khách lớn: <span>33</span></p>
-                                                            <p>Số khách trẻ em: <span>22</span></p>
-                                                        </div> --}}
-                                                        <div class="col-sm-4 div-btn-detail">
-                                                            <button class="btn btn-dark btn-view-ticket">Chi tiết đặt
-                                                                vé</button>
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="div-ticket-detail mt-3">
+                                                        <div class="div-ticket-detail mt-3">
+                                                            @php
+                                                                $stt = 0;
+                                                                $data = OrderTicketModel::where('idlocation_detail', $rowlcd->id)->get();
+                                                            @endphp
 
-                                                        @php
-                                                            $stt = 0;
-                                                            $data = OrderTicketModel::where('idlocation_detail', $rowlcd->id)->get();
-                                                        @endphp
-                                                        @if (count($data) != 0)
-                                                            <table id="example1" class="table table-bordered table-round ">
+                                                            <table class="table table-bordered table-round ">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="stt text-center">STT</th> 
+                                                                        <th class="stt text-center">STT</th>
                                                                         <th width="200px">Người dùng</th>
                                                                         <th width="200px">Thanh toán</th>
                                                                         <th width="150px" class="text-center">Trạng thái
@@ -95,7 +98,7 @@
                                                                             vé</th>
                                                                     </tr>
                                                                 </thead>
-                                                                <tbody>
+                                                                <tbody id="tbody-ticket-detail">
 
                                                                     @foreach ($data as $row)
                                                                         @php
@@ -111,11 +114,14 @@
                                                                                 $magiamgia = 'Không có';
                                                                             }
                                                                             
+                                                                            $sql = "SELECT ctdv.*,mgg.loaima,mgg.giatri from chitietdatve ctdv inner join datve dv on dv.idve = ctdv.idve left join magiamgia mgg on dv.idmagiamgia = mgg.id WHERE dv.idlocation_detail = $rowlcd->id and dv.idve = $row->idve;";
+                                                                            $userdata = DB::select($sql);
+                                                                            
                                                                         @endphp
 
                                                                         <tr class="location-tr tr-bg-hv">
                                                                             <td class="text-center">{{ $stt }}
-                                                                            </td> 
+                                                                            </td>
                                                                             <td>
                                                                                 <p>Họ tên: <span
                                                                                         class="data-span">{{ $user->name }}
@@ -123,6 +129,10 @@
                                                                                 <p>Ngày đặt: <span
                                                                                         class="data-span">{{ $row->ngatdatve }}
                                                                                     </span> </p>
+                                                                                @if (count($userdata) > 0)
+                                                                                    <p class="show-detail-user "
+                                                                                        id="btn-user-dropdow"><i>Xem chi tiết ({{ count($userdata) }}) </i> </p>
+                                                                                @endif
                                                                             </td>
                                                                             <td>
                                                                                 <p>Hình thức: <span
@@ -190,14 +200,146 @@
                                                                                             huỷ vé - hoàn tiền</span> </p>
                                                                                 @endif
                                                                                 @if ($row->trangthai == 1)
-                                                                                    <p
-                                                                                        class="text-success font-weight-bold">
-                                                                                        Đã xác nhận vé </p>
+                                                                                    <p class="text-success font-weight-bold">
+                                                                                        Đã xác nhận vé
+                                                                                    </p>
                                                                                 @endif
 
 
                                                                             </td>
+
                                                                         </tr>
+                                                                        @if (count($userdata) > 0)
+                                                                            <tr class="tr-user-detail-ticket">
+                                                                                <td colspan="5">
+                                                                                    <div class="div-user-detail-ticket">
+                                                                                        <div class="row px-4">
+                                                                                            @php
+                                                                                                // dd($userdata[0]);
+                                                                                                $tienve = 0;
+                                                                                                foreach ($userdata as $value) {
+                                                                                                    $tienve += $value->tienve;
+                                                                                                }
+                                                                                            @endphp
+                                                                                            <h3
+                                                                                                class="customer-info-h3 col-sm-6 text-left">
+                                                                                                Thông tin khách hàng</h3>
+                                                                                            <h3
+                                                                                                class="customer-info-h3 col-sm-6 text-right">
+                                                                                                Tổng tiền: <span
+                                                                                                    class="text-danger">{{ number_format($tienve) }}</span>
+                                                                                                VNĐ</h3>
+                                                                                        </div>
+                                                                                        <div class="w-100">
+                                                                                            <table
+                                                                                                class="table table-bordered table-round text-dark p-2 ">
+                                                                                                <tr class="tr-user-detail">
+                                                                                                    <th>STT</th>
+                                                                                                    <th>Họ & Tên</th>
+                                                                                                    <th>Giấy tờ tuỳ thân</th>
+                                                                                                    <th>Thể loại</th>
+                                                                                                    <th>Giá trị</th>
+                                                                                                    <th>Tiền vé</th>
+                                                                                                </tr>
+
+
+                                                                                                @foreach ($userdata as $key => $us)
+                                                                                                    <tr>
+
+                                                                                                        <td
+                                                                                                            class="text-center">
+                                                                                                            {{ $key }}
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <p>Tên: <span
+                                                                                                                    class="text-info">{{ $us->hotenkh }}</span>
+                                                                                                            </p>
+                                                                                                            <p>Giới tính:
+                                                                                                                <span
+                                                                                                                    class="text-info">
+                                                                                                                    @if ($us->phai)
+                                                                                                                        Nam
+                                                                                                                    @else
+                                                                                                                        Nữ
+                                                                                                                    @endif
+                                                                                                                </span>
+                                                                                                            </p>
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <p>ID: <span
+                                                                                                                    class="text-info">{{ $us->giaytotuythan }}</span>
+                                                                                                            </p>
+                                                                                                            <p>Ngày sinh: <span
+                                                                                                                    class="text-info">{{ $us->ngaysinh }}</span>
+                                                                                                            </p>
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <p>Loại vé:
+                                                                                                                <span
+                                                                                                                    class="text-info">
+                                                                                                                    @if ($us->loaive)
+                                                                                                                        Trẻ em
+                                                                                                                    @else
+                                                                                                                        Người
+                                                                                                                        lớn
+                                                                                                                    @endif
+                                                                                                                </span>
+                                                                                                            </p>
+                                                                                                            @if ($us->loaima != null)
+                                                                                                                <p>Loại mã:
+                                                                                                                    <span
+                                                                                                                        class="text-info">
+                                                                                                                        @if ($us->loaima)
+                                                                                                                            Phần
+                                                                                                                            trăm
+                                                                                                                            (%)
+                                                                                                                        @else
+                                                                                                                            Giá
+                                                                                                                            tiền
+                                                                                                                        @endif
+                                                                                                                    </span>
+                                                                                                                </p>
+                                                                                                            @endif
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <p>SĐT: <span
+                                                                                                                    class="text-info">{{ $us->sdt }}</span>
+                                                                                                            </p>
+                                                                                                            @if ($us->loaima != null)
+                                                                                                                <p>Giá trị:
+                                                                                                                    <span
+                                                                                                                        class="text-info">
+                                                                                                                        @if ($us->loaima)
+                                                                                                                            {{ $us->giatri }}%
+                                                                                                                        @else
+                                                                                                                            {{ number_format($us->giatri) }}
+                                                                                                                            VNĐ
+                                                                                                                        @endif
+                                                                                                                    </span>
+                                                                                                                </p>
+                                                                                                            @endif
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <span
+                                                                                                                class="text-info">
+                                                                                                                {{ number_format($us->tienve) }}
+                                                                                                                VNĐ</span>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                @endforeach
+                                                                                                {{-- <tr> 
+                                                                                                            <td colspan="5" >
+                                                                                                                <h3 class="font-weight-bolder" >TỔNG TIỀN: <span class="text-danger">{{number_format($tienve)}}</span> VNĐ</h3>    
+                                                                                                            
+                                                                                                            </td>     
+                                                                                                        </tr> --}}
+
+                                                                                            </table>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endif
                                                                     @endforeach
 
                                                                 </tbody>
@@ -205,13 +347,15 @@
 
                                                                 </tfoot>
                                                             </table>
-                                                        @else
-                                                            <h3>Không có vé</h3>
-                                                        @endif
 
+
+
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            @else
+                                                <h3>Không có vé</h3>
+                                            @endif
                                         </div>
                                     </div>
                                 @endforeach
@@ -253,6 +397,16 @@
                 $(nut).toggle(50);
             }));
 
+            $("#div-dropdown").on('click', '#btn-user-dropdow', (function(e) {
+                e.preventDefault();
+                var node = $(this).parent().parent();
+                var btn = $(node).next();
+                console.log(btn)
+                $(btn).toggle(200);
+
+
+            }));
+
             $("#div-dropdown").on('click', '#btn-payment-confirm', (function(e) {
                 e.preventDefault();
                 var node = $(this).children();
@@ -283,6 +437,7 @@
 
                 });
             }));
+
 
             // xac nhan ve
             // $("#btn-payment-confirm").click(function(e){
