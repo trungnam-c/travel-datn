@@ -9,12 +9,13 @@ use App\Http\Controllers\Admin\tourGuideController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MagiamgiaController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 //admin route
 
-Route::get('/', function () {
-    return view('layouts.admin_layout');
-});
+// Route::get('/', function () {
+//     return view('layouts.admin_layout');
+// });
 
 // order ticket detail
 
