@@ -39,6 +39,8 @@ Route::group([], function () {
     Route::get('getalldmbv', [DMBaivietController::class, 'getall']);
     Route::get('getallbv', [BaivietController::class, 'getallbv']);
     Route::get('getbvbyid/{id}', [BaivietController::class, 'getbvbyid']);
+    Route::get('locationstar/{id}', [location::class, 'locationstar']);
+
 
 
 
