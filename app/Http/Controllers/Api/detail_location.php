@@ -43,7 +43,7 @@ class detail_location extends Controller
     }
     public function cochuyenditheongay(Request $rq)
     {
-        $rs =  DB::select("SELECT DISTINCT idlocation, lc.* FROM detail_location dl inner join location lc on dl.idlocation = lc.id WHERE ngaykhoihanh BETWEEN Now() and NOW() + INTERVAL $rq->ngay DAY and anhien =1;");
+        $rs =  DB::select("SELECT DISTINCT idlocation, lc.* FROM detail_location dl inner join location lc on dl.idlocation = lc.id WHERE dl.anhien = 1 and ngaykhoihanh BETWEEN Now() and NOW() + INTERVAL $rq->ngay DAY");
         return $rs;
     }
     // 
