@@ -62,9 +62,9 @@ class detailLocationController extends Controller
             $loaivechitiet->idlocation_detail = $detailLocation->id;
             $loaivechitiet->loaive = $i;
             if($i === 0){
-                $loaivechitiet->giave = (DB::table('location')->select('giavetb')->where('id', $request->idlocation)->get()[0]->giavetb*$request['venguoilon'])/100;
+                $loaivechitiet->giave = $request['venguoilon'];
             }else {
-                $loaivechitiet->giave = (DB::table('location')->select('giavetb')->where('id', $request->idlocation)->get()[0]->giavetb*$request['vetreem'])/100;
+                $loaivechitiet->giave = $request['vetreem'];
             }
             $loaivechitiet->save();
         }
@@ -77,8 +77,8 @@ class detailLocationController extends Controller
         $data = detailLocationModel::find($id);
         $location = DB::table("location")->get();
         $hdv = DB::table("huongdanvien")->get();
-        $venguoilon =  number_format( 100 / DB::table("location")->where('id',$data->idlocation)->first()->giavetb * DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',0)->first()->giave);
-        $vetreem = number_format( 100 / DB::table("location")->where('id',$data->idlocation)->first()->giavetb * DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',1)->first()->giave);
+        $venguoilon =  DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',0)->first()->giave;
+        $vetreem = DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',1)->first()->giave;
         return view("Admin/detailLocation_edit", compact("data", "location", "hdv","venguoilon","vetreem"));
     }
 
@@ -102,9 +102,9 @@ class detailLocationController extends Controller
             $loaivechitiet->idlocation_detail = $detailLocation->id;
             $loaivechitiet->loaive = $i;
             if($i === 0){
-                $loaivechitiet->giave = (DB::table('location')->select('giavetb')->where('id', $request->idlocation)->get()[0]->giavetb*$request['venguoilon'])/100;
+                $loaivechitiet->giave = $request['venguoilon'];
             }else {
-                $loaivechitiet->giave = (DB::table('location')->select('giavetb')->where('id', $request->idlocation)->get()[0]->giavetb*$request['vetreem'])/100;
+                $loaivechitiet->giave = $request['vetreem'];
             }
             $loaivechitiet->save();
         }
