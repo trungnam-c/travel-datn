@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\File;
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.home', [
-            'title' => 'Trang quản trị'
-        ]);
+        $diadiem = DB::table('location')->get();
+        $chitietdiadiem = DB::table('detail_location')->get();
+        $dataVe = DB::table('datve')->get();
+        return view('admin.home',compact('diadiem','chitietdiadiem','dataVe'));
     }
 
     public function login() {

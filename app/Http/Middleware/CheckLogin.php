@@ -17,11 +17,16 @@ class CheckLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()&&Auth::user()->isAdmin == 1) {
+        if(Auth::check()) {
+            if (Auth::user()->isAdmin == 1) {
             return $next($request);
-        } else {
-            Auth::logout();
-            return back()->with('thongbao','Bạn không phải quản trị viên!!!'); // redirect ra trang chủ
+            } else  {
+                Auth::logout();
+                return back()->with('thongbao','Bạn không phải quản trị viên!!!'); // redirect ra trang chủ
+            }
+        }else {
+            return back();
         }
+
     }
 }
