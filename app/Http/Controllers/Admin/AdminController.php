@@ -3,34 +3,47 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use DB;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $diadiem = DB::table('location')->get();
         $chitietdiadiem = DB::table('detail_location')->get();
         $dataVe = DB::table('datve')->get();
-        return view('admin.home',compact('diadiem','chitietdiadiem','dataVe'));
+        $data = [];
+        for ($i = 0; $i < count($diadiem); $i++) {
+            $data[] = DB::table('datve')
+                ->join('detail_location', 'datve.idlocation_detail', '=', 'detail_location.id')
+                ->join('location', 'location.id', '=', 'detail_location.idlocation')
+                ->select('*')
+                ->where('detail_location.idlocation', '=', $diadiem[$i]->id)
+                ->count();
+        }
+        return view('admin.home', compact('diadiem', 'chitietdiadiem', 'dataVe', 'data'));
     }
 
-    public function login() {
+    public function login()
+    {
         return view('/admin/login');
     }
 
-    public function profile() {
+    public function profile()
+    {
         return view('/admin/edit');
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $request->validate([
             'name' => ['required', 'min:4', 'max: 30', 'regex:/^\S*$/u'],
-            'gmail' => ['nullable', 'email']
-        ],[
+            'gmail' => ['nullable', 'email'],
+        ], [
             'name.required' => 'Tên đăng nhập không được để trống',
             'name.min' => 'Tối thiểu 4 ký tự',
             'name.max' => 'Tối đa 30 ký tự',
@@ -44,9 +57,9 @@ class AdminController extends Controller
         $user->password = Auth::user()->password;
         $user->isAdmin = 1;
 
-        if($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
             $destination = 'dist/img/' . $user->avatar;
-            if(File::exists($destination)){
+            if (File::exists($destination)) {
                 File::delete($destination);
             }
             $file = $request->file('avatar');

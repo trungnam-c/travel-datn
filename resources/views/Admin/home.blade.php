@@ -80,14 +80,10 @@
             <!-- /.row -->
             <!-- Main row -->
             <div class="row d-flex justify-content-center">
+
                 <div class="col-6">
-                    <canvas id="myChart" width="300" height="300"></canvas>
-                </div>
-                <div class="d-none">
-                    <span class="" id="datve">{{(DB::table('datve')->get())}}</span>
-                    <span class="" id="location">{{(DB::table('location')->get())}}</span>
-                    <span class=""
-                        id="detail_location">{{(DB::table('detail_location')->orderBy('idlocation','DESC')->get())}}</span>
+                    <h2 class="title text-center">BIỂU ĐỒ ĐẶT VÉ THEO ĐỊA ĐIỂM</h2>
+                    <canvas class="p-5" id="myChart" width="300" height="300"></canvas>
                 </div>
             </div>
             <!-- /.row (main row) -->
@@ -99,59 +95,40 @@
 @section('location-js')
 <script>
 let ctx = document.getElementById('myChart').getContext('2d');
-
+<?php
+$listitems = [50,50,100,50];
+?>
 
 let labels = [];
 const formatLabel = () => {
-    const location = JSON.parse(document.getElementById('location').innerHTML);
+    const location = <?php echo $diadiem ?>;
     for (let index = 0; index < location.length; index++) {
         labels.push([location[index].diemdi + ' đến ' + location[index].diemden, location[index].id]);
     }
     return labels;
 }
 formatLabel();
-let dataAmount = [];
-const formatData = (diadiem) => {
-    const location = JSON.parse(document.getElementById('location').innerHTML);
-    const dataDatve = JSON.parse(document.getElementById('datve').innerHTML);
-    const detail_location = JSON.parse(document.getElementById('detail_location').innerHTML);
-    let i = 0;
-    let j = 0;
-    let e = 0;
-    let count = 0;
-    for (j; j < detail_location.length; j++) {
-        diadiem.map(items => {
-            if (items[1] == detail_location[j].idlocation) {
-                for (e; e < dataDatve.length; e++) {
-                    // console.log(detail_location[j].id);
 
-                    if (dataDatve[e].idlocation_detail == detail_location[j].id) {
-                        count = count + 1;
-                    }
-
-                }
-                dataAmount.push(count);
-                count = 0;
-                e = 0;
-            }
-
-        })
-
-
-    }
-    console.log(dataAmount);
-    return dataAmount;
-
-}
+<?php
+$js_array = json_encode($data);
+echo "var dataCount = ". $js_array . ";\n";
+?>
 
 const data = {
     labels: labels.map(items => items[0]),
     datasets: [{
-        data: formatData(labels),
+        data: dataCount,
         backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            'rgb(255, 205, 86)',
+            'brown',
+            'orange',
+            'green',
+            'black',
+            'pink',
+            'blue',
+            'red'
         ],
         hoverOffset: 4
     }]
