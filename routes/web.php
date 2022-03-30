@@ -12,8 +12,52 @@ use Illuminate\Support\Facades\Route;
 
 //admin route
 
-Route::get('/', function () {
-    return view('layouts.admin_layout');
+
+
+// bao/admin-user
+//admin
+Route::get('/', function () {return redirect('/login');});
+Route::get('/home', function () {return redirect('/admin');});
+Route::get('thoat', function () {
+    Auth::logout();
+    return redirect('/login');
+})->middleware('auth');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware('checklogin');
+    Route::get('/profile', [AdminController::class, 'profile'])->name('profile')->middleware('auth');
+    Route::post('/cap-nhat-profile', [AdminController::class, 'update'])->name('update')->middleware('auth');
+
+    #User
+    Route::prefix('user')->group(function () {
+        Route::get('add-form', [UserController::class, 'create'])->name('add-form')->middleware('auth');
+        Route::post('add', [UserController::class, 'store'])->name('add')->middleware('auth');
+        Route::get('danh-sach-khach-hang', [UserController::class, 'index'])->name('danh-sach-khach-hang')->middleware('auth');
+        Route::get('edit/{user}', [UserController::class, 'show'])->middleware('auth');
+        Route::post('edit/{user}', [UserController::class, 'update'])->middleware('auth');
+        Route::get('destroy/{id}', [UserController::class, 'destroy'])->middleware('auth');
+    });
+
+});
+
+// route of categories
+Route::name('categories.')->group(function () {
+    Route::get('/categories/list', [Categories::class, 'list'])->name('list')->middleware('auth');
+    Route::get('/categories/delete/{id}', [Categories::class, 'delete'])->name('delete')->middleware('auth');
+    Route::get('/categories/edit/{id}', [Categories::class, 'form_edit'])->name('form_edit')->middleware('auth');
+    Route::post('/categories/edit/{id}', [Categories::class, 'edit'])->name('edit')->middleware('auth');
+    Route::get('/categories/add', [Categories::class, 'add_form'])->name('add_form')->middleware('auth');
+    Route::post('/categories/add', [Categories::class, 'add'])->name('add')->middleware('auth');
+});
+
+//route of guider
+Route::name('guider.')->group(function () {
+    Route::get('/guider/huong-dan-vien', [tourGuideController::class, 'index'])->name('huong-dan-vien')->middleware('auth');
+    Route::get('/guider/add', [tourGuideController::class, 'form_add'])->name('form_add')->middleware('auth');
+    Route::post('/guider/add', [tourGuideController::class, 'add'])->name('add')->middleware('auth');
+    Route::get('/guider/delete/{id}', [tourGuideController::class, 'delete'])->name('delete')->middleware('auth');
+    Route::get('/guider/edit/{id}', [tourGuideController::class, 'form_edit'])->name('form_edit')->middleware('auth');
+    Route::post('/guider/edit/{id}', [tourGuideController::class, 'edit'])->name('edit')->middleware('auth');
 });
 
 // order ticket detail
@@ -57,52 +101,6 @@ Route::name('magiamgia.')->group(function () {
     Route::post('/quantri/cap-nhat-ma-giam-gia/{id}', [MagiamgiaController::class, "update"])->name('update')->middleware('auth');
     Route::get('/quantri/sua-ma-giam-gia/{id}', [MagiamgiaController::class, "edit"])->name('edit')->middleware('auth');
     Route::get('/quantri/xoa-ma-giam-gia/{id}', [MagiamgiaController::class, "delete"])->name('delete')->middleware('auth');
-});
-
-// bao/admin-user
-//admin
-Route::get('/', function () {return redirect('/admin');});
-Route::get('/home', function () {return redirect('/admin');});
-Route::get('thoat', function () {
-    Auth::logout();
-    return redirect('/login');
-})->middleware('auth');
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin')->middleware('checklogin');
-    Route::get('/profile', [AdminController::class, 'profile'])->name('profile')->middleware('auth');
-    Route::post('/cap-nhat-profile', [AdminController::class, 'update'])->name('update')->middleware('auth');
-
-    #User
-    Route::prefix('user')->group(function () {
-        Route::get('add-form', [UserController::class, 'create'])->name('add-form')->middleware('auth');
-        Route::post('add', [UserController::class, 'store'])->name('add')->middleware('auth');
-        Route::get('danh-sach-khach-hang', [UserController::class, 'index'])->name('danh-sach-khach-hang')->middleware('auth');
-        Route::get('edit/{user}', [UserController::class, 'show'])->middleware('auth');
-        Route::post('edit/{user}', [UserController::class, 'update'])->middleware('auth');
-        Route::get('destroy/{id}', [UserController::class, 'destroy'])->middleware('auth');
-    });
-
-});
-
-// route of categories
-Route::name('categories.')->group(function () {
-    Route::get('/categories/list', [Categories::class, 'list'])->name('list')->middleware('auth');
-    Route::get('/categories/delete/{id}', [Categories::class, 'delete'])->name('delete')->middleware('auth');
-    Route::get('/categories/edit/{id}', [Categories::class, 'form_edit'])->name('form_edit')->middleware('auth');
-    Route::post('/categories/edit/{id}', [Categories::class, 'edit'])->name('edit')->middleware('auth');
-    Route::get('/categories/add', [Categories::class, 'add_form'])->name('add_form')->middleware('auth');
-    Route::post('/categories/add', [Categories::class, 'add'])->name('add')->middleware('auth');
-});
-
-//route of guider
-Route::name('guider.')->group(function () {
-    Route::get('/guider/huong-dan-vien', [tourGuideController::class, 'index'])->name('huong-dan-vien')->middleware('auth');
-    Route::get('/guider/add', [tourGuideController::class, 'form_add'])->name('form_add')->middleware('auth');
-    Route::post('/guider/add', [tourGuideController::class, 'add'])->name('add')->middleware('auth');
-    Route::get('/guider/delete/{id}', [tourGuideController::class, 'delete'])->name('delete')->middleware('auth');
-    Route::get('/guider/edit/{id}', [tourGuideController::class, 'form_edit'])->name('form_edit')->middleware('auth');
-    Route::post('/guider/edit/{id}', [tourGuideController::class, 'edit'])->name('edit')->middleware('auth');
 });
 
 // Authentication router
