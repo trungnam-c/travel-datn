@@ -82,8 +82,10 @@
             <div class="row d-flex justify-content-center">
 
                 <div class="col-6">
-                    <h2 class="title text-center">BIỂU ĐỒ ĐẶT VÉ THEO ĐỊA ĐIỂM</h2>
+                    <h2 class="title text-center">BIỂU ĐỒ THỐNG KÊ VÉ THEO ĐỊA ĐIỂM</h2>
                     <canvas class="p-5" id="myChart" width="300" height="300"></canvas>
+                    <h2 class="title text-center mt-5">BIỂU ĐỒ THỐNG KÊ CHUYẾN ĐI THEO ĐỊA ĐIỂM</h2>
+                    <canvas class="p-5" id="detailLocation" width="300" height="300"></canvas>
                 </div>
             </div>
             <!-- /.row (main row) -->
@@ -110,9 +112,13 @@ const formatLabel = () => {
 formatLabel();
 
 <?php
-$js_array = json_encode($data);
-echo "var dataCount = ". $js_array . ";\n";
+$dataDatve = json_encode($data);
+$dataChuyenDi = json_encode($dataDetailLocation);
+echo "var dataCount = ". $dataDatve . ";\n";
+echo "var dataCountChuyenDi = ". $dataChuyenDi . ";\n";
 ?>
+
+console.log(dataCountChuyenDi);
 
 const data = {
     labels: labels.map(items => items[0]),
@@ -136,6 +142,46 @@ const data = {
 const myChart = new Chart(ctx, {
     type: 'doughnut',
     data: data,
+});
+
+let detailLocation = document.getElementById('detailLocation').getContext('2d');
+const labelsDetailLocation = labels.map(items => items[0]);
+const dataDetailLocation = {
+  labels: labelsDetailLocation,
+  datasets: [{
+    label: 'Số lượng chuyến đi',
+    data: dataCountChuyenDi,
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+  }]
+};
+const detailLocationChart = new Chart(detailLocation, {
+    type: 'bar',
+    data: dataDetailLocation,
+    options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
 });
 </script>
 @endsection

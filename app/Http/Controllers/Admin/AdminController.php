@@ -16,6 +16,7 @@ class AdminController extends Controller
         $diadiem = DB::table('location')->get();
         $chitietdiadiem = DB::table('detail_location')->get();
         $dataVe = DB::table('datve')->get();
+        // data ve theo dia diem
         $data = [];
         for ($i = 0; $i < count($diadiem); $i++) {
             $data[] = DB::table('datve')
@@ -25,7 +26,17 @@ class AdminController extends Controller
                 ->where('detail_location.idlocation', '=', $diadiem[$i]->id)
                 ->count();
         }
-        return view('admin.home', compact('diadiem', 'chitietdiadiem', 'dataVe', 'data'));
+
+        // data chuyen di theo dia diem
+        $dataDetailLocation = [];
+        for ($i = 0; $i < count($diadiem); $i++) {
+            $dataDetailLocation[] = DB::table('detail_location')
+            ->join('location','location.id','=','detail_location.idlocation')
+            ->select('*')
+            ->where('detail_location.idlocation','=', $diadiem[$i]->id)
+            ->count();
+        }
+        return view('admin.home', compact('diadiem', 'chitietdiadiem', 'dataVe', 'data','dataDetailLocation'));
     }
 
     public function login()
