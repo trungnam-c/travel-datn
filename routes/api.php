@@ -42,6 +42,7 @@ Route::group([], function () {
     Route::get('getnewpostscate', [BaivietController::class, 'getNewPostsCate']);
     Route::get('getallcatepost', [BaivietController::class, 'getAllCatePost']);
     Route::get('getallpostbycateid/{id}', [BaivietController::class, 'getAllPostByIdCate']);
+    Route::get('getposthighlight', [BaivietController::class, 'getPostHighLight']);
     Route::get('locationstar/{id}', [location::class, 'locationstar']);
    
 
