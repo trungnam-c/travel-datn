@@ -16,7 +16,7 @@
                     id="dropzone" enctype="multipart/form-data">
                     @csrf
                     @method("post")
-                    <input type="hidden" name="images" value="{{old('images')}}" id="images">
+                    <input type="hidden" name="images" value="{{$data->image}}" id="images">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -25,8 +25,8 @@
                                         <h3 class="card-title">Tên danh mục</h3>
                                     </div>
                                     <div class="card-body">
-                                        <input class="form-control" type="text" value="" name="cateName"
-                                            placeholder="..." />
+                                        <input class="form-control" type="text" value="{{$data->name}}" name="cateName"
+                                            placeholder="" />
                                     </div>
                                     @if ($errors->has('cateName'))
                                     <span class="alert alert-danger col-6">{{ $errors->first('cateName') }}</span>
@@ -43,12 +43,22 @@
                                         <h3 class="card-title">Ẩn / Hiện</h3>
                                     </div>
                                     <div class="card-body d-flex justify-content-start col-md-8 align-items-center">
+                                        @if($data->anhien ===1)
                                         <label for="show" class=" mb-0 mr-3">Hiện :</label>
-                                        <input class="form-check" type="radio" value="1" id="show" name="cateHideShow"
-                                            placeholder="..." />
+                                        <input class="form-check" type="radio" checked value="1" id="show" name="cateHideShow"
+                                            placeholder="" />
                                         <label for="hide" class=" mb-0 mr-3 ml-3">Ẩn :</label>
                                         <input class="form-check" type="radio" value="0" id="hide" name="cateHideShow"
-                                            placeholder="..." />
+                                            placeholder="" />
+                                        @else
+                                        <label for="show" class=" mb-0 mr-3">Hiện :</label>
+                                        <input class="form-check" type="radio" value="1" id="show" name="cateHideShow"
+                                            placeholder="" />
+                                        <label for="hide" class=" mb-0 mr-3 ml-3">Ẩn :</label>
+                                        <input class="form-check" type="radio" checked value="0" id="hide" name="cateHideShow"
+                                            placeholder="" />
+                                       
+                                        @endif
                                     </div>
                                     @if ($errors->has('cateHideShow'))
                                     <span class="alert alert-danger col-6">{{ $errors->first('cateHideShow') }}</span>
@@ -66,7 +76,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row image-preview" id="image-preview">
-
+                                        <img src="{{$data->image}}" width="150px" alt="">
                                         </div>
 
                                     </div>

@@ -5,12 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Location_Request;
 use App\Models\Location_Model;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Cloudinary;
 use Illuminate\Support\Facades\Date;
-use Validator;
+use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
@@ -50,11 +47,12 @@ class LocationController extends Controller
             'diemden' => ['required'],
             'time' => ['required'],
             'mota' => ['required'],
+            'lichtrinh' => ['required'],
             'giavetb' => ['required'],
             'category' => ['required'],
             'phuongtien' => ['required'],
-            'top' => ['required'],
-            'anhien' => ['required'],
+            // 'top' => ['required'],
+            // 'anhien' => ['required'],
         ]);
 
         $input = $request->all();
@@ -64,15 +62,21 @@ class LocationController extends Controller
                 $phuongtien .= $item['value'] . ",";
             }
         }
+        $top = 0;
+        if (isset($input['top'])) {
+            $top = 1;
+        }
+        $anhien = 1;
+        if (isset($input['anhien'])) {
+            $anhien = 0;
+        }
 
-        if (isset($input['top'])) $top = 1;
-        if (isset($input['anhien'])) $anhien = 0;
-        $loca = new  Location_Model();
+        $loca = new Location_Model();
         $loca->diemdi = $input['diemdi'];
         $loca->diemden = $input['diemden'];
         $loca->time = $input['time'];
         $loca->mota = $input['mota'];
-        $loca->lichtrinh = '$input[lichtrinh] ';
+        $loca->lichtrinh = $input['lichtrinh'];
         $loca->giavetb = $input['giavetb'];
         $loca->category = $input['category'];
         $loca->image = $this->xoadauphay($input['images']);
@@ -105,7 +109,7 @@ class LocationController extends Controller
         $data = Location_Model::find($id);
         $cate = DB::table('categories')->get();
 
-        return view("Admin.Locations.location_edit", ['data' => $data, 'cate' => $cate]);
+        return view("Admin.Locations.location_edit", ['data' => $data, 'cate' => $cate, 'idLocate' => $id]);
     }
 
     /**
@@ -115,58 +119,20 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Location_Request $request, $id)
-    {
 
-        $request->validate([
-            'diemdi' => 'required|min:5|max:50',
-            'diemden' => ['required'],
-            'time' => ['required'],
-            'mota' => ['required'],
-            'giavetb' => ['required'],
-            'category' => ['required'],
-            'phuongtien' => ['required'],
-            'top' => ['required'],
-            'anhien' => ['required'],
-        ]);
-
-        $input = $request->all();
-        $phuongtien = "";
-        if ($input['phuongtien'] != null) {
-            foreach (json_decode($input['phuongtien'], true) as $item) {
-                $phuongtien .= $item['value'] . ",";
-            }
-        }
-        $top = 0;
-        $anhien = 1;
-        if (isset($input['top'])) $top = 1;
-        if (isset($input['anhien'])) $anhien = 0;
-        $loca =  Location_Model::find($id);
-        $loca->diemdi = $input['diemdi'];
-        $loca->diemden = $input['diemden'];
-        $loca->time = $input['time'];
-        $loca->mota = $input['mota'];
-        $loca->lichtrinh = '$input[lichtrinh] ';
-        $loca->giavetb = $input['giavetb'];
-        $loca->category = $input['category'];
-        $loca->image = $this->xoadauphay($input['images']);
-        $loca->phuongtien = $phuongtien;
-        $loca->top = $top;
-        $loca->anhien = $anhien;
-        $loca->save();
-
-        return back()->with("tb", "Sửa thành công!");
-    }
     public function xoadauphay($text)
     {
-        $data  = "";
+        $data = "";
         if ($text != "") {
             $arr1 = [];
             $arr = explode(',', $text);
             foreach ($arr as $a) {
-                if ($a != null)   array_push($arr1, $a);
+                if ($a != null) {
+                    array_push($arr1, $a);
+                }
+
             }
-            $data =  implode(",", $arr1);
+            $data = implode(",", $arr1);
         }
 
         return $data;
@@ -190,5 +156,40 @@ class LocationController extends Controller
         // $image->move(public_path('upload/'),$file_name);
         $result = $image->storeOnCloudinaryAs();
         return $result->getSecurePath();
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $input = $request->all();
+        $phuongtien = "";
+        if ($input['phuongtien'] != null) {
+            foreach (json_decode($input['phuongtien'], true) as $item) {
+                $phuongtien .= $item['value'] . ",";
+            }
+        }
+        $top = 0;
+        $anhien = 1;
+        if (isset($input['top'])) {
+            $top = 1;
+        }
+
+        if (isset($input['anhien'])) {
+            $anhien = 0;
+        }
+        $loca = Location_Model::find($id);
+        $loca->diemdi = $input['diemdi'];
+        $loca->diemden = $input['diemden'];
+        $loca->time = $input['time'];
+        $loca->mota = $input['mota'];
+        $loca->lichtrinh = $loca->lichtrinh;
+        $loca->giavetb = $input['giavetb'];
+        $loca->category = $input['category'];
+        $loca->image = $this->xoadauphay($input['images']);
+        $loca->phuongtien = $phuongtien;
+        $loca->top = $top;
+        $loca->anhien = $anhien;
+        $loca->save();
+        return back()->with("tb", "Sửa thành công!");
     }
 }

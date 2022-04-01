@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\tourGuideModel;
 use Cloudinary;
-
+use DB;
 class tourGuideController extends Controller
 {
     public function index() {
@@ -50,13 +50,16 @@ class tourGuideController extends Controller
     }
 
     public function delete($id) {
-        try {
-            $items = tourGuideModel::select('*')->where('id','=',$id)->delete();
-        } catch (\Throwable $th) {
-            $errorDelete =  'Không thể xóa hướng dẫn viên đang hoạt động';
-        }
-
-        return redirect('/guider/huong-dan-vien')->with('errorDelete','Không thể xóa hướng dẫn viên đang hoạt động');
+        
+            $query = "SELECT iduser FROM datve WHERE iduser = ?";
+            $result = DB::select($query, [$id]);    
+            if($result){
+                $errorDelete =  'Không thể xóa hướng dẫn viên đang hoạt động';
+                return redirect('/guider/huong-dan-vien')->with('errorDelete','Không thể xóa hướng dẫn viên đang hoạt động');
+            }else{
+                $items = tourGuideModel::select('*')->where('id','=',$id)->delete();
+                return redirect('/guider/huong-dan-vien');
+            }
     }
 
     public function form_edit($id) {

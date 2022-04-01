@@ -19,8 +19,9 @@ class Categories extends Controller
     }
 
     public function form_edit($id) {
+        $data = categoriesModel::find($id);
         $idEdit = $id;
-        return view('Admin/Categories/formEdit', compact('idEdit'));
+        return view('Admin/Categories/formEdit', compact('idEdit','data'));
     }
 
     public function add_form(){

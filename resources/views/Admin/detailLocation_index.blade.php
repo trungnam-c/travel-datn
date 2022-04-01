@@ -65,14 +65,14 @@
                                         </p>
                                         <p>
                                             Giá: <span
-                                                class="data-span text-danger">{{number_format(DB::table("location")->where("id",$r->idlocation)->first()->giavetb) }}đ</span>
+                                                class="data-span text-danger">{{number_format(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',0)->first()->giave) }}đ</span>
                                         </p>
                                         <p>
                                             Loại vé: <span class="data-span">Trẻ em</span>
                                         </p>
                                         <p>
                                             Giá: <span
-                                                class="data-span text-danger">{{number_format(DB::table("location")->where("id",$r->idlocation)->first()->giavetb / 100 * 70) }}đ</span>
+                                                class="data-span text-danger">{{number_format(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',1)->first()->giave)}}đ</span>
                                         </p>
                                         <p>
                                             Tgian: <span
@@ -121,7 +121,7 @@
                                         <p>{{ DB::table("huongdanvien")->where("id",$r->idhdv)->first()->tenhdv }}</p>
                                     </td>
                                     <td>
-                                        @if ($anhien)
+                                        @if ($anhien !== 0)
                                         <p><span class="text-success font-weight-bold">Hiện</span></p>
                                         @else
                                         <p><span class="text-danger font-weight-bold">Ẩn</span></p>

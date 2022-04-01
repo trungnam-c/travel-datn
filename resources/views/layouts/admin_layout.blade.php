@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="{{ asset('/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 
     <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-    {{-- <link rel="stylesheet" href="{{ asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    --}}
     {{-- <link rel="stylesheet" href="{{ asset('/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
@@ -32,9 +33,10 @@
     <link rel="stylesheet" href="{{ asset('css/admin_custom.css') }}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -44,8 +46,7 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{asset('/quantri')}}" class="nav-link">Trang chủ</a>
@@ -95,8 +96,7 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i
-                                                class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">Call me whenever you can...</p>
                                     <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -113,8 +113,7 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
-                                        <span class="float-right text-sm text-muted"><i
-                                                class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">I got your message bro</p>
                                     <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -197,13 +196,23 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{asset('/')}}dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Quang Đạt</a>
-                    </div>
+                <div class="pt-3 pb-3">
+                    @if(Auth::user()->name)
+                        <div class="dropdown">
+                            <button class="border-0 bg-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{asset('dist/img')}}/{{Auth::user()->avatar}}" class="img-circle elevation-2" width="40px" height="40px">
+                                &nbsp;
+                                <span class="text-white">{{Auth::user()->name}}</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item text-dark" href="/admin/profile">Chỉnh sửa hồ sơ</a></li>
+                                <li><a class="dropdown-item text-danger font-weight-bold" href="/thoat">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    @else
+                        <a class="nav-link" href="/login" role="button">Đăng nhập</a>
+                        <a class="nav-link" href="/register" role="button">Đăng ký</a>
+                    @endif
                 </div>
 
                 <!-- SidebarSearch Form -->
@@ -224,8 +233,8 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item ">
-                            <a href=""
-                                class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
+                            <a href="/admin"
+                                class="nav-link {{ request()->segment(2) == '' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-home" aria-hidden="true"></i>
                                 <p>
                                     Dashboard
@@ -248,7 +257,8 @@
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     Chi tiết địa điểm
-                                    <span class="badge badge-info right">{{ DB::table("detail_location")->count(); }}</span>
+                                    <span
+                                        class="badge badge-info right">{{ DB::table("detail_location")->count(); }}</span>
                                 </p>
                             </a>
                         </li>
@@ -261,7 +271,7 @@
                                 <p>
                                     Khách hàng
                                     <span class="badge badge-info right">{{ DB::table("users")->count(); }}</span>
-                                    </p>
+                                </p>
                             </a>
                         </li>
 
@@ -271,7 +281,8 @@
                                 <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                                 <p>
                                     Hướng dẫn viên
-                                    <span class="badge badge-info right">{{ DB::table("huongdanvien")->count(); }}</span>
+                                    <span
+                                        class="badge badge-info right">{{ DB::table("huongdanvien")->count(); }}</span>
                                 </p>
                             </a>
                         </li>
@@ -383,11 +394,11 @@
     <script src="https://unpkg.com/@yaireo/tagify"></script>
     <script src="https://unpkg.com/@yaireo/tagify@3.1.0/dist/tagify.polyfills.min.js"></script>
     <script>
-      // The DOM element you wish to replace with Tagify
-  var input = document.querySelector('input[name=phuongtien]');
+    // The DOM element you wish to replace with Tagify
+    var input = document.querySelector('input[name=phuongtien]');
 
-  // initialize Tagify on the above input node reference
-  new Tagify(input)
+    // initialize Tagify on the above input node reference
+    new Tagify(input)
     </script>
     <!-- AdminLTE App -->
     <script src="{{asset('/')}}dist/js/adminlte.min.js"></script>
@@ -397,98 +408,93 @@
     <!-- Page specific script -->
 
     <script>
-
-        //Date range picker
-        $('#reservation').daterangepicker()
-                   //Date range picker with time picker
-               $('#reservationtime').daterangepicker({
-                       timePicker: true,
-                       timePickerIncrement: 30,
-                       locale: {
-                           format: 'MM/DD/YYYY hh:mm A'
-                       }
-                   })
-                   //Date range as a button
-               $('#daterange-btn').daterangepicker({
-                       ranges: {
-                           'Today': [moment(), moment()],
-                           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                           'This Month': [moment().startOf('month'), moment().endOf('month')],
-                           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                       },
-                       startDate: moment().subtract(29, 'days'),
-                       endDate: moment()
-                   },
-                   function(start, end) {
-                       $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-                   }
-               )
-   </script>
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+        timePicker: true,
+        timePickerIncrement: 30,
+        locale: {
+            format: 'MM/DD/YYYY hh:mm A'
+        }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf(
+                    'month')]
+            },
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment()
+        },
+        function(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        }
+    )
+    </script>
 
     <!-- Page specific script -->
     <script>
-        $(function() {
-            //Initialize Select2 Elements
-            $('.select2').select2()
+    $(function() {
+        //Initialize Select2 Elements
+        $('.select2').select2()
 
-            //Initialize Select2 Elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
-
-
-            //Money Euro
-            $('[data-mask]').inputmask()
-
-
-
-            //Date range picker
-            $('#reservation').daterangepicker()
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 30,
-                locale: {
-                    format: 'MM/DD/YYYY hh:mm A'
-                }
-            })
-            //Date range as a button
-            $('#daterange-btn').daterangepicker({
-                    ranges: {
-                        'Today': [moment(), moment()],
-                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
-                            'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment()
-                },
-                function(start, end) {
-                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
-                        'MMMM D, YYYY'))
-                }
-            )
-
-
-
-
-
-
-
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
         })
 
 
+        //Money Euro
+        $('[data-mask]').inputmask()
+
+
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            locale: {
+                format: 'MM/DD/YYYY hh:mm A'
+            }
+        })
+        //Date range as a button
+        $('#daterange-btn').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
+                        'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment()
+            },
+            function(start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format(
+                    'MMMM D, YYYY'))
+            }
+        )
 
 
 
 
+
+
+
+    })
     </script>
     @yield('location-js')
+    @yield('custom-scripts')
 </body>
 
 </html>

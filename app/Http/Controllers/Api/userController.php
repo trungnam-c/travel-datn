@@ -113,7 +113,11 @@ class userController extends Controller
 
     public function uploadimage(Request $request)
     {
+        // $arr = [];
+        // text base64,base64,base64 => [base64,base64,base64]
         $rp = Cloudinary()->upload("data:image/jpg;base64,$request->img")->getSecurePath();
+        // push $rp vô
+        // chuyển về text
         return tap(User::where('id', $request->id))->update(['avatar' => $rp])->first();
     }
     public function updateuser(Request $request)
