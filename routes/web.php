@@ -76,11 +76,13 @@ Route::name('orderticketdetail.')->group(function () {
 });
 
 // order tikets
-Route::name('orderticket.')->group(function () {
-    Route::get('/quantri/quan-ly-dat-ve', [OrderTicketController::class, "index"])->name('index')->middleware('auth');
-    Route::get('/quantri/cap-nhat-trang-thai-ve/{id}/{act}', [OrderTicketController::class, "updateticket"])->name('updateticket')->middleware('auth');
-    Route::get('/quantri/cap-nhat-trang-thai-thanh-toan/{id}/{act}', [OrderTicketController::class, "updatepayment"])->name('updatepayment')->middleware('auth');
-
+Route::name('orderticket.')->middleware("auth")->group(function () {
+    Route::get('/quantri/quan-ly-dat-ve', [OrderTicketController::class, "index"])->name('index');
+    Route::get('/quantri/cap-nhat-trang-thai-ve/{id}/{act}', [OrderTicketController::class, "updateticket"])->name('updateticket');
+    Route::get('/quantri/cap-nhat-trang-thai-thanh-toan/{id}/{act}', [OrderTicketController::class, "updatepayment"])->name('updatepayment');
+    Route::get('/quantri/xuat-file/{id}',function($id){
+        return Excel::download(new ExportCustomer($id), 'users.xlsx');
+    })->name("export");
 });
 
 // location route group
