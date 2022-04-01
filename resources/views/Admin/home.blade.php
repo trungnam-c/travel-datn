@@ -27,7 +27,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Xem thêm<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/admin/user/danh-sach-khach-hang" class="small-box-footer">Xem thêm<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -42,7 +42,7 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/quantri/quan-ly-dia-diem" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -57,7 +57,7 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/quantri/chi-tiet-dia-diem" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -72,7 +72,7 @@
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/quantri/quan-ly-dat-ve" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -81,11 +81,16 @@
             <!-- Main row -->
             <div class="row d-flex justify-content-center">
 
-                <div class="col-6">
-                    <h2 class="title text-center">BIỂU ĐỒ THỐNG KÊ VÉ THEO ĐỊA ĐIỂM</h2>
-                    <canvas class="p-5" id="myChart" width="300" height="300"></canvas>
-                    <h2 class="title text-center mt-5">BIỂU ĐỒ THỐNG KÊ CHUYẾN ĐI THEO ĐỊA ĐIỂM</h2>
-                    <canvas class="p-5" id="detailLocation" width="300" height="300"></canvas>
+                <div class="col-12 d-flex">
+                    <div class="col-6">
+                        <h2 class="title text-center">BIỂU ĐỒ THỐNG KÊ VÉ THEO ĐỊA ĐIỂM</h2>
+                        <canvas class="p-5" id="myChart" width="300" height="300"></canvas>
+                    </div>
+                    <div class="col-6">
+                        <h2 class="title text-center">BIỂU ĐỒ THỐNG KÊ CHUYẾN ĐI THEO ĐỊA ĐIỂM</h2>
+                        <canvas class="p-5" id="detailLocation" width="300" height="300"></canvas>
+                    </div>
+
                 </div>
             </div>
             <!-- /.row (main row) -->
@@ -147,41 +152,41 @@ const myChart = new Chart(ctx, {
 let detailLocation = document.getElementById('detailLocation').getContext('2d');
 const labelsDetailLocation = labels.map(items => items[0]);
 const dataDetailLocation = {
-  labels: labelsDetailLocation,
-  datasets: [{
-    label: 'Số lượng chuyến đi',
-    data: dataCountChuyenDi,
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(255, 205, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(201, 203, 207, 0.2)'
-    ],
-    borderColor: [
-      'rgb(255, 99, 132)',
-      'rgb(255, 159, 64)',
-      'rgb(255, 205, 86)',
-      'rgb(75, 192, 192)',
-      'rgb(54, 162, 235)',
-      'rgb(153, 102, 255)',
-      'rgb(201, 203, 207)'
-    ],
-    borderWidth: 1
-  }]
+    labels: labelsDetailLocation,
+    datasets: [{
+        label: 'Số lượng chuyến đi',
+        data: dataCountChuyenDi,
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+    }]
 };
 const detailLocationChart = new Chart(detailLocation, {
     type: 'bar',
     data: dataDetailLocation,
     options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    },
 });
 </script>
 @endsection
