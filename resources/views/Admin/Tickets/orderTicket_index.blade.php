@@ -29,12 +29,10 @@
                             <div id="div-dropdown">
 
 
-                                @php
-                                    $stt = 0;
-                                @endphp
-                                @foreach ($locations as $rowlc)
+                         
+                                @foreach ($locations as $key=>$rowlc)
                                     @php
-                                        $stt++;
+                                         
                                         $sochuyen = detailLocationModel::where('idlocation', $rowlc->id)->get();
                                     @endphp
 
@@ -54,9 +52,13 @@
                                                 @php
                                                     $location_detail = detailLocationModel::where('idlocation', $rowlc->id)->get();
                                                 @endphp
-                                                @foreach ($location_detail as $rowlcd)
+                                                @foreach ($location_detail as $key=>$rowlcd)
                                                     @php
                                                         $hdv = tourGuideModel::where('id', $rowlcd->idhdv)->first('tenhdv');
+                                                       
+                                                       
+                                                        $data = OrderTicketModel::where('idlocation_detail', $rowlcd->id)->get();
+                                                       
                                                     @endphp
                                                     <div class="w-100 div-ticket-cols">
                                                         <div class="row location-detail-row">
@@ -71,6 +73,7 @@
                                                                 <p>Số khách lớn: <span>33</span></p>
                                                                 <p>Số khách trẻ em: <span>22</span></p>
                                                             </div> --}}
+                                                            
                                                             <div class="col-sm-3 div-btn-detail">
                                                                 <button class="btn btn-dark btn-view-ticket">Chi tiết đặt
                                                                     vé</button>
@@ -82,7 +85,7 @@
 
                                                         <div class="div-ticket-detail mt-3">
                                                             @php
-                                                                $stt = 0;
+                                                                 
                                                                 $data = OrderTicketModel::where('idlocation_detail', $rowlcd->id)->get();
                                                             @endphp
 
@@ -100,11 +103,11 @@
                                                                 </thead>
                                                                 <tbody id="tbody-ticket-detail">
 
-                                                                    @foreach ($data as $row)
+                                                                    @foreach ($data as $key=>$row)
                                                                         @php
-                                                                            $stt++;
-                                                                            $idlocation = detailLocationModel::find($row->idlocation_detail);
                                                                             
+                                                                            $idlocation = detailLocationModel::find($row->idlocation_detail);
+                                                                             
                                                                             $location = Location_Model::find($idlocation->idlocation);
                                                                             $user = User::find($row->iduser);
                                                                             if ($row->idmagiamgia != null) {
@@ -120,15 +123,16 @@
                                                                         @endphp
 
                                                                         <tr class="location-tr tr-bg-hv">
-                                                                            <td class="text-center">{{ $stt }}
+                                                                            <td class="text-center">{{ $key }}
                                                                             </td>
                                                                             <td>
                                                                                 <p>Họ tên: <span
                                                                                         class="data-span">{{ $user->name }}
                                                                                     </span> </p>
-                                                                                <p>Ngày đặt: <span
-                                                                                        class="data-span">{{ $row->ngatdatve }}
+                                                                                    <p>Họ tên: <span
+                                                                                        class="data-span">{{  $row->ngaydatve  }}
                                                                                     </span> </p>
+                                                                                
                                                                                 @if (count($userdata) > 0)
                                                                                     <p class="show-detail-user "
                                                                                         id="btn-user-dropdow"><i>Xem chi tiết ({{ count($userdata) }}) </i> </p>
@@ -147,23 +151,29 @@
 
 
                                                                             <td class="text-center">
-                                                                                @if ($row->thanhtoan == 0)
-                                                                                    @if ($row->trangthai_thanhtoan != 1)
-                                                                                        {{-- <p class="badge badge-primary"><a href="{{ route('orderticket.updatepayment', ['id'=>$row->idve, 'act'=>1]) }}"><span class="  a-link"> Xác nhận thanh toán</span></a></p> --}}
-                                                                                        <p class=""
-                                                                                            id="btn-payment-confirm"><a
-                                                                                                href="{{ route('orderticket.updatepayment', ['id' => $row->idve, 'act' => 1]) }}"><span
-                                                                                                    class="badge badge-primary a-link py-2 px-3">
-                                                                                                    Xác nhận thanh
-                                                                                                    toán</span></a></p>
+                                                                                @if ($row->trangthai_thanhtoan != 0)
+                                                                                    
+                                                                                    
+                                                                                    @if ($row->thanhtoan == 0)
+                                                                                        @if ($row->trangthai_thanhtoan != 1)
+                                                                                            {{-- <p class="badge badge-primary"><a href="{{ route('orderticket.updatepayment', ['id'=>$row->idve, 'act'=>1]) }}"><span class="  a-link"> Xác nhận thanh toán</span></a></p> --}}
+                                                                                            <p class=""
+                                                                                                id="btn-payment-confirm"><a
+                                                                                                    href="{{ route('orderticket.updatepayment', ['id' => $row->idve, 'act' => 1]) }}"><span
+                                                                                                        class="badge badge-primary a-link py-2 px-3">
+                                                                                                        Xác nhận thanh
+                                                                                                        toán</span></a></p>
+                                                                                        @endif
                                                                                     @endif
-                                                                                @endif
-                                                                                @if ($row->thanhtoan != '' && $row->trangthai_thanhtoan == 1)
+                                                                                    @if ($row->thanhtoan != '' && $row->trangthai_thanhtoan == 1)
+                                                                                        <p class=" text- "> <span
+                                                                                                class="text-success ">Đã xác
+                                                                                                nhận thanh toán</span> </p>
+                                                                                    @endif
+                                                                                @else
                                                                                     <p class=" text- "> <span
-                                                                                            class="text-success ">Đã xác
-                                                                                            nhận thanh toán</span> </p>
+                                                                                        class="text-light ">Chưa thanh toán</span> </p> 
                                                                                 @endif
-
 
 
                                                                             </td>
@@ -217,7 +227,7 @@
                                                                                             @php
                                                                                                 // dd($userdata[0]);
                                                                                                 $tienve = 0;
-                                                                                                foreach ($userdata as $value) {
+                                                                                                foreach ($userdata as $key=>$value) {
                                                                                                     $tienve += $value->tienve;
                                                                                                 }
                                                                                             @endphp

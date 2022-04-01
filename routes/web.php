@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportCustomer;
+// use App\Models\detailLocationModel;
+// use App\Models\Location_Model;
 
 // Route::get('/tet1',function(){
 //     return DB::select("SELECT ctdv.* from chitietdatve ctdv inner join datve dv on dv.idve = ctdv.idve WHERE dv.idlocation_detail = 2 and dv.trangthai = 1;");
@@ -20,6 +22,9 @@ use App\Exports\ExportCustomer;
 //admin route
 
 
+// Route::get('/tet', function () {
+   
+// });
 
 // bao/admin-user
 //admin
