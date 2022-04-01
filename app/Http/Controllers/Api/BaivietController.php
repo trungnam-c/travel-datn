@@ -27,6 +27,10 @@ class BaivietController extends Controller
     {
         return DB::select(" SELECT bv.id ,tieude, luotxem , ngaydang,us.name as tenuser, dm.id as iddm, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 AND  bv.noibat = 1 ORDER BY ngaydang DESC ");
     }
+    // public function getPsostHighLight()
+    // {
+    //     return DB::select(" SELECT bv.id ,tieude, luotxem , ngaydang,us.name as tenuser, dm.id as iddm, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 AND  bv.noibat = 1 ORDER BY ngaydang DESC ");
+    // }
     
     public function getAllCatePost()
     {
