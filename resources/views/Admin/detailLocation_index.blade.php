@@ -65,14 +65,14 @@
                                         </p>
                                         <p>
                                             Giá: <span
-                                                class="data-span text-danger">{{number_format(DB::table("chitietloaive")->where("idlocation_detail",$r->id)->where('loaive',0)->first()->giave) }}đ</span>
+                                                class="data-span text-danger">{{number_format(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',0)->first()->giave) }}đ</span>
                                         </p>
                                         <p>
                                             Loại vé: <span class="data-span">Trẻ em</span>
                                         </p>
                                         <p>
                                             Giá: <span
-                                                class="data-span text-danger">{{number_format(DB::table("chitietloaive")->where("idlocation_detail",$r->id)->where('loaive',1)->first()->giave) }}đ</span>
+                                                class="data-span text-danger">{{number_format(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',1)->first()->giave)}}đ</span>
                                         </p>
                                         <p>
                                             Tgian: <span

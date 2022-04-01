@@ -78,9 +78,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                    <label for="giokhoihanh">Vé người lớn (%)</label>
-                                    <input type="text" class="form-control" id="venguoilon" name="venguoilon"
-                                        placeholder="100" value="{{$venguoilon}}">
+                                    <label for="giokhoihanh">Vé người lớn</label>
+                                    <input type="number" class="form-control" id="venguoilon" name="venguoilon"
+                                        placeholder="10000000" value="{{$venguoilon}}">
                                     @error('venguoilon')
                                     <span class="badge badge-danger">
                                         {{$message}}
@@ -89,9 +89,9 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label for="giokhoihanh">Vé trẻ em (%)</label>
-                                    <input type="text" class="form-control" id="vetreem" name="vetreem"
-                                        placeholder="70" value="{{$vetreem}}">
+                                    <label for="giokhoihanh">Vé trẻ em</label>
+                                    <input type="number" class="form-control" id="vetreem" name="vetreem"
+                                        placeholder="7000000" value="{{$vetreem}}">
                                     @error('vetreem')
                                     <span class="badge badge-danger">
                                         {{$message}}
