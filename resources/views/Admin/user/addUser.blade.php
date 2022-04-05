@@ -26,28 +26,22 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên khách hàng</label>
-                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control">
-                                            @error('name')
-                                            <p class="alert alert-danger">{{ $message }}</p>
-                                            @enderror
+                                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') border border-danger @enderror">
+                                            @error('name')<p class="text-danger">{{ $message }}</p>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input type="text" name="password" value="{{ old('password') }}" class="form-control">
-                                            @error('password')
-                                            <p class="alert alert-danger">{{ $message }}</p>
-                                            @enderror
+                                            <input type="text" name="password" value="{{ old('password') }}" class="form-control @error('password') border border-danger @enderror">
+                                            @error('password')<p class="text-danger">{{ $message }}</p>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Gmail</label>
-                                            <input type="text" name="gmail" value="{{ old('gmail') }}" class="form-control">
-                                            @error('gmail')
-                                            <p class="alert alert-danger">{{ $message }}</p>
-                                            @enderror
+                                            <input type="text" name="gmail" value="{{ old('gmail') }}" class="form-control @error('gmail') border border-danger @enderror">
+                                            @error('gmail')<p class="text-danger">{{ $message }}</p>@enderror
                                         </div>
                                     </div>
 
@@ -61,10 +55,35 @@
                                         </div>
                                         <div class="card-body">
                                             <div   class="row image-preview" id="image-preview">
+                                                @if (old("avatar") != null)
+                                                @php
+                                                $index=0;
+                                                    $images = explode(",",old('avatar'));
+                                                @endphp
+                                                @foreach ($images as $img)
 
+                                                @if ($img!="")
+                                                <div class="col-md-2 mt-2" >
+                                                    <div class="img-div-pre">
+                                                        <div class="nano-div"></div>
+                                                        <div class="delete-js-btn" id-data="{{$index}}" id="delete-js-btn"><i class="bi bi-trash3"></i></div>
+                                                        <img src="{{$img}}" width="100%" height="100%" alt="">
+                                                    </div>
+                                                </div>
+                                                @endif
+                                                @php
+                                                    $index++;
+                                                @endphp
+                                                @endforeach
+                                                @endif
                                             </div>
 
 
+                                        </div>
+                                        <div class="card-footer">
+                                            @error('images')
+                                                <span class="badge badge-danger ">{{$message}}</span>
+                                            @enderror
                                         </div>
                                         <!-- /.card-body -->
 
@@ -145,7 +164,7 @@
                                     </div>
                                     <!-- /.card -->
                                     @error('images')
-                                    <p class="alert alert-danger">{{ $message }}</p>
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
@@ -170,7 +189,8 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Thêm</button>
+                                <p class="text-danger font-weight-bold" id="tb-btn"></p>
+                                <button type="submit" id="btn-submit-user" class="btn btn-primary">Thêm</button>
                             </div>
                             @csrf
                         </form>
@@ -210,8 +230,8 @@
         })
 
         myDropzone.on("addedfile", function(file) {
-            // document.getElementById("btn-submit-loca").disabled=true;
-            // document.getElementById("tb-btn").innerText="Vui lòng bấm tải ảnh lên trước!";
+            document.getElementById("btn-submit-user").disabled=true;
+            document.getElementById("tb-btn").innerText="Vui lòng bấm tải ảnh lên trước!";
 
             // Hookup the start button
             file.previewElement.querySelector(".cancel").onclick = function() {
@@ -258,7 +278,7 @@
         // Hide the total progress bar when nothing's uploading anymore
         myDropzone.on("queuecomplete", function(progress) {
             document.querySelector("#total-progress").style.opacity = "0"
-            document.getElementById("btn-submit-loca").disabled=true;
+            document.getElementById("btn-submit-user").disabled=false;
             document.getElementById("tb-btn").innerText="";
             myDropzone.removeAllFiles(true);
 
@@ -281,4 +301,3 @@
         // DropzoneJS Demo Code End
     </script>
 @endsection
-
