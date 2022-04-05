@@ -36,7 +36,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/kqgk64h8a77zbey6oxepy6jum8jnsa87q6msbkwgbl7knbl9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/kqgk64h8a77zbey6oxepy6jum8jnsa87q6msbkwgbl7knbl9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ <script>
+   tinymce.init({
+     selector: 'textarea#default', // Replace this CSS selector to match the placeholder element for TinyMCE
+     plugins: 'code table lists',
+     toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+   });
+ </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -318,6 +328,29 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('danhmucbaiviet.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'danh-muc-bai-viet' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>
+                                    Quản lý Danh mục bài viết
+                                    <span class="badge badge-info right">{{ DB::table("danhmuc_baiviet")->count(); }}</span>
+
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('baiviet.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'bai-viet' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>
+                                    Quản lý bài viết
+                                    <span class="badge badge-info right">{{ DB::table("baiviet")->count(); }}</span>
+
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\OrderTicketController;
 use App\Http\Controllers\Admin\tourGuideController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MagiamgiaController;
+use App\Http\Controllers\DanhmucbaivietController;
+use App\Http\Controllers\BaivietController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -119,5 +121,20 @@ Route::name('magiamgia.')->group(function () {
 
 // Authentication router
 Auth::routes();
-
-
+// Danh muc bai viet route
+Route::name('danhmucbaiviet.')->group(function () {
+    Route::get('/quantri/danh-muc-bai-viet', [DanhmucbaivietController::class, "index"])->name('index')->middleware('auth');
+    Route::get('/quantri/them-danh-muc-bai-viet', [DanhmucbaivietController::class, "create"])->name('create')->middleware('auth');
+    Route::post('/quantri/luu-danh-muc-bai-viet', [DanhmucbaivietController::class, "store"])->name('store')->middleware('auth');
+    Route::post('/quantri/cap-nhat-danh-muc-bai-viet/{id}', [DanhmucbaivietController::class, "update"])->name('update')->middleware('auth');
+    Route::get('/quantri/sua-danh-muc-bai-viet/{id}', [DanhmucbaivietController::class, "edit"])->name('edit')->middleware('auth');
+    Route::get('/quantri/xoa-danh-muc-bai-viet/{id}', [DanhmucbaivietController::class, "delete"])->name('delete')->middleware('auth');
+});
+Route::name('baiviet.')->group(function () {
+    Route::get('/quantri/bai-viet', [BaivietController::class, "index"])->name('index')->middleware('auth');
+    Route::get('/quantri/them-bai-viet', [BaivietController::class, "create"])->name('create')->middleware('auth');
+    Route::post('/quantri/luu-bai-viet', [BaivietController::class, "store"])->name('store')->middleware('auth');
+    Route::post('/quantri/cap-nhat-bai-viet/{id}', [BaivietController::class, "update"])->name('update')->middleware('auth');
+    Route::get('/quantri/sua-bai-viet/{id}', [BaivietController::class, "edit"])->name('edit')->middleware('auth');
+    Route::get('/quantri/xoa-bai-viet/{id}', [BaivietController::class, "delete"])->name('delete')->middleware('auth');
+});
