@@ -97,10 +97,12 @@ class BaivietController extends Controller
         }else {
             $status = 1;
         }
+        $iduser = Auth::id();
         $data->noidung = $input['noidung'];
         $data->tieude = $input['tieude'];
         $data->iddm = $input['iddm'];    
         $data->image = 'chưa có ảnh'; 
+        $baiviet->iduser = $iduser;
         $data->anhien = $status;
         $data->save();
         return redirect('/quantri/bai-viet')->with("tb", "Sửa thành công!");
