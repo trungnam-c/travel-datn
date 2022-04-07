@@ -20,6 +20,7 @@
                                     <tr>
                                         <th class="stt">STT</th>
                                         <th width="200px">Danh mục</th>
+                                        <th width="200px">Hình ảnh</th>
                                         <th width="200px">Người cập nhật cuối</th>
                                         <th width="150px">Tiêu đề</th>
                                         <th width="200px">Ngày đăng</th>
@@ -31,10 +32,12 @@
                                     @php
                                         $stt = 0;
                                     @endphp
+
                                     @foreach ($data as $row)
                                         @php
                                             $stt++;
                                             $anhien = $row->anhien;
+                                            $image = explode(',', $row->image);
                                         @endphp
 
                                         <tr class="location-tr">
@@ -42,6 +45,15 @@
                                             <td>
 
                                                     <span class="data-span">{{ $row->danhmuc }}</span>
+                                            </td>
+                                            <td>
+
+                                            @foreach ($image as $item)
+                                        @if ($item != "")
+                                        <img src="{{$item}}" width="150px" alt="">
+                                        @break
+                                        @endif
+                                        @endforeach
                                             </td>
                                             <td>
                                                     <span class="data-span">{{ $row->username }} </span>
