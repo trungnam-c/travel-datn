@@ -77,8 +77,17 @@ class detailLocationController extends Controller
         $data = detailLocationModel::find($id);
         $location = DB::table("location")->get();
         $hdv = DB::table("huongdanvien")->get();
-        $venguoilon =  DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',0)->first()->giave;
-        $vetreem = DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',1)->first()->giave;
+        if(!empty(DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',0)->first()->giave)) {
+            $venguoilon =  DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',0)->first()->giave;
+        }else {
+            $venguoilon = 0;
+        }
+
+        if(!empty(DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',1)->first()->giave)) {
+            $vetreem =  DB::table('chitietloaive')->where('idlocation_detail',$data->id)->where('loaive',1)->first()->giave;
+        } else {
+            $vetreem = 0;
+        }
         return view("Admin/detailLocation_edit", compact("data", "location", "hdv","venguoilon","vetreem"));
     }
 
