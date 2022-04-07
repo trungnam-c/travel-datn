@@ -182,7 +182,7 @@
                         <li class="nav-item ">
                             <a href="{{ route('magiamgia.index') }}"
                                 class="nav-link {{ request()->segment(2) == 'ma-giam-gia' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-info-circle"></i>
+                                <i class="nav-icon fa fa-window-maximize"></i>
                                 <p>
                                     Quản lý mã giảm giá
 
@@ -204,7 +204,7 @@
                         <li class="nav-item ">
                             <a href="{{ route('danhmucbaiviet.index') }}"
                                 class="nav-link {{ request()->segment(2) == 'danh-muc-bai-viet' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-info-circle"></i>
+                                <i class="nav-icon fa fa-clipboard"></i>
                                 <p>
                                     Quản lý Danh mục bài viết
 
@@ -215,7 +215,7 @@
                         <li class="nav-item ">
                             <a href="{{ route('baiviet.index') }}"
                                 class="nav-link {{ request()->segment(2) == 'bai-viet' ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-info-circle"></i>
+                                <i class="nav-icon fa fa-envelope-open"></i>
                                 <p>
                                     Quản lý bài viết
 
