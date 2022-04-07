@@ -257,7 +257,6 @@
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     Quản lý địa điểm
-                                    <span class="badge badge-info right">2</span>
                                 </p>
                             </a>
                         </li>
@@ -267,8 +266,7 @@
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     Chi tiết địa điểm
-                                    <span
-                                        class="badge badge-info right">{{ DB::table("detail_location")->count(); }}</span>
+
                                 </p>
                             </a>
                         </li>
@@ -280,7 +278,7 @@
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Khách hàng
-                                    <span class="badge badge-info right">{{ DB::table("users")->count(); }}</span>
+
                                 </p>
                             </a>
                         </li>
@@ -291,8 +289,7 @@
                                 <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                                 <p>
                                     Hướng dẫn viên
-                                    <span
-                                        class="badge badge-info right">{{ DB::table("huongdanvien")->count(); }}</span>
+
                                 </p>
                             </a>
                         </li>
@@ -302,7 +299,7 @@
                                 <i class="nav-icon fa fa-bars" aria-hidden="true"></i>
                                 <p>
                                     Danh mục
-                                    <span class="badge badge-info right">{{ DB::table("categories")->count(); }}</span>
+
                                 </p>
                             </a>
                         </li>
@@ -312,7 +309,7 @@
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     Quản lý mã giảm giá
-                                    <span class="badge badge-info right">{{ DB::table("magiamgia")->count(); }}</span>
+
 
                                 </p>
                             </a>
@@ -324,7 +321,7 @@
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     Quản lý đặt vé
-                                    <span class="badge badge-info right">2</span>
+
                                 </p>
                             </a>
                         </li>
@@ -334,7 +331,7 @@
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     Quản lý Danh mục bài viết
-                                    <span class="badge badge-info right">{{ DB::table("danhmuc_baiviet")->count(); }}</span>
+
 
                                 </p>
                             </a>
@@ -345,7 +342,7 @@
                                 <i class="nav-icon fas fa-info-circle"></i>
                                 <p>
                                     Quản lý bài viết
-                                    <span class="badge badge-info right">{{ DB::table("baiviet")->count(); }}</span>
+
 
                                 </p>
                             </a>
