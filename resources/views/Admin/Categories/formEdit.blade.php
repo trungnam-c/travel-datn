@@ -240,7 +240,7 @@ myDropzone.on('success', function() {
     var input = document.querySelector("input[name='images']");
     var id = iddata;
 
-    input.value += args[1] + ",";
+    input.value = args[1];
     var node = document.createElement('div');
     var attr = document.createAttribute("class");
     attr.value = "col-md-2 mt-2";

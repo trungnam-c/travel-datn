@@ -35,7 +35,6 @@
                                     @foreach ($data as $row)
                                         @php
                                             $stt++;
-                                            $image = explode(',', $row->image);
                                             $anhien = $row->anhien;
                                         @endphp
 
@@ -47,12 +46,9 @@
                                                 </p>
                                             </td>
                                             <td>
-                                                @foreach ($image as $item)
-                                                    @if ($item != "")
-                                                        <img src="{{$item}}" width="150px" alt="">
-                                                        @break
-                                                    @endif
-                                                @endforeach
+                                                
+                                                        <img src="{{$row->image}}" width="150px" alt="">
+                                                 
 
                                             </td>
                                             <td>

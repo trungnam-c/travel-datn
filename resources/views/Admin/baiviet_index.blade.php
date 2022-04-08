@@ -38,7 +38,6 @@
                                 @php
                                 $stt++;
                                 $anhien = $row->anhien;
-                                $image = explode(',', $row->image);
                                 @endphp
 
                                 <tr class="location-tr">
@@ -48,13 +47,7 @@
                                         <span class="data-span">{{ $row->danhmuc }}</span>
                                     </td>
                                     <td>
-
-                                        @foreach ($image as $item)
-                                        @if ($item != "")
-                                        <img src="{{$item}}" width="150px" alt="">
-                                        @break
-                                        @endif
-                                        @endforeach
+                                        <img src="{{$row->image}}" width="150px" alt="">
                                     </td>
                                     <td>
                                         <span class="data-span">{{ $row->username }} </span>
