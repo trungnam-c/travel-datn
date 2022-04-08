@@ -15,7 +15,7 @@
                     <form action="{{ route('baiviet.update',['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("post")
-                        <input type="hidden" name="images" value="{{old('images')}}" id="images">
+                        <input type="hidden" name="images" value="{{$data->image}}" id="images">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">

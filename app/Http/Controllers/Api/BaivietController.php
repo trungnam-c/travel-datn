@@ -19,13 +19,18 @@ class BaivietController extends Controller
         return DB::select(" SELECT bv.id as idbv ,  dm.id as iddm,tieude,noidung, bv.image as images, us.avatar, ngaydang ,us.name as tenuser, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 AND bv.id = $id    ");
         //  return baivietModel::where('anhien', '=', 1)->where('id', '=', $id)->first();
     }
+    public function getbvbycateid($id)
+    {
+        return DB::select(" SELECT bv.id as idbv ,  dm.id as iddm,tieude,noidung, bv.image as images, us.avatar, ngaydang ,us.name as tenuser, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 AND dm.id = $id    ");
+        //  return baivietModel::where('anhien', '=', 1)->where('id', '=', $id)->first();
+    }
     public function getNewPostsCate()
     {
-        return DB::select(" SELECT bv.id ,tieude ,  ngaydang,us.name as tenuser, dm.id as iddm, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 ORDER BY ngaydang DESC  LIMIT 3 ");
+        return DB::select(" SELECT bv.id ,tieude,bv.image ,  ngaydang,us.name as tenuser, dm.id as iddm, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 ORDER BY ngaydang DESC  LIMIT 3 ");
     }
     public function getPostHighLight()
     {
-        return DB::select(" SELECT bv.id ,tieude,  ngaydang,us.name as tenuser, dm.id as iddm, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 AND  bv.noibat = 1 ORDER BY ngaydang DESC ");
+        return DB::select(" SELECT bv.id ,tieude,bv.image,  ngaydang,us.name as tenuser, dm.id as iddm, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 AND  bv.noibat = 1 ORDER BY ngaydang DESC ");
     }
     // public function getPsostHighLight()
     // {
@@ -49,7 +54,7 @@ class BaivietController extends Controller
     }
     public function getAllPostByIdCate($id)
     {
-        return  DB::select(" SELECT bv.id as idbv, dm.id as iddm,tieude  , ngaydang, us.name as tenuser, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 AND bv.iddm = $id ORDER BY ngaydang DESC limit 6  ");
+        return  DB::select(" SELECT bv.id as idbv,bv.image ,dm.id as iddm,tieude  , ngaydang, us.name as tenuser, dm.name as tendm FROM users us inner join baiviet bv  on bv.iduser = us.id inner join danhmuc_baiviet dm on bv.iddm = dm.id WHERE dm.anhien = 1 AND bv.anhien= 1 AND bv.iddm = $id ORDER BY ngaydang DESC limit 6  ");
     }
 
 }
