@@ -72,7 +72,7 @@ class UserController extends Controller
         $userUpdate->name = $input['name'];
         $userUpdate->password = $input['password'];
         $userUpdate->gmail = $input['gmail'];
-        $userUpdate->avatar = $this->xoadauphay($input['images']);
+        $userUpdate->avatar = $input['images'];
         $userUpdate->isAdmin = $input['isAdmin'];
         $userUpdate->save();
 
