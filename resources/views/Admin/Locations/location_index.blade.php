@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\DB;
         <div class="row">
 
             <div class="col-12">
-
-
+                @if (\Session::has('success'))
+                <div class="col-sm-12 alert alert-success" id="success">
+                    {!! \Session::get('success') !!}
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><a href="{{ route('location.create') }}"

@@ -84,7 +84,7 @@ class LocationController extends Controller
         $loca->top = $top;
         $loca->anhien = $anhien;
         $loca->save();
-        return redirect(route("location.index"))->with("tb", "thêm thành công!");
+        return redirect(route("location.index"))->with("success", "Thêm thành công!");
     }
 
     /**
