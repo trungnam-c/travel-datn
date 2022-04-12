@@ -129,5 +129,5 @@ Route::name('rate.')->group(function () {
     Route::get('/quantri/rate', [RateController::class, "index"])->name('index')->middleware('auth');
     Route::post('/quantri/cap-nhat-rate/{id}', [RateController::class, "update"])->name('update')->middleware('auth');
     Route::get('/quantri/sua-rate/{id}', [RateController::class, "edit"])->name('edit')->middleware('auth');
-    Route::get('/quantri/xoa-bai-viet/{id}', [RateController::class, "delete"])->name('delete')->middleware('auth');
+    Route::get('/quantri/xoa-rate/{id}', [RateController::class, "delete"])->name('delete')->middleware('auth');
 });
