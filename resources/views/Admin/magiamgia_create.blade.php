@@ -90,7 +90,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
                     </div>
 
                 </form>

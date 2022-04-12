@@ -26,7 +26,7 @@
                                     <span class="badge badge-danger">{{ $errors->first('name') }}</span>
                                     @endif
                                 </div>
-                                
+
                             </div>
                             {{-- col-6 --}}
                             <div class="col-sm-2"></div>
@@ -34,7 +34,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
                     </div>
 
                 </form>
