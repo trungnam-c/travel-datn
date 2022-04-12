@@ -5,7 +5,7 @@ $(document).ready(()=>{
         var id= $(btn).attr("id-data");
         var node = $(btn).parent().parent();
         var image = $("#images");
-        var images = image.val().split(','); 
+        var images = image.val().split(',');
         images[id]="";
         var imgs = images.join(",");
         $(node).remove();

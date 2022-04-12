@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin_custom.css') }}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/kqgk64h8a77zbey6oxepy6jum8jnsa87q6msbkwgbl7knbl9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -44,6 +45,7 @@
      toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
    });
  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -204,24 +206,23 @@
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{asset('/')}}dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                            alt="User Image">
-                    </div>
-                    <div class="info">
-                        @if(Auth::user()->name)
-                        <a href="/profile" class="d-inline-block">{{Auth::user()->name}} </a>
-                        <a class="d-inline-block">/ </a>
-                        <a href="/thoat"
-                            class="d-inline-block">Đăng xuất </a>
-
-                        @else
-                        <a href="/login" class="d-inline-block">Đăng nhập </a>
-                        <a class="d-inline-block">/ </a>
-                        <a href="#" class="d-inline-block">Đăng nhập </a>
-                        @endif
-                    </div>
+                <div class="pt-3 pb-3">
+                    @if(Auth::user()->name)
+                        <div class="dropdown">
+                            <button class="border-0 bg-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{asset('dist/img')}}/{{Auth::user()->avatar}}" class="img-circle elevation-2" width="40px" height="40px">
+                                &nbsp;
+                                <span class="text-white">{{Auth::user()->name}}</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item text-dark" href="/admin/profile">Chỉnh sửa hồ sơ</a></li>
+                                <li><a class="dropdown-item text-danger font-weight-bold" href="/thoat">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    @else
+                        <a class="nav-link" href="/login" role="button">Đăng nhập</a>
+                        <a class="nav-link" href="/register" role="button">Đăng ký</a>
+                    @endif
                 </div>
 
                 <!-- SidebarSearch Form -->
@@ -243,7 +244,7 @@
                         data-accordion="false">
                         <li class="nav-item ">
                             <a href="/admin"
-                                class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
+                                class="nav-link {{ request()->segment(2) == '' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-home" aria-hidden="true"></i>
                                 <p>
                                     Dashboard
@@ -369,7 +370,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper ml-0">
+        <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <div class="container-fluid">
@@ -537,6 +538,7 @@
     })
     </script>
     @yield('location-js')
+    @yield('custom-scripts')
 </body>
 
 </html>

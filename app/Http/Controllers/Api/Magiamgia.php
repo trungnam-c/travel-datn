@@ -11,6 +11,6 @@ class Magiamgia extends Controller
     public function checkmagiamgia(Request $rq)
     {
         // return $rq->magiamgia;
-        return ModelsMagiamgia::where('magiamgia', $rq->magiamgia)->get();
+        return ModelsMagiamgia::where('magiamgia', $rq->magiamgia)->where('anhien', '=', 1)->get();
     }
 }
