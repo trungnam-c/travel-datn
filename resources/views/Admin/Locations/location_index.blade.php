@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\DB;
         <div class="row">
 
             <div class="col-12">
-
-
+                @if (\Session::has('success'))
+                <div class="col-sm-12 alert alert-success" id="success">
+                    {!! \Session::get('success') !!}
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"><a href="{{ route('location.create') }}"
@@ -145,7 +148,8 @@ $('.delete').on('click', function(e) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Vâng, Xóa nó!',
+        cancelButtonText: 'Hủy'
     }).then((result) => {
         if (result.isConfirmed === true) {
             location.href = self.attr('href');

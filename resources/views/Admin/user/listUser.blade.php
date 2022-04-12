@@ -132,7 +132,8 @@ $('.delete').on('click', function(e) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Vâng, Xóa nó!',
+        cancelButtonText: 'Hủy'
     }).then((result) => {
         if (result.isConfirmed === true) {
             location.href = self.attr('href');

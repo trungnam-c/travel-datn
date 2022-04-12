@@ -65,14 +65,14 @@
                                         </p>
                                         <p>
                                             Giá: <span
-                                                class="data-span text-danger">@if(!empty(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',0)->first()->giave)) {{ DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',0)->first()->giave }} đ @endif </span>
+                                                class="data-span text-danger">@if(!empty(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',0)->first()->giave)) {{ number_format(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',0)->first()->giave) }} đ @endif </span>
                                         </p>
                                         <p>
                                             Loại vé: <span class="data-span">Trẻ em</span>
                                         </p>
                                         <p>
                                             Giá: <span
-                                                class="data-span text-danger">@if(!empty(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',0)->first()->giave)) {{ DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',1)->first()->giave }} đ @endif</span>
+                                                class="data-span text-danger">@if(!empty(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',0)->first()->giave)) {{ number_format(DB::table('chitietloaive')->where('idlocation_detail',$r->id)->where('loaive',1)->first()->giave) }} đ @endif</span>
                                         </p>
                                         <p>
                                             Tgian: <span
@@ -178,7 +178,8 @@ $('.delete').on('click', function(e) {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Vâng, Xóa nó!',
+        cancelButtonText: 'Hủy',
     }).then((result) => {
         if (result.isConfirmed === true) {
             location.href = self.attr('href');

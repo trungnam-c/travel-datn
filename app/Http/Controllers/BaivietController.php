@@ -53,7 +53,7 @@ class BaivietController extends Controller
         $baiviet->iduser = $iduser;
         $baiviet->ngaydang = date("Y/m/d H:m:s");
         $baiviet->anhien = $anhien;
-        $baiviet->image = 'chưa có ảnh'; 
+        $baiviet->image = $input['images'];
         $baiviet->save();
         return back()->with("tb", "thêm thành công!");
     }
@@ -100,8 +100,13 @@ class BaivietController extends Controller
         $iduser = Auth::id();
         $data->noidung = $input['noidung'];
         $data->tieude = $input['tieude'];
+<<<<<<< HEAD
         $data->iddm = $input['iddm'];    
         $data->image = 'chưa có ảnh'; 
+=======
+        $data->iddm = $input['iddm'];
+        $data->image = $input['images'];
+>>>>>>> main
         $data->iduser = $iduser;
         $data->anhien = $status;
         $data->save();
