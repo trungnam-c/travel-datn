@@ -349,6 +349,17 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('rate.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'rate' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>
+                                    Quản lý bình luận
+                                    <span class="badge badge-info right">{{ DB::table("rate")->count(); }}</span>
+
+                                </p>
+                            </a>
+                        </li>
 
                     </ul>
                 </nav>

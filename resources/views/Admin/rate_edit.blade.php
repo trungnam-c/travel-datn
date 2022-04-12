@@ -1,6 +1,6 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
-@section('page-title', 'Sửa mã giảm giá')
+@section('page-title', 'Sửa bình luận')
 @section('main')
     <section class="content">
         <div class="container-fluid">
@@ -8,51 +8,47 @@
 
                 <div class="card card-primary col-sm-12">
                     <div class="card-header">
-                        <h3 class="card-title">Sửa bài viết</h3>
+                        <h3 class="card-title">Sửa bình luận</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('baiviet.update',['id'=>$data->id]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('rate.update',['id'=>$data->idrate]) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method("post")
-                        <!-- <input type="hidden" name="images" value="{{$data->image}}" id="images"> -->
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
-                                <div class="form-group">
-                                        <label>Chọn danh mục</label>
-                                        <select class="form-control select2bs4" name="iddm" style="width: 100%;">
-                                           @foreach ($cate as $item)
-                                           @if ($data -> iddm === $item->id)
-                                           <option selected value="{{$item->id}}">{{$item->name}}</option>
-                                           @else
-                                           <option value="{{$item->id}}">{{$item->name}}</option>
-                                           @endif
-                                           @endforeach
-
-                                        </select>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-sm-6">
-
                                     <div class="form-group">
-                                        <label for="tieude">Tiêu đề</label>
-                                        <input type="text" class="form-control" value="{{$data->tieude}}" id="tieude" name="tieude"
+                                        <label for="name">Người bình luận</label>
+                                        <input type="text" class="form-control" disabled value="{{$data->name}}" id="name" name="name"
                                             placeholder="">
+
                                     </div>
                                 </div>                             
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                <label> Nhập nội dung :</label>
-                                <textarea id="default" name="noidung">{{$data->noidung}}</textarea>
+                                <label> Nội dung: </label>
+                                <div>
+                                <textarea disabled class="form-control" name="noidung">{{$data->comment}}</textarea>
+                                </div>
 
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="lydoan">Lý do ẩn</label>
+                                        <input type="text" class="form-control" value="{{$data->lydoan}}" id="lydoan" name="lydoan"
+                                            placeholder="">
+                                            @if ($errors->has('lydoan'))
+                                    <span class="badge badge-danger">{{ $errors->first('lydoan') }}</span>
+                                    @endif
+
+                                    </div>
+                                </div>                             
+                            </div>
+
                             <div class="row">
                                 <div class="col-sm-6">
 

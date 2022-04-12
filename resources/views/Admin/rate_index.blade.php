@@ -1,5 +1,5 @@
 @extends('layouts.admin_layout')
-@section('baiviet-active', 'active')
+@section('rate-active', 'active')
 @section('page-title', 'Quản lý bài viết')
 @section('main')
     <section class="content">
@@ -10,21 +10,21 @@
 
 
                     <div class="card">
-                        <div class="card-header">
+                        <!-- <div class="card-header">
                             <h3 class="card-title"><a href="{{ route('baiviet.create') }}" class="btn btn-block btn-primary">Thêm bài viết mới</a></h3>
-                        </div>
+                        </div> -->
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th class="stt">STT</th>
-                                        <th width="200px">Danh mục</th>
-                                        <th width="200px">Người cập nhật cuối</th>
-                                        <th width="150px">Tiêu đề</th>
-                                        <th width="200px">Ngày đăng</th>
-                                        <th width="150px ">Ẩn hiện</th>
-                                        <th width="150px ">Thay đổi</th>
+                                        <!-- <th width="200px">id_rate</th> -->
+                                        <th width="100px">Người bình luận</th>
+                                        <th width="300px">Nội dung</th>
+                                        <th width="10px">Sao</th>
+                                        <th width="50px ">Ẩn hiện</th>
+                                        <th width="50px ">Thay đổi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,20 +39,20 @@
 
                                         <tr class="location-tr">
                                             <td>{{ $stt }}</td>
-                                            <td>
+                                            <!-- <td>
 
-                                                    <span class="data-span">{{ $row->danhmuc }}</span>
-                                            </td>
+                                                    <span class="data-span">{{ $row->idrate }}</span>
+                                            </td> -->
                                             <td>
-                                                    <span class="data-span">{{ $row->username }} </span>
-
-                                            </td>
-                                            <td>
-                                            <span class="data-span">{{ $row->tieude }} </span>
+                                                    <span class="data-span">{{ $row->name }} </span>
 
                                             </td>
                                             <td>
-                                            <span class="data-span">{{ $row->ngaydang }} </span>
+                                            <span class="data-span">{{ $row->comment }} </span>
+
+                                            </td>
+                                            <td>
+                                            <span class="data-span">{{ $row->star }} </span>
 
                                             </td>
                                             <td>
@@ -64,11 +64,11 @@
                                             </td>
                                             <td>
                                             <p class="edit-p">
-                                                    <a href="{{ route('baiviet.edit', ['id'=>$row->id]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
+                                                    <a href="{{ route('rate.edit', ['id'=>$row->idrate]) }}"><span class="edit-span" alt="Chỉnh sửa dòng này"><i
                                                         class="bi bi-pencil-square"></i></span></a>
-                                                    --
-                                                    <a class="delete" href="{{ route('baiviet.delete', ['id'=>$row->id]) }}"><span class="delete-span" alt="Xoá dòng này"><i
-                                                        class="bi bi-x-square"></i></span></a>
+                                                    <!-- --
+                                                    <a class="delete" href="{{ route('rate.delete', ['id'=>$row->idrate]) }}"><span class="delete-span" alt="Xoá dòng này"><i
+                                                        class="bi bi-x-square"></i></span></a> -->
                                                 </p>
 
                                             </td>
