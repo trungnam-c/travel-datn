@@ -1,6 +1,6 @@
 @extends('layouts.admin_layout')
 @section('rate-active', 'active')
-@section('page-title', 'Quản lý bài viết')
+@section('page-title', 'Quản lý bình luận')
 @section('main')
     <section class="content">
         <div class="container-fluid">

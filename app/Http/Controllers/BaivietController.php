@@ -100,13 +100,8 @@ class BaivietController extends Controller
         $iduser = Auth::id();
         $data->noidung = $input['noidung'];
         $data->tieude = $input['tieude'];
-<<<<<<< HEAD
-        $data->iddm = $input['iddm'];    
-        $data->image = 'chưa có ảnh'; 
-=======
         $data->iddm = $input['iddm'];
         $data->image = $input['images'];
->>>>>>> main
         $data->iduser = $iduser;
         $data->anhien = $status;
         $data->save();
