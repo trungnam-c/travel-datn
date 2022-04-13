@@ -57,8 +57,11 @@
                                         <span class="data-span">{{ $row->tieude }} </span>
 
                                     </td>
-                                    <td>
-                                        <span class="data-span">{{ $row->ngaydang }} </span>
+                                    <td>   
+                                        <span class="data-span">
+                                        {{ 
+                                            (new Carbon\Carbon(  $row->ngaydang))->diffForHumans()
+                                           }} </span>
 
                                     </td>
                                     <td>

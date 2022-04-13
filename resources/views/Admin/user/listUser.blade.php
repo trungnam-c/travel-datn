@@ -27,7 +27,7 @@
                                 <tr>
                                     <th style="width: 50px">ID</th>
                                     <th>Tên khách hàng</th>
-                                    <th style='width: "150px"'>Mật khẩu</th>
+                                    <!-- <th style='width: "150px"'>Mật khẩu</th> -->
                                     <th>Gmail</th>
                                     <th style=' width: "150px"'>Ảnh đại diện</th>
                                     <th>Vai trò</th>
@@ -43,7 +43,7 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>{{ $user->password }}</td>
+                                    <!-- <td>{{ $user->password }}</td> -->
                                     <td>{{ $user->gmail }}</td>
                                     <td>
                                         @foreach ($image as $item)
@@ -70,6 +70,9 @@
 
                     </div>
 
+                    <div class="div-paginate">
+                            {{ $data->links('vendor.pagination.bootstrap-4') }}
+                        </div>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -84,7 +87,7 @@
 </section>
 
 
-{!! $data->links() !!}
+<!-- {!! $data->links() !!} -->
 
 <script>
 $(document).ready(function() {

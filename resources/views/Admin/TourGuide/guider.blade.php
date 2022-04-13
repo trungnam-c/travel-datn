@@ -72,7 +72,7 @@ use Illuminate\Support\Facades\DB;
                                         @else
                                         <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
                                         @endif
-                                        <p>Thứ tự: <span class="font-weight-bold">{{ $row->anhien }}</span> </p>
+                                        <!-- <p>Thứ tự: <span class="font-weight-bold">{{ $row->anhien }}</span> </p> -->
                                     </td>
                                     <td>
                                         <p class="edit-p">
