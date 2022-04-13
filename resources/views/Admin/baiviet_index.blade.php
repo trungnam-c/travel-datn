@@ -62,9 +62,9 @@
 
                                     </td>
                                     <td>
-                                        @if ($anhien === 0)
+                                        @if ($anhien === 1)
                                         <p><span class="text-success font-weight-bold">Đang Hiện</span></p>
-                                        @elseif($anhien === 1)
+                                        @elseif($anhien === 0)
                                         <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
                                         @endif
                                     </td>

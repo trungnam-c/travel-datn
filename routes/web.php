@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\MagiamgiaController;
 use App\Http\Controllers\DanhmucbaivietController;
 use App\Http\Controllers\BaivietController;
+use App\Http\Controllers\RateController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -137,4 +138,10 @@ Route::name('baiviet.')->group(function () {
     Route::post('/quantri/cap-nhat-bai-viet/{id}', [BaivietController::class, "update"])->name('update')->middleware('auth');
     Route::get('/quantri/sua-bai-viet/{id}', [BaivietController::class, "edit"])->name('edit')->middleware('auth');
     Route::get('/quantri/xoa-bai-viet/{id}', [BaivietController::class, "delete"])->name('delete')->middleware('auth');
+});
+Route::name('rate.')->group(function () {
+    Route::get('/quantri/rate', [RateController::class, "index"])->name('index')->middleware('auth');
+    Route::post('/quantri/cap-nhat-rate/{id}', [RateController::class, "update"])->name('update')->middleware('auth');
+    Route::get('/quantri/sua-rate/{id}', [RateController::class, "edit"])->name('edit')->middleware('auth');
+    Route::get('/quantri/xoa-rate/{id}', [RateController::class, "delete"])->name('delete')->middleware('auth');
 });

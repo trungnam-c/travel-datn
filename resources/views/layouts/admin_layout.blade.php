@@ -58,12 +58,12 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <!-- <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{asset('/quantri')}}" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Liên hệ</a>
-                </li>
+                </li> -->
             </ul>
 
             <!-- Right navbar links -->
@@ -73,7 +73,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{asset('/quantri')}}" class="brand-link">
+            <a href="{{asset('/admin')}}" class="brand-link">
                 <img src="{{asset('/')}}dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">VIETTRAVEL</span>
@@ -86,12 +86,12 @@
                     @if(Auth::user()->name)
                         <div class="dropdown">
                             <button class="border-0 bg-transparent" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('dist/img')}}/{{Auth::user()->avatar}}" class="img-circle elevation-2" width="40px" height="40px">
+                                <img src="{{Auth::user()->avatar}}" class="img-circle elevation-2" width="40px" height="40px">
                                 &nbsp;
                                 <span class="text-white">{{Auth::user()->name}}</span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item text-dark" href="/admin/profile">Chỉnh sửa hồ sơ</a></li>
+                                <!-- <li><a class="dropdown-item text-dark" href="/admin/profile">Chỉnh sửa hồ sơ</a></li> -->
                                 <li><a class="dropdown-item text-danger font-weight-bold" href="/thoat">Đăng xuất</a></li>
                             </ul>
                         </div>
@@ -123,7 +123,7 @@
                                 class="nav-link {{ request()->segment(2) == '' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-home" aria-hidden="true"></i>
                                 <p>
-                                    Dashboard
+                                    Trang chủ
                                 </p>
                             </a>
                         </li>
@@ -132,7 +132,7 @@
                                 class="nav-link {{ request()->segment(2) == 'quan-ly-dia-diem' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
-                                    Quản lý địa điểm
+                                    Địa điểm
                                 </p>
                             </a>
                         </li>
@@ -184,7 +184,7 @@
                                 class="nav-link {{ request()->segment(2) == 'ma-giam-gia' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-window-maximize"></i>
                                 <p>
-                                    Quản lý mã giảm giá
+                                    Mã giảm giá
 
 
                                 </p>
@@ -196,7 +196,7 @@
                                 class="nav-link {{ request()->segment(2) == 'quan-ly-dat-ve' ? 'active' : '' }}">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
-                                    Quản lý đặt vé
+                                   Đặt vé
 
                                 </p>
                             </a>
@@ -206,7 +206,7 @@
                                 class="nav-link {{ request()->segment(2) == 'danh-muc-bai-viet' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-clipboard"></i>
                                 <p>
-                                    Quản lý Danh mục bài viết
+                                    Danh mục bài viết
 
 
                                 </p>
@@ -216,9 +216,19 @@
                             <a href="{{ route('baiviet.index') }}"
                                 class="nav-link {{ request()->segment(2) == 'bai-viet' ? 'active' : '' }}">
                                 <i class="nav-icon fa fa-envelope-open"></i>
-                                <p>
-                                    Quản lý bài viết
+                                <p>Bài viết
 
+
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{{ route('rate.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'rate' ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>
+                                    Bình luận
+                                    <!-- <span class="badge badge-info right">{{ DB::table("rate")->count(); }}</span> -->
 
                                 </p>
                             </a>
@@ -255,13 +265,6 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.1.0
-            </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
-        </footer>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
