@@ -36,7 +36,7 @@ class AdminController extends Controller
             ->where('detail_location.idlocation','=', $diadiem[$i]->id)
             ->count();
         }
-        return view('admin.home', compact('diadiem', 'chitietdiadiem', 'dataVe', 'data','dataDetailLocation'));
+        return view('Admin.home', compact('diadiem', 'chitietdiadiem', 'dataVe', 'data','dataDetailLocation'));
     }
 
     public function login()
