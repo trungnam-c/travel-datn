@@ -12,12 +12,12 @@ class MagiamgiaController extends Controller
     public function index()
     {
         $data = magiamgia::paginate(15);
-        return view('admin.magiamgia_index', ['data' => $data]);
+        return view('Admin.magiamgia_index', ['data' => $data]);
     }
     public function create()
     {
         $data = DB::table('magiamgia')->get();
-        return view('admin.magiamgia_create', ['data' => $data]);
+        return view('Admin.magiamgia_create', ['data' => $data]);
     }
 
     public function store(Request $request)
