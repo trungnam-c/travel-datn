@@ -93,7 +93,9 @@ use Illuminate\Support\Facades\DB;
                                         @else
                                         <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
                                         @endif
-                                        <p>Thứ tự: <span class="font-weight-bold">{{ $row->top }}</span> </p>
+                                        @if ($row->top == 1)
+                                        <p><span style="font-size: 25px;">🔝</span></p>
+                                        @endif
                                     </td>
                                     <td>
                                         <p class="edit-p">

@@ -59,7 +59,7 @@
                                     <label for=""></label>
                                     <div class="custom-control custom-switch  mt-3">
                                         <!-- {{-- <input class="form-check-input" type="checkbox" role="switch" id="anhien" checked> --}} -->
-                                        @if($data->anhien === 0)
+                                        @if($data->anhien === 1)
                                         <input type="checkbox" class="custom-control-input"  value="0"  id="anhien" name="anhien">
                                         @else
                                         <input type="checkbox" class="custom-control-input" checked value="0"  id="anhien" name="anhien">

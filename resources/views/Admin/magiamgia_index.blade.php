@@ -52,23 +52,30 @@
 
                                             </td>
                                             <td>
-                                            <span class="data-span">{{ $row->ngaybatdau }} </span>
+                                            <span class="data-span">{{
+                                                date('d-m-Y', strtotime($row->ngaybatdau ));
+                                                }} </span>
 
                                             </td>
                                             <td>
-                                            <span class="data-span">{{ $row->ngayketthuc }} </span>
+                                            <span class="data-span">{{  date('d-m-Y', strtotime($row->ngayketthuc)) }} </span>
 
                                             </td>
                                             <td>
-                                                @if ($row->loaima == 1)
-                                            <span class="data-span"> Đang hiện</span>
+                                                @if ($row->loaima == 0)
+                                            <span class="data-span"> Giảm theo giá tiền</span>
                                                 @else
-                                                <span class="data-span"> Đang ẩn</span>
+                                                <span class="data-span"> Giảm theo phần trăm</span>
                                             @endif
                                             </td>
 
                                             <td>
-                                            <span class="data-span">{{ $row->giatri }} </span>
+                                            @if ($row->loaima == 0)
+                                            <span class="data-span">{{ number_format($row->giatri) }} </span>
+                                                @else
+                                                <span class="data-span">{{ $row->giatri }} % </span>
+                                            @endif
+                             
 
                                             </td>
                                             <td>

@@ -28,8 +28,8 @@
                                     <th class="stt">STT</th>
                                     <th width="150px">Địa điểm</th>
                                     <th width="200px">Giá vé</th>
-                                    <th width="200px">Mô tả</th>
-                                    <th width="200px">Phương tiện</th>
+                                    <!-- <th width="200px">Mô tả</th> -->
+                                    <!-- <th width="200px">Phương tiện</th> -->
                                     <th width="200px">Hình ảnh</th>
                                     <th width="170px">Thời gian khởi hành</th>
                                     <th width="80px">Số chỗ</th>
@@ -79,11 +79,11 @@
                                                 class="data-span">{{ DB::table("location")->where("id",$r->idlocation)->first()->time }}</span>
                                         </p>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <textarea class="mota" style="background-color: unset;" id="" readonly cols="30"
                                             rows="4">{{ DB::table("location")->where("id",$r->idlocation)->first()->mota }}</textarea>
-                                    </td>
-                                    <td>
+                                    </td> -->
+                                    <!-- <td>
                                         <p>
                                             PT: <span
                                                 class="data-span">{{ DB::table("location")->where("id",$r->idlocation)->first()->phuongtien }}</span>
@@ -92,7 +92,7 @@
                                             Loại: <span
                                                 class="data-span">{{ DB::table('categories')->where("id",DB::table("location")->where("id",$r->idlocation)->first()->category)->first()->name }}</span>
                                         </p>
-                                    </td>
+                                    </td> -->
                                     <td>
                                         @php
                                         $image = explode(',',

@@ -19,7 +19,7 @@ class LocationController extends Controller
     public function index()
     {
         $data = Location_Model::paginate(15);
-        return view('admin.Locations.location_index', ['data' => $data]);
+        return view('Admin.Locations.location_index', ['data' => $data]);
     }
 
     /**v
@@ -30,7 +30,7 @@ class LocationController extends Controller
     public function create()
     {
         $data = DB::table('categories')->get();
-        return view('admin.Locations.location_create', ['data' => $data]);
+        return view('Admin.Locations.location_create', ['data' => $data]);
     }
 
     /**

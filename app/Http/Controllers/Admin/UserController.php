@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.user.addUser', [
+        return view('Admin.user.addUser', [
             'title' => 'Thêm khách hàng mới'
         ]);
     }
@@ -52,7 +52,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.user.editUser', [
+        return view('Admin.user.editUser', [
             'title' => 'Chỉnh sửa khách hàng',
             'user' => $user
         ]);
