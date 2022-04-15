@@ -68,6 +68,20 @@
                                     </div>
 
                                 </div>
+                                <div class="col-sm-6">
+
+                                    <label for=""></label>
+                                    <div class="custom-control custom-switch  mt-3">
+                                        <!-- {{-- <input class="form-check-input" type="checkbox" role="switch" id="anhien" checked> --}} -->
+                                        @if($data->noibat === 0)
+                                        <input type="checkbox" class="custom-control-input"  value="0"  id="noibat" name="noibat">
+                                        @else
+                                        <input type="checkbox" class="custom-control-input" checked value="0"  id="noibat" name="noibat">
+                                        @endif
+                                        <label class="custom-control-label" for="noibat"> Chọn để HOT </label>
+                                    </div>
+
+                                </div>
                             </div>
                             <div class="row">
                             <div class="col-md-12">

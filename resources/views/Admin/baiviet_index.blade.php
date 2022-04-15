@@ -26,6 +26,7 @@
                                     <th width="150px">Tiêu đề</th>
                                     <th width="200px">Ngày đăng</th>
                                     <th width="150px ">Ẩn hiện</th>
+                                    <th width="150px ">Nổi bật</th>
                                     <th width="150px ">Thay đổi</th>
                                 </tr>
                             </thead>
@@ -66,6 +67,13 @@
                                         <p><span class="text-success font-weight-bold">Đang Hiện</span></p>
                                         @elseif($anhien === 1)
                                         <p><span class="text-danger font-weight-bold">Đang Ẩn</span></p>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($noibat === 0)
+                                        <p><span class="text-danger font-weight-bold">Hot</span></p>
+                                        @elseif($noibat === 1)
+                                        <p><span class="text-success font-weight-bold">Bình thường</span></p>
                                         @endif
                                     </td>
                                     <td>

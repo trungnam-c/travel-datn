@@ -45,6 +45,7 @@ class BaivietController extends Controller
         );
         $input = $request->all();
         $anhien = 1;
+        $noibat = 0;
         $iduser = Auth::id();
         $baiviet = new baiviet();
         $baiviet->noidung = $input['noidung'];
@@ -53,6 +54,7 @@ class BaivietController extends Controller
         $baiviet->iduser = $iduser;
         $baiviet->ngaydang = date("Y/m/d H:m:s");
         $baiviet->anhien = $anhien;
+        $baiviet->noibat = $noibat;
         $baiviet->image = $input['images'];
         $baiviet->save();
         return back()->with("tb", "thêm thành công!");
@@ -97,6 +99,12 @@ class BaivietController extends Controller
         }else {
             $status = 1;
         }
+
+        if($request->noibat == '') {
+            $hot = $request->noibat = 0;
+        }else {
+            $hot = 1;
+        }
         $iduser = Auth::id();
         $data->noidung = $input['noidung'];
         $data->tieude = $input['tieude'];
@@ -104,6 +112,7 @@ class BaivietController extends Controller
         $data->image = $input['images'];
         $data->iduser = $iduser;
         $data->anhien = $status;
+        $data->noibat = $hot;
         $data->save();
         return redirect('/quantri/bai-viet')->with("tb", "Sửa thành công!");
     }
