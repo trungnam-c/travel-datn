@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('guider-active', 'active')
 @section('page-title', 'Thêm hướng dẫn viên')
+@section('web-title', 'Thêm hướng dẫn viên')
 @section('main')
     <section class="content">
         <div class="container-fluid">

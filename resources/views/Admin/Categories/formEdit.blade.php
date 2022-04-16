@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('categories-active', 'active')
 @section('page-title', 'Sửa thông tin danh mục')
+@section('web-title', 'Sửa danh mục')
 @section('main')
 <section class="content">
     <div class="container-fluid">
@@ -57,7 +58,7 @@
                                         <label for="hide" class=" mb-0 mr-3 ml-3">Ẩn :</label>
                                         <input class="form-check" type="radio" checked value="0" id="hide" name="cateHideShow"
                                             placeholder="" />
-                                       
+
                                         @endif
                                     </div>
                                     @if ($errors->has('cateHideShow'))

@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
 @section('page-title', 'Thêm địa điểm')
+@section('web-title', 'Thêm địa điểm')
 @section('main')
     <section class="content">
         <div class="container-fluid">

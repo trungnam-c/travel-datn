@@ -25,7 +25,6 @@
                                         <div class="form-group">
                                             <label for="diadiem">Địa điểm</label>
                                             <select name="idlocation" id="idlocation" class="form-control select2bs4">
-                                                <option value="0" disabled selected>-- Chọn địa điểm --</option>
                                                 @foreach ($location as $r)
                                                     <option value="{{$r->id}}" {{ $data->idlocation === $r->id ? 'selected' : '' }}>Đi: {{$r->diemdi}} | Đến: {{$r->diemden}}</option>
                                                 @endforeach

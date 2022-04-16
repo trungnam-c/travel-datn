@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('categories-active', 'active')
 @section('page-title', 'Quản lý danh mục')
+@section('web-title', 'Danh mục')
 
 @section('main')
     <section class="content">
@@ -41,14 +42,14 @@
                                         <tr class="location-tr">
                                             <td>{{ $stt }}</td>
                                             <td>
-                                            <p>
-                                                    Đến: <span class="data-span">{{ $row->name }} </span>
+                                                <p>
+                                                    <span class="data-span">{{ $row->name }} </span>
                                                 </p>
                                             </td>
                                             <td>
-                                                
+
                                                         <img src="{{$row->image}}" width="150px" alt="">
-                                                 
+
 
                                             </td>
                                             <td>

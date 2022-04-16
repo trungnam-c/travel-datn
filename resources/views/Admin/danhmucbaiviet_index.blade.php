@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('danhmucbaiviet-active', 'active')
 @section('page-title', 'Quản lý Danh mục bài viết')
+@section('web-title', 'Danh mục bài viết')
 @section('main')
     <section class="content">
         <div class="container-fluid">

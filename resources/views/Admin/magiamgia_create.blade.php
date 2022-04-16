@@ -40,10 +40,10 @@
                                     <label for="diemdi">Loại mã</label>
                                     <div class="card-body d-flex justify-content-start col-md-8 align-items-center">
                                         <label for="show" class=" mb-0 mr-3">Theo giá</label>
-                                        <input class="form-check" type="radio" value="1" id="show" name="loaima"
+                                        <input class="form-check" type="radio" value="0" id="show" name="loaima"
                                             placeholder="..." />
                                         <label for="hide" class=" mb-0 mr-3 ml-3">Theo %</label>
-                                        <input class="form-check" type="radio" value="0" id="hide" name="loaima"
+                                        <input class="form-check" type="radio" value="1" id="hide" name="loaima"
                                             placeholder="..." />
                                     </div>
                                     @if ($errors->has('loaima'))

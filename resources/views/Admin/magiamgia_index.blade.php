@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('magiamgia-active', 'active')
 @section('page-title', 'Quản lý mã giảm giá')
+@section('web-title', 'Mã giảm giá')
 @section('main')
     <section class="content">
         <div class="container-fluid">
@@ -75,7 +76,7 @@
                                                 @else
                                                 <span class="data-span">{{ $row->giatri }} % </span>
                                             @endif
-                             
+
 
                                             </td>
                                             <td>

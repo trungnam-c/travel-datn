@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
 @section('page-title', 'Sửa mã giảm giá')
+@section('web-title', 'Sửa mã giảm giá')
 @section('main')
 <section class="content">
     <div class="container-fluid">

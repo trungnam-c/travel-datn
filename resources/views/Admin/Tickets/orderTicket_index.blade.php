@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
 @section('page-title', 'Quản lý đặt vé')
+@section('web-title', 'Đặt vé')
 
 @section('main')
     @php
@@ -29,10 +30,10 @@
                             <div id="div-dropdown">
 
 
-                         
+
                                 @foreach ($locations as $key=>$rowlc)
                                     @php
-                                         
+
                                         $sochuyen = detailLocationModel::where('idlocation', $rowlc->id)->get();
                                     @endphp
 
@@ -55,10 +56,10 @@
                                                 @foreach ($location_detail as $key=>$rowlcd)
                                                     @php
                                                         $hdv = tourGuideModel::where('id', $rowlcd->idhdv)->first('tenhdv');
-                                                       
-                                                       
+
+
                                                         $data = OrderTicketModel::where('idlocation_detail', $rowlcd->id)->get();
-                                                       
+
                                                     @endphp
                                                     <div class="w-100 div-ticket-cols">
                                                         <div class="row location-detail-row">
@@ -73,7 +74,7 @@
                                                                 <p>Số khách lớn: <span>33</span></p>
                                                                 <p>Số khách trẻ em: <span>22</span></p>
                                                             </div> --}}
-                                                            
+
                                                             <div class="col-sm-3 div-btn-detail">
                                                                 <button class="btn btn-dark btn-view-ticket">Chi tiết đặt
                                                                     vé</button>
@@ -85,7 +86,7 @@
 
                                                         <div class="div-ticket-detail mt-3">
                                                             @php
-                                                                 
+
                                                                 $data = OrderTicketModel::where('idlocation_detail', $rowlcd->id)->get();
                                                             @endphp
 
@@ -105,9 +106,9 @@
 
                                                                     @foreach ($data as $key=>$row)
                                                                         @php
-                                                                            
+
                                                                             $idlocation = detailLocationModel::find($row->idlocation_detail);
-                                                                             
+
                                                                             $location = Location_Model::find($idlocation->idlocation);
                                                                             $user = User::find($row->iduser);
                                                                             if ($row->idmagiamgia != null) {
@@ -116,10 +117,10 @@
                                                                             } else {
                                                                                 $magiamgia = 'Không có';
                                                                             }
-                                                                            
+
                                                                             $sql = "SELECT ctdv.*,mgg.loaima,mgg.giatri from chitietdatve ctdv inner join datve dv on dv.idve = ctdv.idve left join magiamgia mgg on dv.idmagiamgia = mgg.id WHERE dv.idlocation_detail = $rowlcd->id and dv.idve = $row->idve;";
                                                                             $userdata = DB::select($sql);
-                                                                            
+
                                                                         @endphp
 
                                                                         <tr class="location-tr tr-bg-hv">
@@ -132,7 +133,7 @@
                                                                                     <p>Họ tên: <span
                                                                                         class="data-span">{{  $row->ngaydatve  }}
                                                                                     </span> </p>
-                                                                                
+
                                                                                 @if (count($userdata) > 0)
                                                                                     <p class="show-detail-user "
                                                                                         id="btn-user-dropdow"><i>Xem chi tiết ({{ count($userdata) }}) </i> </p>
@@ -152,8 +153,8 @@
 
                                                                             <td class="text-center">
                                                                                 @if ($row->trangthai_thanhtoan != 0)
-                                                                                    
-                                                                                    
+
+
                                                                                     @if ($row->thanhtoan == 0)
                                                                                         @if ($row->trangthai_thanhtoan != 1)
                                                                                             {{-- <p class="badge badge-primary"><a href="{{ route('orderticket.updatepayment', ['id'=>$row->idve, 'act'=>1]) }}"><span class="  a-link"> Xác nhận thanh toán</span></a></p> --}}
@@ -172,7 +173,7 @@
                                                                                     @endif
                                                                                 @else
                                                                                     <p class=" text- "> <span
-                                                                                        class="text-light ">Chưa thanh toán</span> </p> 
+                                                                                        class="text-light ">Chưa thanh toán</span> </p>
                                                                                 @endif
 
 
@@ -337,11 +338,11 @@
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 @endforeach
-                                                                                                {{-- <tr> 
+                                                                                                {{-- <tr>
                                                                                                             <td colspan="5" >
-                                                                                                                <h3 class="font-weight-bolder" >TỔNG TIỀN: <span class="text-danger">{{number_format($tienve)}}</span> VNĐ</h3>    
-                                                                                                            
-                                                                                                            </td>     
+                                                                                                                <h3 class="font-weight-bolder" >TỔNG TIỀN: <span class="text-danger">{{number_format($tienve)}}</span> VNĐ</h3>
+
+                                                                                                            </td>
                                                                                                         </tr> --}}
 
                                                                                             </table>
