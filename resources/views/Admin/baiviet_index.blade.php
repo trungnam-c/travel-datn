@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('baiviet-active', 'active')
 @section('page-title', 'Quản lý bài viết')
+@section('web-title', 'Bài viết')
 @section('main')
 <section class="content">
     <div class="container-fluid">
@@ -58,9 +59,9 @@
                                         <span class="data-span">{{ $row->tieude }} </span>
 
                                     </td>
-                                    <td>   
+                                    <td>
                                         <span class="data-span">
-                                        {{ 
+                                        {{
                                             (new Carbon\Carbon(  $row->ngaydang))->diffForHumans()
                                            }} </span>
 

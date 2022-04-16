@@ -79,7 +79,7 @@ class LocationController extends Controller
         $loca->lichtrinh = $input['lichtrinh'];
         $loca->giavetb = $input['giavetb'];
         $loca->category = $input['category'];
-        $loca->image = $this->xoadauphay($input['images']);
+        $loca->image = $input['images'];
         $loca->phuongtien = $phuongtien;
         $loca->top = $top;
         $loca->anhien = $anhien;

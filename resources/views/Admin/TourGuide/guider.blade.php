@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('guider-active', 'active')
 @section('page-title', 'Quản lý hướng dẫn viên')
+@section('web-title', 'Hướng dẫn viên')
 
 @section('main')
 @php

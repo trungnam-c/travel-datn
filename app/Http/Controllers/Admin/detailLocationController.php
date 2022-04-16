@@ -38,16 +38,18 @@ class detailLocationController extends Controller
             [
                 'idlocation.required' => 'Vị trí ưu tiên không được để trống',
                 'ngaykhoihanh.required' => 'Ngày khởi hành không được để trống',
-                'giokhoihanh.required' => 'Ngày khởi hành không được để trống',
-                'socho.required' => 'Ngày khởi hành không được để trống', 'idhdv.required' => 'Ngày khởi hành không được để trống',
+                'giokhoihanh.required' => 'Giờ khởi hành không được để trống',
+                'socho.required' => 'Số chỗ không được để trống',
+                'idhdv.required' => 'Hướng dẫn viên không được để trống',
+                'venguoilon.required' => 'Vé người lớn không được để trống',
+                'vetreem.required' => 'Vé trẻ em không được để trống',
             ],
         );
+        $insert = $request->all();
         $anhien = 1;
-        if (isset($request->anhien)) {
+        if (isset($insert['anhien'])) {
             $anhien = 0;
         }
-
-        $insert = $request->all();
         $detailLocation = new detailLocationModel();
         $detailLocation->idlocation = $insert['idlocation'];
         $detailLocation->ngaykhoihanh = $insert['ngaykhoihanh'];

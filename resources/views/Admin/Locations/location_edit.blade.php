@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
 @section('page-title', 'Sửa địa điểm')
+@section('web-title', 'Sửa địa điểm')
 @section('main')
 <section class="content">
     <div class="container-fluid">
@@ -58,10 +59,7 @@
                                     <label>Category</label>
                                     <select class="form-control select2bs4" name="category" style="width: 100%;">
                                         @foreach ($cate as $item)
-                                        <option @if ($data->category == $item->name)
-                                            selected
-                                            @endif value="{{$item->id}}">{{$item->name}}</option>
-
+                                            <option value="{{$item->id}}" {{ $data->category === $item->id ? 'selected' : '' }}>{{$item->name}}</option>
                                         @endforeach
                                     </select>
                                     @error('category')

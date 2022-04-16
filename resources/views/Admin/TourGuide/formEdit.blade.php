@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('guider-active', 'active')
 @section('page-title', 'Sửa hướng dẫn viên')
+@section('web-title', 'Sửa hướng dẫn viên')
 @php
  $user = DB::table("huongdanvien")->where("id","$idGuider")->get();
 @endphp

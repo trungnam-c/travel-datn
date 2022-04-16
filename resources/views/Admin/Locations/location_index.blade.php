@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
 @section('page-title', 'Quản lý địa điểm')
+@section('web-title', 'Quản lý địa điểm')
 
 @section('main')
 @php

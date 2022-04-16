@@ -1,6 +1,7 @@
 @extends('layouts.admin_layout')
 @section('location-active', 'active')
 @section('page-title', 'Sửa bình luận')
+@section('web-title', 'Sửa bình luận')
 @section('main')
     <section class="content">
         <div class="container-fluid">
@@ -24,7 +25,7 @@
                                             placeholder="">
 
                                     </div>
-                                </div>                             
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
@@ -46,7 +47,7 @@
                                     @endif
 
                                     </div>
-                                </div>                             
+                                </div>
                             </div>
 
                             <div class="row">

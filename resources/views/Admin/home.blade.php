@@ -3,6 +3,7 @@
 @section('head')
 {{-- các file js hoặc css dùng riêng cho từng view thì để vào đây --}}
 @endsection
+@section('web-title', 'Trang quản trị')
 
 @section('title','Home')
 
