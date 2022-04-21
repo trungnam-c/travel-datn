@@ -93,9 +93,15 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function inve($id)
     {
-        //
+      $sqllaygia = "SELECT * FROM detail_location dl inner join chitietloaive ctlv on dl.id = ctlv.idlocation_detail WHERE idlocation = '$id' and ngaykhoihanh >= NOW() and anhien = 1 ORDER by id";
+        $gia = DB::select($sqllaygia);
+       $sqllayloca = "SELECT * FROM location WHERE id = '$id'";
+       $loca = DB::select($sqllayloca);
+
+        return view("LayoutMail.printQC", ['gia' => $gia, 'loca' => $loca]);
+        
     }
 
     /**

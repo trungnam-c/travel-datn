@@ -102,6 +102,8 @@ Route::name('location.')->group(function () {
     Route::get('/quantri/sua-dia-diem/{id}', [LocationController::class, "edit"])->name('edit')->middleware('auth');
     Route::post('/quantri/cap-nhat-dia-diem/{id}', [LocationController::class, "update"])->name('cap-nhat-dia-diem')->middleware('auth');
     Route::get('/quantri/xoa-dia-diem/{id}', [LocationController::class, "destroy"])->name('destroy')->middleware('auth');
+    Route::get('/quantri/inve/{id}', [LocationController::class, "inve"])->name('inve')->middleware('auth');
+
 });
 Route::name('detailLocation.')->group(function () {
     Route::get('/quantri/chi-tiet-dia-diem', [detailLocationController::class, 'index'])->name('index')->middleware('auth');

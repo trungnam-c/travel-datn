@@ -37,6 +37,8 @@ use Illuminate\Support\Facades\DB;
                                     <th width="150px">Hình ảnh</th>
                                     <th width="150px">Trạng thái</th>
                                     <th width="150px ">Thay đổi</th>
+                                    <th width="150px ">IN</th>
+
 
 
                                 </tr>
@@ -108,8 +110,13 @@ use Illuminate\Support\Facades\DB;
                                                 href="{{ route('location.destroy', ['id'=>$row->id]) }}"><span
                                                     class="delete-span" alt="Xoá dòng này"><i
                                                         class="bi bi-x-square"></i></span></a>
+                                          
                                         </p>
 
+                                    </td>
+                                   
+                                    <td>
+                                        <a target="_blank" href="{{ route('location.inve', ['id'=>$row->id]) }}"><i class="bi bi-printer" style="font-size: 30px;"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
