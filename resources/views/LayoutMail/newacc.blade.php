@@ -171,7 +171,7 @@
                                                     <center>
                                                         <table role="presentation" align="center" cellspacing="0" cellpadding="0" border="0" class="center-on-narrow" style="text-align: center;">
                                                             <tr>
-                                                                <td style="border-radius: 50px; background: #97DBAE; text-align: center;" class="button-td"> <a href="http://www.google.com" style="background: #97DBAE; border: 15px solid #97DBAE; font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 50px; font-weight: bold;" class="button-a"> <span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;KHÁM PHÁ NGAY&nbsp;&nbsp;&nbsp;&nbsp;</span> </a> </td>
+                                                                <td style="border-radius: 50px; background: #97DBAE; text-align: center;" class="button-td"> <a href="https://www.viet-travel.tk/" style="background: #97DBAE; border: 15px solid #97DBAE; font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 50px; font-weight: bold;" class="button-a"> <span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;KHÁM PHÁ NGAY&nbsp;&nbsp;&nbsp;&nbsp;</span> </a> </td>
                                                             </tr>
                                                         </table>
                                                     </center>
@@ -226,7 +226,7 @@
                                     <!-- Button : BEGIN -->
                                     <table role="presentation" align="center" cellspacing="0" cellpadding="0" border="0" class="center-on-narrow">
                                         <tr>
-                                            <td style="border-radius: 50px; background: #97DBAE; text-align: center;" class="button-td"> <a href="http://www.google.com" style="background: #97DBAE; border: 15px solid #97DBAE; font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 50px; font-weight: bold;" class="button-a"> <span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;TẠI ĐÂY&nbsp;&nbsp;&nbsp;&nbsp;</span> </a> </td>
+                                            <td style="border-radius: 50px; background: #97DBAE; text-align: center;" class="button-td"> <a href="https://www.viet-travel.tk/" style="background: #97DBAE; border: 15px solid #97DBAE; font-family: 'Montserrat', sans-serif; font-size: 14px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 50px; font-weight: bold;" class="button-a"> <span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;TẠI ĐÂY&nbsp;&nbsp;&nbsp;&nbsp;</span> </a> </td>
                                         </tr>
                                     </table>
                                 </td>

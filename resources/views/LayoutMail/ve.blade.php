@@ -372,7 +372,7 @@
 
                               <div class="v-text-align" align="center">
                                 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Cabin',sans-serif;"><tr><td class="v-text-align" style="font-family:'Cabin',sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:48px; v-text-anchor:middle; width:134px;" arcsize="0%" stroke="f" fillcolor="#272727"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Cabin',sans-serif;"><![endif]-->
-                                <a href="" target="_blank" style="box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #272727; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
+                                <a href="https://www.viet-travel.tk/" target="_blank" style="box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #272727; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
                                   <span class="v-padding" style="display:block;padding:15px 26px;line-height:130%;"><span style="font-size: 14px; line-height: 18.2px;">XEM CHI TIẾT</span></span>
                                 </a>
                                 <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
@@ -548,7 +548,7 @@
                             <td style="overflow-wrap:break-word;word-break:break-word;padding:5px 10px 15px;font-family:'Cabin',sans-serif;" align="left">
 
                               <div class="v-text-align" style="color: #c2c2c2; line-height: 140%; text-align: left; word-wrap: break-word;">
-                                <p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="color: #555972; font-size: 14px; line-height: 19.6px;">123/123/123/123</span>
+                                <p style="font-size: 14px; line-height: 140%; text-align: center;"><span style="color: #555972; font-size: 14px; line-height: 19.6px;">68 Hai Bà Trưng, Quận Sài Gòn, Thành Phố Đà Lạt</span>
                                 </p>
                               </div>
 

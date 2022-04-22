@@ -139,10 +139,21 @@
 .ttlhb{
   position: absolute;
   bottom: 10px;
-  left: 300px;
+  left: 250px;
   color: white;
 }
 .ttlhb p{
+  font-size: 20px;
+  font-weight: bold;
+}
+.ttlhb2{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+  text-align: right
+}
+.ttlhb2 p{
   font-size: 20px;
   font-weight: bold;
 }
@@ -240,8 +251,11 @@
         <p>Thông tin liên hệ :</p>
         <span><i class="bi bi-google mr-2"></i>Admin@viettravel.com</span><br>
         <span><i class="bi bi-headset mr-2"></i>0326520534 - 0775050421</span>
-
-
+      </div>
+      <div class="ttlhb2">
+        <p>Cơ sở :</p>
+        <span><strong>CS1 </strong> : 68 Hai Bà Trưng, Quận Sài Gòn, ĐÀ LẠT</span><br>
+        <span><strong>CS2 </strong> : 86 Huyền Trần Hoàng Tử, Quận Ninh Bình, BÀ RỊA VŨNG TÀU</span>
       </div>
     </div>
 </div>
