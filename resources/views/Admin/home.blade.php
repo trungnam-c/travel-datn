@@ -28,7 +28,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="/admin/user/danh-sach-khach-hang" class="small-box-footer">Xem thêm<i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/admintravel/public/admin/user/danh-sach-khach-hang" class="small-box-footer">Xem thêm<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -43,7 +43,7 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="/quantri/quan-ly-dia-diem" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/admintravel/public/quantri/quan-ly-dia-diem" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -58,7 +58,7 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="/quantri/chi-tiet-dia-diem" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/admintravel/public/quantri/chi-tiet-dia-diem" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -73,7 +73,7 @@
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="/quantri/quan-ly-dat-ve" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/admintravel/public/quantri/quan-ly-dat-ve" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
